@@ -71,6 +71,12 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>com.ucuenca</groupId>
+            <artifactId>CursoJPAMaven</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
