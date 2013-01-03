@@ -15,12 +15,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.envers.Audited;
 
 /**
  *
  * @author Marcelo
  */
 @Entity
+@Audited 
 @Table(name = "detallefactura")
 @XmlRootElement
 @NamedQueries({
