@@ -4,6 +4,7 @@
  */
 package com.ucuenca.servidorsistemaclinica.entity;
 
+import org.hibernate.envers.Audited;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
@@ -32,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author Marcelo
  */
 @Entity
+@Audited 
 @Table(name = "cartera")
 @XmlRootElement
 @NamedQueries({
