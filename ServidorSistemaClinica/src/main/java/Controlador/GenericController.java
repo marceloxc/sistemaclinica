@@ -10,10 +10,11 @@ import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import util.EntityManagerUtil;
+/*
 import controller.exceptions.NonexistentEntityException;
 import controller.exceptions.PreexistingEntityException;
 import controller.exceptions.RollbackFailureException;
-import java.lang.reflect.Method;
+*/
 /**
  *
  * @author Valex
@@ -42,7 +43,7 @@ public class GenericController<T> {
         return EntityManagerUtil.get().createEntityManager();
     }
 
-    public void create(T objeto) throws PreexistingEntityException, RollbackFailureException, Exception {
+    public void create(T objeto) {
 
         EntityManager em = null;
         em = getEntityManager();
@@ -52,19 +53,22 @@ public class GenericController<T> {
             em.getTransaction().commit();
         } catch (Exception ex) {
             try {
-                em.getTransaction().rollback();
+                if (em.getTransaction().isActive()) {
+                    em.getTransaction().rollback();
+                }
             } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
+                re.printStackTrace();
+                //throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
             }
-           throw ex;
+            ex.printStackTrace();
+           //throw ex;
         } finally {
             if (em != null) {
                 em.close();
             }
         }
     }
-    
-       public void edit(T obj) throws NonexistentEntityException, RollbackFailureException, Exception {
+      public void edit(T obj) throws Exception  {
     	 EntityManager em = null;
          em = getEntityManager();
         try {
@@ -75,8 +79,11 @@ public class GenericController<T> {
             try {
             	em.getTransaction().rollback();
             } catch (Exception re) {
-                throw new RollbackFailureException("An error occurred attempting to roll back the transaction.", re);
+                re.printStackTrace();
             }
+            
+            ex.printStackTrace();
+            throw new Exception(ex);
           /*  String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
                 Method [] metodos = obj.getClass().getDeclaredMethods();
@@ -85,7 +92,6 @@ public class GenericController<T> {
                     throw new NonexistentEntityException("The categoria with id " + id + " no longer exists.");
                 }
             }*/
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -93,11 +99,11 @@ public class GenericController<T> {
         }
     }
        
-    public Object find(T obj, Object id) {
+    public T find(Class <T> obj, Object id) {
         EntityManager em = getEntityManager();
         System.out.println("Clase: " + obj.getClass().getName() + id);
         try {
-            return em.find(obj.getClass(), id);
+            return (T)em.find(obj, id);
         } finally {
             em.close();
         }
@@ -128,4 +134,5 @@ public class GenericController<T> {
         }
         return null;
     }
+
 }
