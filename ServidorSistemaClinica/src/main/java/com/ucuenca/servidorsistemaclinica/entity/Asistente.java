@@ -6,7 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marcelo
+ * @author Valex
  */
 @Entity
 @Table(name = "asistente")
@@ -49,13 +49,13 @@ public class Asistente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Sucursal idSucursal;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Persona persona;
-    @OneToMany(mappedBy = "idAsistente", fetch = FetchType.LAZY)
-    private Set<Cita> citaSet;
+    @OneToMany(mappedBy = "idAsistente", fetch = FetchType.EAGER)
+    private List<Cita> citaList;
 
     public Asistente() {
     }
@@ -97,12 +97,12 @@ public class Asistente implements Serializable {
     }
 
     @XmlTransient
-    public Set<Cita> getCitaSet() {
-        return citaSet;
+    public List<Cita> getCitaList() {
+        return citaList;
     }
 
-    public void setCitaSet(Set<Cita> citaSet) {
-        this.citaSet = citaSet;
+    public void setCitaList(List<Cita> citaList) {
+        this.citaList = citaList;
     }
 
     @Override
@@ -127,7 +127,7 @@ public class Asistente implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ucuenca.servidorsistemaclinica.Asistente[ cedula=" + cedula + " ]";
+        return "com.ucuenca.servidorsistemaclinica.entity.Asistente[ cedula=" + cedula + " ]";
     }
     
 }
