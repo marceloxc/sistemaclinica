@@ -27,7 +27,7 @@
       <property name="hibernate.jdbc.batch_size" value="50"/>
       
          <property name="hibernate.search.default.directory_provider" value="filesystem" />
-         
+         <!--
    <property name="hibernate.ejb.event.post-insert"
              value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" />
    <property name="hibernate.ejb.event.post-update"
@@ -40,7 +40,7 @@
              value="org.hibernate.envers.event.AuditEventListener" />
    <property name="hibernate.ejb.event.post-collection-recreate"
              value="org.hibernate.envers.event.AuditEventListener" />
-
+-->
     </properties>
   </persistence-unit>
   
