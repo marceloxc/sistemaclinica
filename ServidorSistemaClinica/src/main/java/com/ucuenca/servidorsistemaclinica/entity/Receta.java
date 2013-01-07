@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Marcelo
+ * @author Valex
  */
 @Entity
 @Table(name = "receta")
@@ -49,7 +49,7 @@ public class Receta implements Serializable {
     @Column(name = "Indicaciones")
     private String indicaciones;
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cita idCita;
 
     public Receta() {
@@ -121,7 +121,7 @@ public class Receta implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ucuenca.servidorsistemaclinica.Receta[ idReceta=" + idReceta + " ]";
+        return "com.ucuenca.servidorsistemaclinica.entity.Receta[ idReceta=" + idReceta + " ]";
     }
     
 }

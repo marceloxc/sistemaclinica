@@ -6,7 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,14 +24,12 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
-import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author Valex
  */
 @Entity
-@Audited 
 @Table(name = "factura")
 @XmlRootElement
 @NamedQueries({
@@ -52,16 +50,16 @@ public class Factura implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "DESCUENTO")
     private Double descuento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "factura", fetch = FetchType.LAZY)
-    private Set<DetalleFactura> detalleFacturaSet;
-    @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Cita idCita;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura", fetch = FetchType.EAGER)
+    private List<Detallefactura> detallefacturaList;
     @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cita idPaciente;
-    @OneToMany(mappedBy = "idFactura", fetch = FetchType.LAZY)
-    private Set<Cartera> carteraSet;
+    @JoinColumn(name = "idCita", referencedColumnName = "idCita")
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Cita idCita;
+    @OneToMany(mappedBy = "idFactura", fetch = FetchType.EAGER)
+    private List<Cartera> carteraList;
 
     public Factura() {
     }
@@ -95,20 +93,12 @@ public class Factura implements Serializable {
     }
 
     @XmlTransient
-    public Set<DetalleFactura> getDetalleFacturaSet() {
-        return detalleFacturaSet;
+    public List<Detallefactura> getDetallefacturaList() {
+        return detallefacturaList;
     }
 
-    public void setDetalleFacturaSet(Set<DetalleFactura> detalleFacturaSet) {
-        this.detalleFacturaSet = detalleFacturaSet;
-    }
-
-    public Cita getIdCita() {
-        return idCita;
-    }
-
-    public void setIdCita(Cita idCita) {
-        this.idCita = idCita;
+    public void setDetallefacturaList(List<Detallefactura> detallefacturaList) {
+        this.detallefacturaList = detallefacturaList;
     }
 
     public Cita getIdPaciente() {
@@ -119,13 +109,21 @@ public class Factura implements Serializable {
         this.idPaciente = idPaciente;
     }
 
-    @XmlTransient
-    public Set<Cartera> getCarteraSet() {
-        return carteraSet;
+    public Cita getIdCita() {
+        return idCita;
     }
 
-    public void setCarteraSet(Set<Cartera> carteraSet) {
-        this.carteraSet = carteraSet;
+    public void setIdCita(Cita idCita) {
+        this.idCita = idCita;
+    }
+
+    @XmlTransient
+    public List<Cartera> getCarteraList() {
+        return carteraList;
+    }
+
+    public void setCarteraList(List<Cartera> carteraList) {
+        this.carteraList = carteraList;
     }
 
     @Override
@@ -150,7 +148,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ucuenca.servidorsistemaclinica.Factura[ numFactura=" + numFactura + " ]";
+        return "com.ucuenca.servidorsistemaclinica.entity.Factura[ numFactura=" + numFactura + " ]";
     }
     
 }

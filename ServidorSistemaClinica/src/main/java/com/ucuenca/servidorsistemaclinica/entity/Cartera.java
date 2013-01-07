@@ -4,10 +4,9 @@
  */
 package com.ucuenca.servidorsistemaclinica.entity;
 
-import org.hibernate.envers.Audited;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,10 +29,9 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marcelo
+ * @author Valex
  */
 @Entity
-@Audited 
 @Table(name = "cartera")
 @XmlRootElement
 @NamedQueries({
@@ -58,10 +56,10 @@ public class Cartera implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TotalDeuda")
     private Double totalDeuda;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cartera", fetch = FetchType.LAZY)
-    private Set<DetalleCartera> detalleCarteraSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCartera", fetch = FetchType.EAGER)
+    private List<Detallecartera> detallecarteraList;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Factura idFactura;
 
     public Cartera() {
@@ -104,12 +102,12 @@ public class Cartera implements Serializable {
     }
 
     @XmlTransient
-    public Set<DetalleCartera> getDetalleCarteraSet() {
-        return detalleCarteraSet;
+    public List<Detallecartera> getDetallecarteraList() {
+        return detallecarteraList;
     }
 
-    public void setDetalleCarteraSet(Set<DetalleCartera> detalleCarteraSet) {
-        this.detalleCarteraSet = detalleCarteraSet;
+    public void setDetallecarteraList(List<Detallecartera> detallecarteraList) {
+        this.detallecarteraList = detallecarteraList;
     }
 
     public Factura getIdFactura() {
@@ -142,7 +140,7 @@ public class Cartera implements Serializable {
 
     @Override
     public String toString() {
-        return "com.ucuenca.servidorsistemaclinica.Cartera[ idCartera=" + idCartera + " ]";
+        return "com.ucuenca.servidorsistemaclinica.entity.Cartera[ idCartera=" + idCartera + " ]";
     }
     
 }
