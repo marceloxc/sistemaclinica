@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "detallefactura")
@@ -44,10 +44,10 @@ public class Detallefactura implements Serializable {
     @Column(name = "precioActual")
     private Double precioActual;
     @JoinColumn(name = "idServicioOdontologico", referencedColumnName = "Codigo")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Servicioodontologico idServicioOdontologico;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Factura idFactura;
 
     public Detallefactura() {

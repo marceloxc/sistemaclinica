@@ -6,7 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +27,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "cita")
@@ -50,23 +50,23 @@ public class Cita implements Serializable {
     @Size(max = 45)
     @Column(name = "motivo")
     private String motivo;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
-    private List<Receta> recetaList;
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.EAGER)
-    private List<Factura> facturaList;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
-    private List<Factura> facturaList1;
-    @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
-    private Paciente idPaciente;
-    @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Odontologo idOdontologo;
+    @OneToMany(mappedBy = "idCita", fetch = FetchType.LAZY)
+    private Set<Receta> recetaSet;
+    @OneToMany(mappedBy = "idCita", fetch = FetchType.LAZY)
+    private Set<Factura> facturaSet;
+    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    private Set<Factura> facturaSet1;
     @JoinColumn(name = "idAsistente", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Asistente idAsistente;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
-    private List<Detallehistoriaclinica> detallehistoriaclinicaList;
+    @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Odontologo idOdontologo;
+    @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Paciente idPaciente;
+    @OneToMany(mappedBy = "idCita", fetch = FetchType.LAZY)
+    private Set<Detallehistoriaclinica> detallehistoriaclinicaSet;
 
     public Cita() {
     }
@@ -100,46 +100,30 @@ public class Cita implements Serializable {
     }
 
     @XmlTransient
-    public List<Receta> getRecetaList() {
-        return recetaList;
+    public Set<Receta> getRecetaSet() {
+        return recetaSet;
     }
 
-    public void setRecetaList(List<Receta> recetaList) {
-        this.recetaList = recetaList;
-    }
-
-    @XmlTransient
-    public List<Factura> getFacturaList() {
-        return facturaList;
-    }
-
-    public void setFacturaList(List<Factura> facturaList) {
-        this.facturaList = facturaList;
+    public void setRecetaSet(Set<Receta> recetaSet) {
+        this.recetaSet = recetaSet;
     }
 
     @XmlTransient
-    public List<Factura> getFacturaList1() {
-        return facturaList1;
+    public Set<Factura> getFacturaSet() {
+        return facturaSet;
     }
 
-    public void setFacturaList1(List<Factura> facturaList1) {
-        this.facturaList1 = facturaList1;
+    public void setFacturaSet(Set<Factura> facturaSet) {
+        this.facturaSet = facturaSet;
     }
 
-    public Paciente getIdPaciente() {
-        return idPaciente;
+    @XmlTransient
+    public Set<Factura> getFacturaSet1() {
+        return facturaSet1;
     }
 
-    public void setIdPaciente(Paciente idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    public Odontologo getIdOdontologo() {
-        return idOdontologo;
-    }
-
-    public void setIdOdontologo(Odontologo idOdontologo) {
-        this.idOdontologo = idOdontologo;
+    public void setFacturaSet1(Set<Factura> facturaSet1) {
+        this.facturaSet1 = facturaSet1;
     }
 
     public Asistente getIdAsistente() {
@@ -150,13 +134,29 @@ public class Cita implements Serializable {
         this.idAsistente = idAsistente;
     }
 
-    @XmlTransient
-    public List<Detallehistoriaclinica> getDetallehistoriaclinicaList() {
-        return detallehistoriaclinicaList;
+    public Odontologo getIdOdontologo() {
+        return idOdontologo;
     }
 
-    public void setDetallehistoriaclinicaList(List<Detallehistoriaclinica> detallehistoriaclinicaList) {
-        this.detallehistoriaclinicaList = detallehistoriaclinicaList;
+    public void setIdOdontologo(Odontologo idOdontologo) {
+        this.idOdontologo = idOdontologo;
+    }
+
+    public Paciente getIdPaciente() {
+        return idPaciente;
+    }
+
+    public void setIdPaciente(Paciente idPaciente) {
+        this.idPaciente = idPaciente;
+    }
+
+    @XmlTransient
+    public Set<Detallehistoriaclinica> getDetallehistoriaclinicaSet() {
+        return detallehistoriaclinicaSet;
+    }
+
+    public void setDetallehistoriaclinicaSet(Set<Detallehistoriaclinica> detallehistoriaclinicaSet) {
+        this.detallehistoriaclinicaSet = detallehistoriaclinicaSet;
     }
 
     @Override

@@ -6,7 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "odontologo")
@@ -53,13 +53,13 @@ public class Odontologo implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Sucursal idSucursal;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
-    @OneToMany(mappedBy = "idOdontologo", fetch = FetchType.EAGER)
-    private List<Cita> citaList;
+    @OneToMany(mappedBy = "idOdontologo", fetch = FetchType.LAZY)
+    private Set<Cita> citaSet;
 
     public Odontologo() {
     }
@@ -109,12 +109,12 @@ public class Odontologo implements Serializable {
     }
 
     @XmlTransient
-    public List<Cita> getCitaList() {
-        return citaList;
+    public Set<Cita> getCitaSet() {
+        return citaSet;
     }
 
-    public void setCitaList(List<Cita> citaList) {
-        this.citaList = citaList;
+    public void setCitaSet(Set<Cita> citaSet) {
+        this.citaSet = citaSet;
     }
 
     @Override

@@ -5,7 +5,7 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "persona")
@@ -64,7 +64,7 @@ public class Persona implements Serializable {
     @Size(max = 11)
     @Column(name = "TelfCelular")
     private String telfCelular;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 45)
     @Column(name = "Email")
     private String email;
@@ -76,15 +76,15 @@ public class Persona implements Serializable {
     private String password;
     @Column(name = "Sexo")
     private Character sexo;
-    @OneToMany(mappedBy = "idRepresentante", fetch = FetchType.EAGER)
-    private List<Paciente> pacienteList;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "idRepresentante", fetch = FetchType.LAZY)
+    private Set<Paciente> pacienteSet;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     private Paciente paciente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     private Administrador administrador;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     private Asistente asistente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.LAZY)
     private Odontologo odontologo;
 
     public Persona() {
@@ -175,12 +175,12 @@ public class Persona implements Serializable {
     }
 
     @XmlTransient
-    public List<Paciente> getPacienteList() {
-        return pacienteList;
+    public Set<Paciente> getPacienteSet() {
+        return pacienteSet;
     }
 
-    public void setPacienteList(List<Paciente> pacienteList) {
-        this.pacienteList = pacienteList;
+    public void setPacienteSet(Set<Paciente> pacienteSet) {
+        this.pacienteSet = pacienteSet;
     }
 
     public Paciente getPaciente() {

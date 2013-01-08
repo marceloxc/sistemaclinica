@@ -5,7 +5,7 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "paciente")
@@ -47,15 +47,15 @@ public class Paciente implements Serializable {
     @Column(name = "Ocupacion")
     private String ocupacion;
     @JoinColumn(name = "idRepresentante", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Persona idRepresentante;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.EAGER)
-    private List<Historiaclinica> historiaclinicaList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.EAGER)
-    private List<Cita> citaList;
+    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    private Set<Historiaclinica> historiaclinicaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    private Set<Cita> citaSet;
 
     public Paciente() {
     }
@@ -97,21 +97,21 @@ public class Paciente implements Serializable {
     }
 
     @XmlTransient
-    public List<Historiaclinica> getHistoriaclinicaList() {
-        return historiaclinicaList;
+    public Set<Historiaclinica> getHistoriaclinicaSet() {
+        return historiaclinicaSet;
     }
 
-    public void setHistoriaclinicaList(List<Historiaclinica> historiaclinicaList) {
-        this.historiaclinicaList = historiaclinicaList;
+    public void setHistoriaclinicaSet(Set<Historiaclinica> historiaclinicaSet) {
+        this.historiaclinicaSet = historiaclinicaSet;
     }
 
     @XmlTransient
-    public List<Cita> getCitaList() {
-        return citaList;
+    public Set<Cita> getCitaSet() {
+        return citaSet;
     }
 
-    public void setCitaList(List<Cita> citaList) {
-        this.citaList = citaList;
+    public void setCitaSet(Set<Cita> citaSet) {
+        this.citaSet = citaSet;
     }
 
     @Override

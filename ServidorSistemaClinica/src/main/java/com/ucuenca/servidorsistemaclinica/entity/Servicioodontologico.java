@@ -5,7 +5,7 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "servicioodontologico")
@@ -49,8 +49,8 @@ public class Servicioodontologico implements Serializable {
     private Double precio;
     @Column(name = "IVA")
     private Character iva;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicioOdontologico", fetch = FetchType.EAGER)
-    private List<Detallefactura> detallefacturaList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicioOdontologico", fetch = FetchType.LAZY)
+    private Set<Detallefactura> detallefacturaSet;
 
     public Servicioodontologico() {
     }
@@ -92,12 +92,12 @@ public class Servicioodontologico implements Serializable {
     }
 
     @XmlTransient
-    public List<Detallefactura> getDetallefacturaList() {
-        return detallefacturaList;
+    public Set<Detallefactura> getDetallefacturaSet() {
+        return detallefacturaSet;
     }
 
-    public void setDetallefacturaList(List<Detallefactura> detallefacturaList) {
-        this.detallefacturaList = detallefacturaList;
+    public void setDetallefacturaSet(Set<Detallefactura> detallefacturaSet) {
+        this.detallefacturaSet = detallefacturaSet;
     }
 
     @Override

@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "detallehistoriaclinica")
@@ -57,12 +57,12 @@ public class Detallehistoriaclinica implements Serializable {
     @NotNull
     @Column(name = "CodigoHistoriaClinica")
     private int codigoHistoriaClinica;
-    @JoinColumn(name = "Codigo", referencedColumnName = "Codigo", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
-    private Historiaclinica historiaclinica;
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cita idCita;
+    @JoinColumn(name = "Codigo", referencedColumnName = "Codigo", insertable = false, updatable = false)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    private Historiaclinica historiaclinica;
 
     public Detallehistoriaclinica() {
     }
@@ -116,20 +116,20 @@ public class Detallehistoriaclinica implements Serializable {
         this.codigoHistoriaClinica = codigoHistoriaClinica;
     }
 
-    public Historiaclinica getHistoriaclinica() {
-        return historiaclinica;
-    }
-
-    public void setHistoriaclinica(Historiaclinica historiaclinica) {
-        this.historiaclinica = historiaclinica;
-    }
-
     public Cita getIdCita() {
         return idCita;
     }
 
     public void setIdCita(Cita idCita) {
         this.idCita = idCita;
+    }
+
+    public Historiaclinica getHistoriaclinica() {
+        return historiaclinica;
+    }
+
+    public void setHistoriaclinica(Historiaclinica historiaclinica) {
+        this.historiaclinica = historiaclinica;
     }
 
     @Override

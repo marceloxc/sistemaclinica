@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "administrador")
@@ -45,7 +45,7 @@ public class Administrador implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false, fetch = FetchType.LAZY)
     private Persona persona;
 
     public Administrador() {

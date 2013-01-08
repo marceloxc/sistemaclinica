@@ -6,7 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "cartera")
@@ -56,10 +56,10 @@ public class Cartera implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TotalDeuda")
     private Double totalDeuda;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCartera", fetch = FetchType.EAGER)
-    private List<Detallecartera> detallecarteraList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCartera", fetch = FetchType.LAZY)
+    private Set<Detallecartera> detallecarteraSet;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Factura idFactura;
 
     public Cartera() {
@@ -102,12 +102,12 @@ public class Cartera implements Serializable {
     }
 
     @XmlTransient
-    public List<Detallecartera> getDetallecarteraList() {
-        return detallecarteraList;
+    public Set<Detallecartera> getDetallecarteraSet() {
+        return detallecarteraSet;
     }
 
-    public void setDetallecarteraList(List<Detallecartera> detallecarteraList) {
-        this.detallecarteraList = detallecarteraList;
+    public void setDetallecarteraSet(Set<Detallecartera> detallecarteraSet) {
+        this.detallecarteraSet = detallecarteraSet;
     }
 
     public Factura getIdFactura() {

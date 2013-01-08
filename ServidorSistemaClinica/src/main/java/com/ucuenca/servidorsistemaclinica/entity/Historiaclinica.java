@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "historiaclinica")
@@ -100,9 +100,9 @@ public class Historiaclinica implements Serializable {
     @Column(name = "Observaciones")
     private String observaciones;
     @JoinColumn(name = "IdPaciente", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Paciente idPaciente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "historiaclinica", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "historiaclinica", fetch = FetchType.LAZY)
     private Detallehistoriaclinica detallehistoriaclinica;
 
     public Historiaclinica() {

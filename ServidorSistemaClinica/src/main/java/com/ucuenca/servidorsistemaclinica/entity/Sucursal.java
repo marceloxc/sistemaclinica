@@ -5,7 +5,7 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Valex
+ * @author Marcelo
  */
 @Entity
 @Table(name = "sucursal")
@@ -45,10 +45,10 @@ public class Sucursal implements Serializable {
     @Size(max = 11)
     @Column(name = "Telefono")
     private String telefono;
-    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.EAGER)
-    private List<Asistente> asistenteList;
-    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.EAGER)
-    private List<Odontologo> odontologoList;
+    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.LAZY)
+    private Set<Asistente> asistenteSet;
+    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.LAZY)
+    private Set<Odontologo> odontologoSet;
 
     public Sucursal() {
     }
@@ -82,21 +82,21 @@ public class Sucursal implements Serializable {
     }
 
     @XmlTransient
-    public List<Asistente> getAsistenteList() {
-        return asistenteList;
+    public Set<Asistente> getAsistenteSet() {
+        return asistenteSet;
     }
 
-    public void setAsistenteList(List<Asistente> asistenteList) {
-        this.asistenteList = asistenteList;
+    public void setAsistenteSet(Set<Asistente> asistenteSet) {
+        this.asistenteSet = asistenteSet;
     }
 
     @XmlTransient
-    public List<Odontologo> getOdontologoList() {
-        return odontologoList;
+    public Set<Odontologo> getOdontologoSet() {
+        return odontologoSet;
     }
 
-    public void setOdontologoList(List<Odontologo> odontologoList) {
-        this.odontologoList = odontologoList;
+    public void setOdontologoSet(Set<Odontologo> odontologoSet) {
+        this.odontologoSet = odontologoSet;
     }
 
     @Override
