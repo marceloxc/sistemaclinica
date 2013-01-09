@@ -56,8 +56,6 @@ public class Cartera implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TotalDeuda")
     private Double totalDeuda;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCartera", fetch = FetchType.LAZY)
-    private Set<Detallecartera> detallecarteraSet;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
     @ManyToOne(fetch = FetchType.LAZY)
     private Factura idFactura;
@@ -99,15 +97,6 @@ public class Cartera implements Serializable {
 
     public void setTotalDeuda(Double totalDeuda) {
         this.totalDeuda = totalDeuda;
-    }
-
-    @XmlTransient
-    public Set<Detallecartera> getDetallecarteraSet() {
-        return detallecarteraSet;
-    }
-
-    public void setDetallecarteraSet(Set<Detallecartera> detallecarteraSet) {
-        this.detallecarteraSet = detallecarteraSet;
     }
 
     public Factura getIdFactura() {

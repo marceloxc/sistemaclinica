@@ -65,9 +65,7 @@ public class Cita implements Serializable {
     @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Paciente idPaciente;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.LAZY)
-    private Set<Detallehistoriaclinica> detallehistoriaclinicaSet;
-
+ 
     public Cita() {
     }
 
@@ -148,15 +146,6 @@ public class Cita implements Serializable {
 
     public void setIdPaciente(Paciente idPaciente) {
         this.idPaciente = idPaciente;
-    }
-
-    @XmlTransient
-    public Set<Detallehistoriaclinica> getDetallehistoriaclinicaSet() {
-        return detallehistoriaclinicaSet;
-    }
-
-    public void setDetallehistoriaclinicaSet(Set<Detallehistoriaclinica> detallehistoriaclinicaSet) {
-        this.detallehistoriaclinicaSet = detallehistoriaclinicaSet;
     }
 
     @Override

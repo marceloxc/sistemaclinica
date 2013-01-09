@@ -1,5 +1,9 @@
+<%@page import="java.util.Date"%>
 <%@page import="Controlador.GenericController"%>
+<%@page import="com.ucuenca.servidorsistemaclinica.entity.Asistente"%>
+<%@page import="com.ucuenca.servidorsistemaclinica.entity.Sucursal"%>
 <%@page import="com.ucuenca.servidorsistemaclinica.entity.Persona"%>
+<%@page import="com.ucuenca.servidorsistemaclinica.entity.Cita"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
@@ -10,16 +14,18 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Ola Ke Ase!</h1>
         <%
-            GenericController<Persona> controller = new GenericController<Persona>();
-            Persona p = new Persona("123456789");
-            p.setNombres("Juan");
-            p.setApellidos("perez");
-            controller.create(p);
+            GenericController<Asistente> controller = new GenericController<Asistente>();
+            //Asistente p = new Asistente("123456789");
+            //Sucursal s=new Sucursal(1);            
+            //p.setIdSucursal(s);
+            //p.setFechaIngreso(new Date());                        
+            //controller.create(p);
             
-            Persona p2 = controller.find(Persona.class, "123456789");
-            out.println(p2.getNombres() + " " + p2.getApellidos());
+                        
+            Asistente p2 = controller.find(Asistente.class, "123456789");
+            out.println(p2.getCedula() + " " + p2.getIdSucursal().getNumSucursal());
         %>
     </body>
 </html>

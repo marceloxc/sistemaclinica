@@ -102,8 +102,7 @@ public class Historiaclinica implements Serializable {
     @JoinColumn(name = "IdPaciente", referencedColumnName = "Cedula")
     @ManyToOne(fetch = FetchType.LAZY)
     private Paciente idPaciente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "historiaclinica", fetch = FetchType.LAZY)
-    private Detallehistoriaclinica detallehistoriaclinica;
+
 
     public Historiaclinica() {
     }
@@ -262,14 +261,6 @@ public class Historiaclinica implements Serializable {
 
     public void setIdPaciente(Paciente idPaciente) {
         this.idPaciente = idPaciente;
-    }
-
-    public Detallehistoriaclinica getDetallehistoriaclinica() {
-        return detallehistoriaclinica;
-    }
-
-    public void setDetallehistoriaclinica(Detallehistoriaclinica detallehistoriaclinica) {
-        this.detallehistoriaclinica = detallehistoriaclinica;
     }
 
     @Override

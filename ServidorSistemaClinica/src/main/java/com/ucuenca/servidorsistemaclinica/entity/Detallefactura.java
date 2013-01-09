@@ -43,9 +43,6 @@ public class Detallefactura implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precioActual")
     private Double precioActual;
-    @JoinColumn(name = "idServicioOdontologico", referencedColumnName = "Codigo")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Servicioodontologico idServicioOdontologico;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Factura idFactura;
@@ -79,14 +76,6 @@ public class Detallefactura implements Serializable {
 
     public void setPrecioActual(Double precioActual) {
         this.precioActual = precioActual;
-    }
-
-    public Servicioodontologico getIdServicioOdontologico() {
-        return idServicioOdontologico;
-    }
-
-    public void setIdServicioOdontologico(Servicioodontologico idServicioOdontologico) {
-        this.idServicioOdontologico = idServicioOdontologico;
     }
 
     public Factura getIdFactura() {

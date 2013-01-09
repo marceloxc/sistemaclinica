@@ -5,6 +5,7 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -49,12 +50,12 @@ public class Asistente implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Sucursal idSucursal;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Persona persona;
-    @OneToMany(mappedBy = "idAsistente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idAsistente", fetch = FetchType.EAGER)
     private Set<Cita> citaSet;
 
     public Asistente() {
