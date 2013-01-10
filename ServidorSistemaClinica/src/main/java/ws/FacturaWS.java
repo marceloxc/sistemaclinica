@@ -5,7 +5,6 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.Detallefactura;
 import com.ucuenca.servidorsistemaclinica.entity.Factura;
 import javax.jws.WebService;
 import javax.jws.WebMethod;

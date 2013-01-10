@@ -52,8 +52,6 @@ public class Paciente implements Serializable {
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Persona persona;
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.EAGER)
-    private Set<Historiaclinica> historiaclinicaSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.EAGER)
     private Set<Cita> citaSet;
 
@@ -96,15 +94,7 @@ public class Paciente implements Serializable {
         this.persona = persona;
     }
 
-    @XmlTransient
-    public Set<Historiaclinica> getHistoriaclinicaSet() {
-        return historiaclinicaSet;
-    }
-
-    public void setHistoriaclinicaSet(Set<Historiaclinica> historiaclinicaSet) {
-        this.historiaclinicaSet = historiaclinicaSet;
-    }
-
+    
     @XmlTransient
     public Set<Cita> getCitaSet() {
         return citaSet;
