@@ -53,12 +53,12 @@ public class Odontologo implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Sucursal idSucursal;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Persona persona;
-    @OneToMany(mappedBy = "idOdontologo", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idOdontologo", fetch = FetchType.EAGER)
     private Set<Cita> citaSet;
 
     public Odontologo() {

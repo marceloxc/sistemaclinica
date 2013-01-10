@@ -50,15 +50,15 @@ public class Factura implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "DESCUENTO")
     private Double descuento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura", fetch = FetchType.EAGER)
     private Set<Detallefactura> detallefacturaSet;
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cita idCita;
     @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cita idPaciente;
-    @OneToMany(mappedBy = "idFactura", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idFactura", fetch = FetchType.EAGER)
     private Set<Cartera> carteraSet;
 
     public Factura() {

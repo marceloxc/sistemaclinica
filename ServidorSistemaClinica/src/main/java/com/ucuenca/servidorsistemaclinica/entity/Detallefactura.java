@@ -44,7 +44,7 @@ public class Detallefactura implements Serializable {
     @Column(name = "precioActual")
     private Double precioActual;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Factura idFactura;
 
     public Detallefactura() {

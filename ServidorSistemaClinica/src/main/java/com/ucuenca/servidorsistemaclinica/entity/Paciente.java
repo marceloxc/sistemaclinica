@@ -47,14 +47,14 @@ public class Paciente implements Serializable {
     @Column(name = "Ocupacion")
     private String ocupacion;
     @JoinColumn(name = "idRepresentante", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Persona idRepresentante;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Persona persona;
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.EAGER)
     private Set<Historiaclinica> historiaclinicaSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.EAGER)
     private Set<Cita> citaSet;
 
     public Paciente() {

@@ -49,7 +49,7 @@ public class Receta implements Serializable {
     @Column(name = "Indicaciones")
     private String indicaciones;
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Cita idCita;
 
     public Receta() {

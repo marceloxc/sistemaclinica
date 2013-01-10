@@ -50,20 +50,20 @@ public class Cita implements Serializable {
     @Size(max = 45)
     @Column(name = "motivo")
     private String motivo;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
     private Set<Receta> recetaSet;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
     private Set<Factura> facturaSet;
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.EAGER)
     private Set<Factura> facturaSet1;
     @JoinColumn(name = "idAsistente", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Asistente idAsistente;
     @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Odontologo idOdontologo;
     @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Paciente idPaciente;
  
     public Cita() {

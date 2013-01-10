@@ -45,7 +45,7 @@ public class Administrador implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Persona persona;
 
     public Administrador() {

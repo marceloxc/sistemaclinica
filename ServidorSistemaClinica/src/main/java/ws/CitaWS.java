@@ -5,34 +5,33 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.Persona;
+import com.ucuenca.servidorsistemaclinica.entity.Cartera;
+import com.ucuenca.servidorsistemaclinica.entity.Cita;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
 /**
  *
  * @author DELL
  */
-@WebService(serviceName = "PersonaWS")
-public class PersonaWS {
+@WebService(serviceName = "CitaWS")
+public class CitaWS {
 
     /**
      * This is a sample web service operation
      */
-private GenericController<Persona> ctr= new GenericController<Persona>();
+private GenericController<Cita> ctr= new GenericController<Cita>();
     
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "crearp")
-    public boolean crearp(@WebParam(name = "persona") Persona persona) {
+    @WebMethod(operationName = "crearci")
+    public boolean crearci(@WebParam(name = "cita") Cita cita) {
         boolean aux=true;
         try
         {
-            ctr.create(persona);                
+            ctr.create(cita);                
         }
         catch(Exception e){aux=false;
         e.printStackTrace();
@@ -43,13 +42,13 @@ private GenericController<Persona> ctr= new GenericController<Persona>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "editp")
-    public boolean editp(@WebParam(name = "persona") Persona persona) {
+    @WebMethod(operationName = "editci")
+    public boolean editci(@WebParam(name = "cita") Cita cita) {
         //TODO write your implementation code here:
         boolean aux=true;
         try
         {
-            ctr.edit(persona);                
+            ctr.edit(cita);                
         }
         catch(Exception e){aux=false;}
         return aux;            
@@ -58,18 +57,15 @@ private GenericController<Persona> ctr= new GenericController<Persona>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findp")
-    public Persona findp(@WebParam(name = "id") String id) {
+    @WebMethod(operationName = "findci")
+    public Cita findci(@WebParam(name = "id") String id) {
         //TODO write your implementation code here:
-        Persona aux= new Persona();
+        Cita aux= new Cita();
         try
         {            
-            aux=ctr.find(Persona.class, id);                
+            aux=ctr.find(Cita.class, id);                
         }
         catch(Exception e){aux=null;}
         return aux;
     }
-
-    
-
 }

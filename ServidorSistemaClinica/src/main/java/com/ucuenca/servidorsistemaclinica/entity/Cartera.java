@@ -57,7 +57,7 @@ public class Cartera implements Serializable {
     @Column(name = "TotalDeuda")
     private Double totalDeuda;
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Factura idFactura;
 
     public Cartera() {

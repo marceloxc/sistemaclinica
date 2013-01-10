@@ -45,9 +45,9 @@ public class Sucursal implements Serializable {
     @Size(max = 11)
     @Column(name = "Telefono")
     private String telefono;
-    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.EAGER)
     private Set<Asistente> asistenteSet;
-    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.EAGER)
     private Set<Odontologo> odontologoSet;
 
     public Sucursal() {

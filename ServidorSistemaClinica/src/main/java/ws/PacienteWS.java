@@ -5,34 +5,32 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.Persona;
+import com.ucuenca.servidorsistemaclinica.entity.Paciente;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
 /**
  *
  * @author DELL
  */
-@WebService(serviceName = "PersonaWS")
-public class PersonaWS {
+@WebService(serviceName = "PacienteWS")
+public class PacienteWS {
 
-    /**
+      /**
      * This is a sample web service operation
      */
-private GenericController<Persona> ctr= new GenericController<Persona>();
+    private GenericController<Paciente> ctr= new GenericController<Paciente>();
     
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "crearp")
-    public boolean crearp(@WebParam(name = "persona") Persona persona) {
+    @WebMethod(operationName = "crearpa")
+    public boolean crearpa(@WebParam(name = "paciente") Paciente paciente) {
         boolean aux=true;
         try
         {
-            ctr.create(persona);                
+            ctr.create(paciente);                
         }
         catch(Exception e){aux=false;
         e.printStackTrace();
@@ -43,13 +41,13 @@ private GenericController<Persona> ctr= new GenericController<Persona>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "editp")
-    public boolean editp(@WebParam(name = "persona") Persona persona) {
+    @WebMethod(operationName = "editpa")
+    public boolean editpa(@WebParam(name = "paciente") Paciente paciente) {
         //TODO write your implementation code here:
         boolean aux=true;
         try
         {
-            ctr.edit(persona);                
+            ctr.edit(paciente);                
         }
         catch(Exception e){aux=false;}
         return aux;            
@@ -58,18 +56,15 @@ private GenericController<Persona> ctr= new GenericController<Persona>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findp")
-    public Persona findp(@WebParam(name = "id") String id) {
+    @WebMethod(operationName = "findpa")
+    public Paciente findpa(@WebParam(name = "id") String id) {
         //TODO write your implementation code here:
-        Persona aux= new Persona();
+        Paciente aux= new Paciente();
         try
         {            
-            aux=ctr.find(Persona.class, id);                
+            aux=ctr.find(Paciente.class, id);                
         }
         catch(Exception e){aux=null;}
         return aux;
     }
-
-    
-
 }

@@ -100,7 +100,7 @@ public class Historiaclinica implements Serializable {
     @Column(name = "Observaciones")
     private String observaciones;
     @JoinColumn(name = "IdPaciente", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Paciente idPaciente;
 
 
