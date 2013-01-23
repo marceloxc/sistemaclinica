@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="crears" type="tns:crears"/>
+
+<xs:element name="crearsResponse" type="tns:crearsResponse"/>
+
+<xs:element name="edits" type="tns:edits"/>
+
+<xs:element name="editsResponse" type="tns:editsResponse"/>
+
+<xs:element name="finds" type="tns:finds"/>
+
+<xs:element name="findsResponse" type="tns:findsResponse"/>
+
+<xs:element name="sucursal" type="tns:sucursal"/>
+
+<xs:complexType name="finds">
+<xs:sequence>
+<xs:element name="id" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:sucursal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sucursal">
+<xs:sequence>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="numSucursal" type="xs:int" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="edits">
+<xs:sequence>
+<xs:element ref="tns:sucursal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crears">
+<xs:sequence>
+<xs:element ref="tns:sucursal" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
