@@ -12,14 +12,37 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        
     </properties>
-
+ 
+    <repositories>
+        <repository>  
+            <id>prime-repo</id>  
+            <name>PrimeFaces Maven Repository</name>  
+            <url>http://repository.primefaces.org</url>  
+            <layout>default</layout>  
+        </repository> 
+        <repository>  
+            <id>prime-repository</id>  
+            <name>PrimeFaces Maven Repository</name>  
+            <url>http://repository.prime.com.tr</url>  
+            <layout>default</layout>  
+        </repository> 
+    </repositories>
+ 
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
             <scope>provided</scope>
+        </dependency>
+       
+    
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>3.3</version>
         </dependency>
     </dependencies>
 

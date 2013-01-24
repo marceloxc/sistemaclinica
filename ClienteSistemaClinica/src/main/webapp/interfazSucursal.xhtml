@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                PROFIDENTAL
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                Sistema Gestion Comercial PROFIDENTAL
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                <p:menu>
+                    <p:submenu label="Resources">
+                        <p:menuitem value="Paciente" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                        <p:menuitem value="Cita" url="http://www.primefaces.org/documentation.html" />
+                        <p:menuitem value="Sucursal" url="http://forum.primefaces.org/" />
+                        <p:menuitem value="Odontologo" url="http://www.primefaces.org/themes.html" />
+
+                    </p:submenu>
+
+                </p:menu>
+
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">              
+
+
+                <h:form>
+                    Numero:      <p:inputText value="#{mbSucursal.dato}"></p:inputText> <br></br>
+                  
+                    <br></br>
+                    
+                    <p:commandButton label="pulsa" actionListener="#{mbSucursal.crear()}"></p:commandButton>
+                </h:form>
+
+            </p:layoutUnit>
+
+        </p:layout>
+    </h:body>
+</html>
+

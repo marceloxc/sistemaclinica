@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
 
+<xs:element name="administrador" type="tns:administrador"/>
+
+<xs:element name="asistente" type="tns:asistente"/>
+
 <xs:element name="crears" type="tns:crears"/>
 
 <xs:element name="crearsResponse" type="tns:crearsResponse"/>
@@ -12,7 +16,11 @@
 
 <xs:element name="findsResponse" type="tns:findsResponse"/>
 
-<xs:element name="sucursal" type="tns:sucursal"/>
+<xs:element name="odontologo" type="tns:odontologo"/>
+
+<xs:element name="paciente" type="tns:paciente"/>
+
+<xs:element name="persona" type="tns:persona"/>
 
 <xs:complexType name="finds">
 <xs:sequence>
@@ -28,15 +36,72 @@
 
 <xs:complexType name="sucursal">
 <xs:sequence>
+<xs:element name="asistenteSet" type="tns:asistente" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="direccion" type="xs:string" minOccurs="0"/>
 <xs:element name="numSucursal" type="xs:int" minOccurs="0"/>
+<xs:element name="odontologoSet" type="tns:odontologo" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 <xs:element name="telefono" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="asistente">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaIngreso" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idSucursal" type="tns:sucursal" minOccurs="0"/>
+<xs:element ref="tns:persona" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="persona">
+<xs:sequence>
+<xs:element ref="tns:administrador" minOccurs="0"/>
+<xs:element name="apellidos" type="xs:string" minOccurs="0"/>
+<xs:element ref="tns:asistente" minOccurs="0"/>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="direccion" type="xs:string" minOccurs="0"/>
+<xs:element name="email" type="xs:string" minOccurs="0"/>
+<xs:element name="nombres" type="xs:string" minOccurs="0"/>
+<xs:element ref="tns:odontologo" minOccurs="0"/>
+<xs:element ref="tns:paciente" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="sexo" type="xs:unsignedShort" minOccurs="0"/>
+<xs:element name="telefono" type="xs:string" minOccurs="0"/>
+<xs:element name="telfCelular" type="xs:string" minOccurs="0"/>
+<xs:element name="userName" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="administrador">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaIngreso" type="xs:dateTime" minOccurs="0"/>
+<xs:element ref="tns:persona" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="odontologo">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="especialidad" type="xs:string" minOccurs="0"/>
+<xs:element name="fechaIngreso" type="xs:dateTime" minOccurs="0"/>
+<xs:element name="idSucursal" type="tns:sucursal" minOccurs="0"/>
+<xs:element ref="tns:persona" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="paciente">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="idRepresentante" type="tns:persona" minOccurs="0"/>
+<xs:element name="ocupacion" type="xs:string" minOccurs="0"/>
+<xs:element ref="tns:persona" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="edits">
 <xs:sequence>
-<xs:element ref="tns:sucursal" minOccurs="0"/>
+<xs:element name="sucursal" type="tns:sucursal" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -48,7 +113,7 @@
 
 <xs:complexType name="crears">
 <xs:sequence>
-<xs:element ref="tns:sucursal" minOccurs="0"/>
+<xs:element name="sucursal" type="tns:sucursal" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
