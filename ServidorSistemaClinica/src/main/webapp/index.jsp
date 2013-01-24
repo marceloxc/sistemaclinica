@@ -24,8 +24,8 @@
             //controller.create(p);
             
                         
-            Asistente p2 = controller.find(Asistente.class, "123456789");
-            out.println(p2.getCedula() + " " + p2.getIdSucursal().getNumSucursal());
+            //Asistente p2 = controller.find(Asistente.class, "123456789");
+            //out.println(p2.getCedula() + " " + p2.getIdSucursal().getNumSucursal());
         %>
     </body>
 </html>
