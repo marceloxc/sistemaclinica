@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
@@ -24,7 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Marcelo
+ * @author Fernanda
  */
 @Entity
 @Table(name = "administrador")
@@ -38,14 +37,14 @@ public class Administrador implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 14)
     @Column(name = "Cedula")
     private String cedula;
     @Column(name = "FechaIngreso")
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false)
     private Persona persona;
 
     public Administrador() {

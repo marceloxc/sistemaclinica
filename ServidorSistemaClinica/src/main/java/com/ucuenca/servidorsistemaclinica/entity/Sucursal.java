@@ -5,25 +5,28 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marcelo
+ * @author Fernanda
  */
 @Entity
 @Table(name = "sucursal")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sucursal.findAll", query = "SELECT s FROM Sucursal s"),
     @NamedQuery(name = "Sucursal.findByNumSucursal", query = "SELECT s FROM Sucursal s WHERE s.numSucursal = :numSucursal"),
@@ -32,8 +35,8 @@ import javax.validation.constraints.Size;
 public class Sucursal implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "NumSucursal")
     private Integer numSucursal;
     @Size(max = 45)
@@ -42,10 +45,10 @@ public class Sucursal implements Serializable {
     @Size(max = 11)
     @Column(name = "Telefono")
     private String telefono;
-    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.EAGER)
-    private Set<Asistente> asistenteSet;
-    @OneToMany(mappedBy = "idSucursal", fetch = FetchType.EAGER)
-    private Set<Odontologo> odontologoSet;
+    @OneToMany(mappedBy = "idSucursal")
+    private Collection<Asistente> asistenteCollection;
+    @OneToMany(mappedBy = "idSucursal")
+    private Collection<Odontologo> odontologoCollection;
 
     public Sucursal() {
     }
@@ -78,20 +81,22 @@ public class Sucursal implements Serializable {
         this.telefono = telefono;
     }
 
-    public Set<Asistente> getAsistenteSet() {
-        return asistenteSet;
+    @XmlTransient
+    public Collection<Asistente> getAsistenteCollection() {
+        return asistenteCollection;
     }
 
-    public void setAsistenteSet(Set<Asistente> asistenteSet) {
-        this.asistenteSet = asistenteSet;
+    public void setAsistenteCollection(Collection<Asistente> asistenteCollection) {
+        this.asistenteCollection = asistenteCollection;
     }
 
-    public Set<Odontologo> getOdontologoSet() {
-        return odontologoSet;
+    @XmlTransient
+    public Collection<Odontologo> getOdontologoCollection() {
+        return odontologoCollection;
     }
 
-    public void setOdontologoSet(Set<Odontologo> odontologoSet) {
-        this.odontologoSet = odontologoSet;
+    public void setOdontologoCollection(Collection<Odontologo> odontologoCollection) {
+        this.odontologoCollection = odontologoCollection;
     }
 
     @Override

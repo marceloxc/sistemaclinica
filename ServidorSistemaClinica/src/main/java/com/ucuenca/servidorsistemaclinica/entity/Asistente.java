@@ -5,19 +5,15 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -25,11 +21,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marcelo
+ * @author Fernanda
  */
 @Entity
 @Table(name = "asistente")
@@ -43,20 +38,18 @@ public class Asistente implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 14)
     @Column(name = "Cedula")
     private String cedula;
     @Column(name = "FechaIngreso")
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Sucursal idSucursal;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false)
     private Persona persona;
-    @OneToMany(mappedBy = "idAsistente", fetch = FetchType.EAGER)
-    private Set<Cita> citaSet;
 
     public Asistente() {
     }
@@ -95,15 +88,6 @@ public class Asistente implements Serializable {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
-
-    @XmlTransient
-    public Set<Cita> getCitaSet() {
-        return citaSet;
-    }
-
-    public void setCitaSet(Set<Cita> citaSet) {
-        this.citaSet = citaSet;
     }
 
     @Override

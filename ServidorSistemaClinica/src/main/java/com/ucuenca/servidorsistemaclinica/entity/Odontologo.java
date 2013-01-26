@@ -5,12 +5,12 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Marcelo
+ * @author Fernanda
  */
 @Entity
 @Table(name = "odontologo")
@@ -43,7 +43,7 @@ public class Odontologo implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 14)
     @Column(name = "Cedula")
     private String cedula;
     @Size(max = 45)
@@ -53,13 +53,13 @@ public class Odontologo implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Sucursal idSucursal;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false)
     private Persona persona;
-    @OneToMany(mappedBy = "idOdontologo", fetch = FetchType.EAGER)
-    private Set<Cita> citaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOdontologo")
+    private Collection<Cita> citaCollection;
 
     public Odontologo() {
     }
@@ -109,12 +109,12 @@ public class Odontologo implements Serializable {
     }
 
     @XmlTransient
-    public Set<Cita> getCitaSet() {
-        return citaSet;
+    public Collection<Cita> getCitaCollection() {
+        return citaCollection;
     }
 
-    public void setCitaSet(Set<Cita> citaSet) {
-        this.citaSet = citaSet;
+    public void setCitaCollection(Collection<Cita> citaCollection) {
+        this.citaCollection = citaCollection;
     }
 
     @Override
