@@ -20,7 +20,16 @@ public class mbSucursal implements Serializable{
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl")
     private SucursalWS_Service service;
     private int dato;
+    private String nombre;
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    
     public int getDato() {
         return dato;
     }
@@ -47,11 +56,28 @@ public class mbSucursal implements Serializable{
       //      sucursal.setTelefono('0999855');
             // TODO process result here
             boolean result = port.crears(sucursal);
-            System.out.println("Result = "+result);
+            System.out.println("Result = "+result);       
         } catch (Exception ex) {
         // TODO handle custom exceptions here
         }
 
         return "";
+    }
+    
+    public void find(){
+        
+        try { // Call Web Service Operation
+            ws.SucursalWS port = service.getSucursalWSPort();
+            // TODO initialize WS operation arguments here
+            java.lang.String id = dato+"";
+            // TODO process result her
+            ws.Sucursal result = port.finds(id);
+            nombre=result.getDireccion();
+            System.out.println("Result = "+result);
+        } catch (Exception ex) {
+        // TODO handle custom exceptions here
+        }
+
+        
     }
 }

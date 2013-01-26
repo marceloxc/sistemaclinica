@@ -1,0 +1,63 @@
+/* 
+    Document   : styles.css
+    Created on : 26-ene-2013, 12:00:37
+    Author     : Valex
+    Description:
+        Purpose of the stylesheet follows.
+*/
+*{
+        margin: 0px!important;
+}
+
+body{
+    background-attachment: fixed!important;
+    background-color: #E6F2FA!important;
+    background-image: url("../images/Middle_texture.jpg")!important;
+    background-position: left top!important;
+    background-repeat: repeat!important;
+    color: #0E2F43!important;
+    height: 100%!important;
+    margin: 0 0 -10px!important;
+    padding: 0!important;
+    overflow: scroll;
+} 
+.ui-layout-container{
+    width: 1000px;
+    margin: 10px auto!important;
+    position: relative;
+    overflow: scroll;
+}
+
+#divMenu{
+    width: 100%;
+    height: 40px;
+    margin: 0px;
+}
+#divImagen{
+    width: 50%;
+    height: 180px;
+    margin: 0px;
+    float: left;
+    background: url("../images/header-object.png");
+}
+#divLogo{
+    width: 50%;
+    height: 180px;
+    margin: 0px;
+    float: left;
+    background-image: url("../images/textblock-bg.png")!important;
+}
+#divHeader{
+    background-image: url("../images/header.png")!important;
+}
+#j_idt11{
+    margin: 0px!important;
+}
+j_idt18{
+    height: 350px!important;
+}
+.ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-center ui-layout-pane ui-layout-pane-center
+{
+    height: 350px!important;
+    position: absolute!important;
+}

@@ -12,7 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
  
     <repositories>
@@ -37,15 +37,20 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
-       
+        <dependency>  
+            <groupId>org.primefaces.themes</groupId>  
+            <artifactId>cupertino</artifactId>  
+            <version>1.0.9</version>  
+        </dependency>
     
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>3.3</version>
         </dependency>
-    </dependencies>
+        
 
+    </dependencies>
     <build>
         <plugins>
             <plugin>
