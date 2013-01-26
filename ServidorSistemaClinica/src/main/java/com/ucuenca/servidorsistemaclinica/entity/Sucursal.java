@@ -5,8 +5,10 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,16 +19,18 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
+
 
 /**
  *
- * @author Fernanda
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "sucursal")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sucursal.findAll", query = "SELECT s FROM Sucursal s"),
     @NamedQuery(name = "Sucursal.findByNumSucursal", query = "SELECT s FROM Sucursal s WHERE s.numSucursal = :numSucursal"),
@@ -46,9 +50,9 @@ public class Sucursal implements Serializable {
     @Column(name = "Telefono")
     private String telefono;
     @OneToMany(mappedBy = "idSucursal")
-    private Collection<Asistente> asistenteCollection;
+    private List<Asistente> asistenteList=new ArrayList<Asistente>();
     @OneToMany(mappedBy = "idSucursal")
-    private Collection<Odontologo> odontologoCollection;
+    private List<Odontologo> odontologoList=new ArrayList<Odontologo>();
 
     public Sucursal() {
     }
@@ -81,22 +85,20 @@ public class Sucursal implements Serializable {
         this.telefono = telefono;
     }
 
-    @XmlTransient
-    public Collection<Asistente> getAsistenteCollection() {
-        return asistenteCollection;
+    public List<Asistente> getAsistenteList() {
+        return asistenteList;
     }
 
-    public void setAsistenteCollection(Collection<Asistente> asistenteCollection) {
-        this.asistenteCollection = asistenteCollection;
+    public void setAsistenteList(List<Asistente> asistenteList) {
+        this.asistenteList = asistenteList;
     }
 
-    @XmlTransient
-    public Collection<Odontologo> getOdontologoCollection() {
-        return odontologoCollection;
+    public List<Odontologo> getOdontologoList() {
+        return odontologoList;
     }
 
-    public void setOdontologoCollection(Collection<Odontologo> odontologoCollection) {
-        this.odontologoCollection = odontologoCollection;
+    public void setOdontologoList(List<Odontologo> odontologoList) {
+        this.odontologoList = odontologoList;
     }
 
     @Override

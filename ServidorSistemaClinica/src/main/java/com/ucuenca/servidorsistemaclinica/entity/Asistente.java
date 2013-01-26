@@ -7,6 +7,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -20,15 +21,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Fernanda
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "asistente")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Asistente.findAll", query = "SELECT a FROM Asistente a"),
     @NamedQuery(name = "Asistente.findByCedula", query = "SELECT a FROM Asistente a WHERE a.cedula = :cedula"),

@@ -46,7 +46,7 @@ public class SucursalWS {
         //TODO write your implementation code here:
         boolean aux=true;
         try
-        {
+        {            
             ctr.edit(sucursal);                
         }
         catch(Exception e){aux=false;}
@@ -57,7 +57,7 @@ public class SucursalWS {
      * Web service operation
      */
     @WebMethod(operationName = "finds")
-    public Sucursal finds(@WebParam(name = "id") String id) {
+    public Sucursal finds(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
         Sucursal aux= new Sucursal();
         try

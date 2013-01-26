@@ -5,9 +5,11 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,16 +23,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Fernanda
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "factura")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByNumFactura", query = "SELECT f FROM Factura f WHERE f.numFactura = :numFactura"),
@@ -56,12 +59,12 @@ public class Factura implements Serializable {
     @Column(name = "total")
     private Double total;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
-    private Collection<DetalleFactura> detalleFacturaCollection;
+    private List<DetalleFactura> detalleFacturaList=new ArrayList<DetalleFactura>();
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
     @ManyToOne(optional = false)
     private Cita idCita;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
-    private Collection<Cartera> carteraCollection;
+    private List<Cartera> carteraList;
 
     public Factura() {
     }
@@ -110,13 +113,12 @@ public class Factura implements Serializable {
         this.total = total;
     }
 
-    @XmlTransient
-    public Collection<DetalleFactura> getDetalleFacturaCollection() {
-        return detalleFacturaCollection;
+    public List<DetalleFactura> getDetalleFacturaList() {
+        return detalleFacturaList;
     }
 
-    public void setDetalleFacturaCollection(Collection<DetalleFactura> detalleFacturaCollection) {
-        this.detalleFacturaCollection = detalleFacturaCollection;
+    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
+        this.detalleFacturaList = detalleFacturaList;
     }
 
     public Cita getIdCita() {
@@ -127,13 +129,12 @@ public class Factura implements Serializable {
         this.idCita = idCita;
     }
 
-    @XmlTransient
-    public Collection<Cartera> getCarteraCollection() {
-        return carteraCollection;
+    public List<Cartera> getCarteraList() {
+        return carteraList;
     }
 
-    public void setCarteraCollection(Collection<Cartera> carteraCollection) {
-        this.carteraCollection = carteraCollection;
+    public void setCarteraList(List<Cartera> carteraList) {
+        this.carteraList = carteraList;
     }
 
     @Override

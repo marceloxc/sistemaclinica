@@ -5,8 +5,10 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,16 +20,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Fernanda
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
     @NamedQuery(name = "Persona.findByCedula", query = "SELECT p FROM Persona p WHERE p.cedula = :cedula"),
@@ -72,7 +75,7 @@ public class Persona implements Serializable {
     @Column(name = "contrase\u00f1a")
     private String contraseña;
     @OneToMany(mappedBy = "idRepresentante")
-    private Collection<Paciente> pacienteCollection;
+    private List<Paciente> pacienteList=new ArrayList<Paciente>();
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
     private Paciente paciente;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
@@ -161,13 +164,12 @@ public class Persona implements Serializable {
         this.contraseña = contraseña;
     }
 
-    @XmlTransient
-    public Collection<Paciente> getPacienteCollection() {
-        return pacienteCollection;
+    public List<Paciente> getPacienteList() {
+        return pacienteList;
     }
 
-    public void setPacienteCollection(Collection<Paciente> pacienteCollection) {
-        this.pacienteCollection = pacienteCollection;
+    public void setPacienteList(List<Paciente> pacienteList) {
+        this.pacienteList = pacienteList;
     }
 
     public Paciente getPaciente() {

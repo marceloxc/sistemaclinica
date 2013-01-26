@@ -5,8 +5,10 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -20,16 +22,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Fernanda
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "paciente")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p"),
     @NamedQuery(name = "Paciente.findByCedula", query = "SELECT p FROM Paciente p WHERE p.cedula = :cedula"),
@@ -52,7 +55,7 @@ public class Paciente implements Serializable {
     @OneToOne(optional = false)
     private Persona persona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
-    private Collection<Cita> citaCollection;
+    private List<Cita> citaList=new ArrayList<Cita>();
 
     public Paciente() {
     }
@@ -93,13 +96,12 @@ public class Paciente implements Serializable {
         this.persona = persona;
     }
 
-    @XmlTransient
-    public Collection<Cita> getCitaCollection() {
-        return citaCollection;
+    public List<Cita> getCitaList() {
+        return citaList;
     }
 
-    public void setCitaCollection(Collection<Cita> citaCollection) {
-        this.citaCollection = citaCollection;
+    public void setCitaList(List<Cita> citaList) {
+        this.citaList = citaList;
     }
 
     @Override

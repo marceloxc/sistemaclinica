@@ -5,9 +5,11 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,16 +26,17 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Fernanda
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "cita")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cita.findAll", query = "SELECT c FROM Cita c"),
     @NamedQuery(name = "Cita.findByIdCita", query = "SELECT c FROM Cita c WHERE c.idCita = :idCita"),
@@ -62,7 +65,7 @@ public class Cita implements Serializable {
     @Column(name = "estado")
     private Character estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private Collection<Factura> facturaCollection;
+    private List<Factura> facturaList=new ArrayList<Factura>();
     @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
     @ManyToOne(optional = false)
     private Paciente idPaciente;
@@ -70,7 +73,7 @@ public class Cita implements Serializable {
     @ManyToOne(optional = false)
     private Odontologo idOdontologo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private Collection<DetalleHistoriaClinica> detalleHistoriaClinicaCollection;
+    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
 
     public Cita() {
     }
@@ -124,13 +127,12 @@ public class Cita implements Serializable {
         this.estado = estado;
     }
 
-    @XmlTransient
-    public Collection<Factura> getFacturaCollection() {
-        return facturaCollection;
+    public List<Factura> getFacturaList() {
+        return facturaList;
     }
 
-    public void setFacturaCollection(Collection<Factura> facturaCollection) {
-        this.facturaCollection = facturaCollection;
+    public void setFacturaList(List<Factura> facturaList) {
+        this.facturaList = facturaList;
     }
 
     public Paciente getIdPaciente() {
@@ -149,13 +151,12 @@ public class Cita implements Serializable {
         this.idOdontologo = idOdontologo;
     }
 
-    @XmlTransient
-    public Collection<DetalleHistoriaClinica> getDetalleHistoriaClinicaCollection() {
-        return detalleHistoriaClinicaCollection;
+    public List<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
+        return detalleHistoriaClinicaList;
     }
 
-    public void setDetalleHistoriaClinicaCollection(Collection<DetalleHistoriaClinica> detalleHistoriaClinicaCollection) {
-        this.detalleHistoriaClinicaCollection = detalleHistoriaClinicaCollection;
+    public void setDetalleHistoriaClinicaList(List<DetalleHistoriaClinica> detalleHistoriaClinicaList) {
+        this.detalleHistoriaClinicaList = detalleHistoriaClinicaList;
     }
 
     @Override
