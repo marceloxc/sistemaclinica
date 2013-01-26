@@ -6,57 +6,62 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "receta")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Receta.findAll", query = "SELECT r FROM Receta r"),
     @NamedQuery(name = "Receta.findByIdReceta", query = "SELECT r FROM Receta r WHERE r.idReceta = :idReceta"),
-    @NamedQuery(name = "Receta.findByIdPaciente", query = "SELECT r FROM Receta r WHERE r.idPaciente = :idPaciente"),
+    @NamedQuery(name = "Receta.findByIdCita", query = "SELECT r FROM Receta r WHERE r.idCita = :idCita"),
     @NamedQuery(name = "Receta.findByDescripcion", query = "SELECT r FROM Receta r WHERE r.descripcion = :descripcion"),
     @NamedQuery(name = "Receta.findByIndicaciones", query = "SELECT r FROM Receta r WHERE r.indicaciones = :indicaciones")})
 public class Receta implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idReceta")
     private Integer idReceta;
-    @Size(max = 11)
-    @Column(name = "idPaciente")
-    private String idPaciente;
-    @Size(max = 50)
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "idCita")
+    private int idCita;
+    @Size(max = 100)
     @Column(name = "Descripcion")
     private String descripcion;
-    @Size(max = 45)
+    @Size(max = 100)
     @Column(name = "Indicaciones")
     private String indicaciones;
-    @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Cita idCita;
 
     public Receta() {
     }
 
     public Receta(Integer idReceta) {
         this.idReceta = idReceta;
+    }
+
+    public Receta(Integer idReceta, int idCita) {
+        this.idReceta = idReceta;
+        this.idCita = idCita;
     }
 
     public Integer getIdReceta() {
@@ -67,12 +72,12 @@ public class Receta implements Serializable {
         this.idReceta = idReceta;
     }
 
-    public String getIdPaciente() {
-        return idPaciente;
+    public int getIdCita() {
+        return idCita;
     }
 
-    public void setIdPaciente(String idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setIdCita(int idCita) {
+        this.idCita = idCita;
     }
 
     public String getDescripcion() {
@@ -89,14 +94,6 @@ public class Receta implements Serializable {
 
     public void setIndicaciones(String indicaciones) {
         this.indicaciones = indicaciones;
-    }
-
-    public Cita getIdCita() {
-        return idCita;
-    }
-
-    public void setIdCita(Cita idCita) {
-        this.idCita = idCita;
     }
 
     @Override

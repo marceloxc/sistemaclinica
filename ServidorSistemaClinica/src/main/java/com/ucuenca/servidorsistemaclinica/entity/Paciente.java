@@ -5,12 +5,13 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,16 +22,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "paciente")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p"),
     @NamedQuery(name = "Paciente.findByCedula", query = "SELECT p FROM Paciente p WHERE p.cedula = :cedula"),
@@ -40,20 +42,20 @@ public class Paciente implements Serializable {
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 14)
     @Column(name = "Cedula")
     private String cedula;
     @Size(max = 45)
     @Column(name = "Ocupacion")
     private String ocupacion;
     @JoinColumn(name = "idRepresentante", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     private Persona idRepresentante;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @OneToOne(optional = false)
     private Persona persona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente", fetch = FetchType.EAGER)
-    private Set<Cita> citaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
+    private List<Cita> citaList=new ArrayList<Cita>();
 
     public Paciente() {
     }
@@ -94,14 +96,12 @@ public class Paciente implements Serializable {
         this.persona = persona;
     }
 
-    
-    @XmlTransient
-    public Set<Cita> getCitaSet() {
-        return citaSet;
+    public List<Cita> getCitaList() {
+        return citaList;
     }
 
-    public void setCitaSet(Set<Cita> citaSet) {
-        this.citaSet = citaSet;
+    public void setCitaList(List<Cita> citaList) {
+        this.citaList = citaList;
     }
 
     @Override

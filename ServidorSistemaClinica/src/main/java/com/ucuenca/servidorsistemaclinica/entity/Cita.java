@@ -5,12 +5,16 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,55 +26,65 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "cita")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cita.findAll", query = "SELECT c FROM Cita c"),
     @NamedQuery(name = "Cita.findByIdCita", query = "SELECT c FROM Cita c WHERE c.idCita = :idCita"),
     @NamedQuery(name = "Cita.findByFecha", query = "SELECT c FROM Cita c WHERE c.fecha = :fecha"),
-    @NamedQuery(name = "Cita.findByMotivo", query = "SELECT c FROM Cita c WHERE c.motivo = :motivo")})
+    @NamedQuery(name = "Cita.findByMotivo", query = "SELECT c FROM Cita c WHERE c.motivo = :motivo"),
+    @NamedQuery(name = "Cita.findByIdSucursal", query = "SELECT c FROM Cita c WHERE c.idSucursal = :idSucursal"),
+    @NamedQuery(name = "Cita.findByEstado", query = "SELECT c FROM Cita c WHERE c.estado = :estado")})
 public class Cita implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "idCita")
     private Integer idCita;
     @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
     @Size(max = 45)
     @Column(name = "motivo")
     private String motivo;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
-    private Set<Receta> recetaSet;
-    @OneToMany(mappedBy = "idCita", fetch = FetchType.EAGER)
-    private Set<Factura> facturaSet;
-    @OneToMany(mappedBy = "idPaciente", fetch = FetchType.EAGER)
-    private Set<Factura> facturaSet1;
-    @JoinColumn(name = "idAsistente", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Asistente idAsistente;
-    @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Odontologo idOdontologo;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "idSucursal")
+    private String idSucursal;
+    @Column(name = "estado")
+    private Character estado;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
+    private List<Factura> facturaList=new ArrayList<Factura>();
     @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private Paciente idPaciente;
- 
+    @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
+    @ManyToOne(optional = false)
+    private Odontologo idOdontologo;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
+    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
+
     public Cita() {
     }
 
     public Cita(Integer idCita) {
         this.idCita = idCita;
+    }
+
+    public Cita(Integer idCita, String idSucursal) {
+        this.idCita = idCita;
+        this.idSucursal = idSucursal;
     }
 
     public Integer getIdCita() {
@@ -97,39 +111,36 @@ public class Cita implements Serializable {
         this.motivo = motivo;
     }
 
-    @XmlTransient
-    public Set<Receta> getRecetaSet() {
-        return recetaSet;
+    public String getIdSucursal() {
+        return idSucursal;
     }
 
-    public void setRecetaSet(Set<Receta> recetaSet) {
-        this.recetaSet = recetaSet;
+    public void setIdSucursal(String idSucursal) {
+        this.idSucursal = idSucursal;
     }
 
-    @XmlTransient
-    public Set<Factura> getFacturaSet() {
-        return facturaSet;
+    public Character getEstado() {
+        return estado;
     }
 
-    public void setFacturaSet(Set<Factura> facturaSet) {
-        this.facturaSet = facturaSet;
+    public void setEstado(Character estado) {
+        this.estado = estado;
     }
 
-    @XmlTransient
-    public Set<Factura> getFacturaSet1() {
-        return facturaSet1;
+    public List<Factura> getFacturaList() {
+        return facturaList;
     }
 
-    public void setFacturaSet1(Set<Factura> facturaSet1) {
-        this.facturaSet1 = facturaSet1;
+    public void setFacturaList(List<Factura> facturaList) {
+        this.facturaList = facturaList;
     }
 
-    public Asistente getIdAsistente() {
-        return idAsistente;
+    public Paciente getIdPaciente() {
+        return idPaciente;
     }
 
-    public void setIdAsistente(Asistente idAsistente) {
-        this.idAsistente = idAsistente;
+    public void setIdPaciente(Paciente idPaciente) {
+        this.idPaciente = idPaciente;
     }
 
     public Odontologo getIdOdontologo() {
@@ -140,12 +151,12 @@ public class Cita implements Serializable {
         this.idOdontologo = idOdontologo;
     }
 
-    public Paciente getIdPaciente() {
-        return idPaciente;
+    public List<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
+        return detalleHistoriaClinicaList;
     }
 
-    public void setIdPaciente(Paciente idPaciente) {
-        this.idPaciente = idPaciente;
+    public void setDetalleHistoriaClinicaList(List<DetalleHistoriaClinica> detalleHistoriaClinicaList) {
+        this.detalleHistoriaClinicaList = detalleHistoriaClinicaList;
     }
 
     @Override

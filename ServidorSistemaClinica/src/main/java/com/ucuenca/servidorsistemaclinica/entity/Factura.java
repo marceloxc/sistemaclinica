@@ -5,13 +5,14 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,21 +23,24 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "factura")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Factura.findAll", query = "SELECT f FROM Factura f"),
     @NamedQuery(name = "Factura.findByNumFactura", query = "SELECT f FROM Factura f WHERE f.numFactura = :numFactura"),
     @NamedQuery(name = "Factura.findByFecha", query = "SELECT f FROM Factura f WHERE f.fecha = :fecha"),
-    @NamedQuery(name = "Factura.findByDescuento", query = "SELECT f FROM Factura f WHERE f.descuento = :descuento")})
+    @NamedQuery(name = "Factura.findByDescuento", query = "SELECT f FROM Factura f WHERE f.descuento = :descuento"),
+    @NamedQuery(name = "Factura.findByTipoPago", query = "SELECT f FROM Factura f WHERE f.tipoPago = :tipoPago"),
+    @NamedQuery(name = "Factura.findByTotal", query = "SELECT f FROM Factura f WHERE f.total = :total")})
 public class Factura implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -48,16 +52,19 @@ public class Factura implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fecha;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "DESCUENTO")
+    @Column(name = "Descuento")
     private Double descuento;
+    @Column(name = "TipoPago")
+    private Integer tipoPago;
+    @Column(name = "total")
+    private Double total;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
+    private List<DetalleFactura> detalleFacturaList=new ArrayList<DetalleFactura>();
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private Cita idCita;
-    @JoinColumn(name = "idPaciente", referencedColumnName = "idPaciente")
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Cita idPaciente;
-    @OneToMany(mappedBy = "idFactura", fetch = FetchType.EAGER)
-    private Set<Cartera> carteraSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFactura")
+    private List<Cartera> carteraList;
 
     public Factura() {
     }
@@ -90,6 +97,30 @@ public class Factura implements Serializable {
         this.descuento = descuento;
     }
 
+    public Integer getTipoPago() {
+        return tipoPago;
+    }
+
+    public void setTipoPago(Integer tipoPago) {
+        this.tipoPago = tipoPago;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    public List<DetalleFactura> getDetalleFacturaList() {
+        return detalleFacturaList;
+    }
+
+    public void setDetalleFacturaList(List<DetalleFactura> detalleFacturaList) {
+        this.detalleFacturaList = detalleFacturaList;
+    }
+
     public Cita getIdCita() {
         return idCita;
     }
@@ -98,21 +129,12 @@ public class Factura implements Serializable {
         this.idCita = idCita;
     }
 
-    public Cita getIdPaciente() {
-        return idPaciente;
+    public List<Cartera> getCarteraList() {
+        return carteraList;
     }
 
-    public void setIdPaciente(Cita idPaciente) {
-        this.idPaciente = idPaciente;
-    }
-
-    @XmlTransient
-    public Set<Cartera> getCarteraSet() {
-        return carteraSet;
-    }
-
-    public void setCarteraSet(Set<Cartera> carteraSet) {
-        this.carteraSet = carteraSet;
+    public void setCarteraList(List<Cartera> carteraList) {
+        this.carteraList = carteraList;
     }
 
     @Override

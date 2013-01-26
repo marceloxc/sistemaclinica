@@ -5,13 +5,14 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,16 +25,17 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "cartera")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Cartera.findAll", query = "SELECT c FROM Cartera c"),
     @NamedQuery(name = "Cartera.findByIdCartera", query = "SELECT c FROM Cartera c WHERE c.idCartera = :idCartera"),
@@ -56,8 +58,10 @@ public class Cartera implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "TotalDeuda")
     private Double totalDeuda;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCartera")
+    private List<DetalleCartera> detalleCarteraList=new ArrayList<DetalleCartera>();
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(optional = false)
     private Factura idFactura;
 
     public Cartera() {
@@ -97,6 +101,14 @@ public class Cartera implements Serializable {
 
     public void setTotalDeuda(Double totalDeuda) {
         this.totalDeuda = totalDeuda;
+    }
+
+    public List<DetalleCartera> getDetalleCarteraList() {
+        return detalleCarteraList;
+    }
+
+    public void setDetalleCarteraList(List<DetalleCartera> detalleCarteraList) {
+        this.detalleCarteraList = detalleCarteraList;
     }
 
     public Factura getIdFactura() {

@@ -5,12 +5,13 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,16 +20,17 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.hibernate.envers.Audited;
 
 /**
  *
- * @author Marcelo
+ * @author DELL
  */
 @Entity
+@Cacheable
+@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
+@Audited
 @Table(name = "persona")
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
     @NamedQuery(name = "Persona.findByCedula", query = "SELECT p FROM Persona p WHERE p.cedula = :cedula"),
@@ -38,15 +40,14 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
     @NamedQuery(name = "Persona.findByTelfCelular", query = "SELECT p FROM Persona p WHERE p.telfCelular = :telfCelular"),
     @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
-    @NamedQuery(name = "Persona.findByUserName", query = "SELECT p FROM Persona p WHERE p.userName = :userName"),
-    @NamedQuery(name = "Persona.findByPassword", query = "SELECT p FROM Persona p WHERE p.password = :password"),
-    @NamedQuery(name = "Persona.findBySexo", query = "SELECT p FROM Persona p WHERE p.sexo = :sexo")})
+    @NamedQuery(name = "Persona.findBySexo", query = "SELECT p FROM Persona p WHERE p.sexo = :sexo"),
+    @NamedQuery(name = "Persona.findByContrase\u00f1a", query = "SELECT p FROM Persona p WHERE p.contrase\u00f1a = :contrase\u00f1a")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 11)
+    @Size(min = 1, max = 14)
     @Column(name = "Cedula")
     private String cedula;
     @Size(max = 45)
@@ -68,23 +69,20 @@ public class Persona implements Serializable {
     @Size(max = 45)
     @Column(name = "Email")
     private String email;
-    @Size(max = 15)
-    @Column(name = "UserName")
-    private String userName;
-    @Size(max = 30)
-    @Column(name = "Password")
-    private String password;
     @Column(name = "Sexo")
     private Character sexo;
-    @OneToMany(mappedBy = "idRepresentante", fetch = FetchType.LAZY)
-    private Set<Paciente> pacienteSet;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @Size(max = 45)
+    @Column(name = "contrase\u00f1a")
+    private String contraseña;
+    @OneToMany(mappedBy = "idRepresentante")
+    private List<Paciente> pacienteList=new ArrayList<Paciente>();
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
     private Paciente paciente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
     private Administrador administrador;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
     private Asistente asistente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona", fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
     private Odontologo odontologo;
 
     public Persona() {
@@ -150,22 +148,6 @@ public class Persona implements Serializable {
         this.email = email;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public Character getSexo() {
         return sexo;
     }
@@ -174,13 +156,20 @@ public class Persona implements Serializable {
         this.sexo = sexo;
     }
 
-    @XmlTransient
-    public Set<Paciente> getPacienteSet() {
-        return pacienteSet;
+    public String getContraseña() {
+        return contraseña;
     }
 
-    public void setPacienteSet(Set<Paciente> pacienteSet) {
-        this.pacienteSet = pacienteSet;
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public List<Paciente> getPacienteList() {
+        return pacienteList;
+    }
+
+    public void setPacienteList(List<Paciente> pacienteList) {
+        this.pacienteList = pacienteList;
     }
 
     public Paciente getPaciente() {

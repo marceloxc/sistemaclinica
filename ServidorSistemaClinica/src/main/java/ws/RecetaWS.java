@@ -57,7 +57,7 @@ public class RecetaWS {
      * Web service operation
      */
     @WebMethod(operationName = "findr")
-    public Receta findr(@WebParam(name = "id") String id) {
+    public Receta findr(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
         Receta aux= new Receta();
         try
