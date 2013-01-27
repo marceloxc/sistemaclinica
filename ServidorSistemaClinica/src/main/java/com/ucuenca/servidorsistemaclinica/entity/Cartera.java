@@ -6,6 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -59,7 +60,7 @@ public class Cartera implements Serializable {
     @Column(name = "TotalDeuda")
     private Double totalDeuda;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCartera")
-    private List<DetalleCartera> detalleCarteraList=new ArrayList<DetalleCartera>();
+    private Collection<DetalleCartera> detalleCarteraList=new ArrayList<DetalleCartera>();
     @JoinColumn(name = "idFactura", referencedColumnName = "NumFactura")
     @ManyToOne(optional = false)
     private Factura idFactura;
@@ -103,7 +104,7 @@ public class Cartera implements Serializable {
         this.totalDeuda = totalDeuda;
     }
 
-    public List<DetalleCartera> getDetalleCarteraList() {
+    public Collection<DetalleCartera> getDetalleCarteraList() {
         return detalleCarteraList;
     }
 

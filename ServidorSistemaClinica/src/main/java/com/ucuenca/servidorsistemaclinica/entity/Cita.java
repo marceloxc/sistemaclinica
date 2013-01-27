@@ -6,6 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -65,7 +66,7 @@ public class Cita implements Serializable {
     @Column(name = "estado")
     private Character estado;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private List<Factura> facturaList=new ArrayList<Factura>();
+    private Collection<Factura> facturaList=new ArrayList<Factura>();
     @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
     @ManyToOne(optional = false)
     private Paciente idPaciente;
@@ -73,7 +74,7 @@ public class Cita implements Serializable {
     @ManyToOne(optional = false)
     private Odontologo idOdontologo;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
+    private Collection<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
 
     public Cita() {
     }
@@ -127,11 +128,11 @@ public class Cita implements Serializable {
         this.estado = estado;
     }
 
-    public List<Factura> getFacturaList() {
+    public Collection<Factura> getFacturaList() {
         return facturaList;
     }
 
-    public void setFacturaList(List<Factura> facturaList) {
+    public void setFacturaList(Collection<Factura> facturaList) {
         this.facturaList = facturaList;
     }
 
@@ -151,7 +152,7 @@ public class Cita implements Serializable {
         this.idOdontologo = idOdontologo;
     }
 
-    public List<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
+    public Collection<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
         return detalleHistoriaClinicaList;
     }
 
