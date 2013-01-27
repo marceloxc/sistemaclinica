@@ -11,27 +11,37 @@
     <h:body>
         <u:interface/>
         <u:implementation>
-            <h:outputLabel>Ingrese los datos del paciente</h:outputLabel>
+            <h:outputLabel value="Ingrese los datos del paciente" class="titulos"/>
             <h:form>
-                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <h:panelGrid columns="2" style="margin-bottom: 5px;" cellpadding="5">
                     <h:outputText value="C&eacute;dula: "/>
-                    <h:inputText id="txtCedula"/>
+                    <h:inputText id="txtCedula" class="textos"/>
                     <h:outputText value="Nombres: "/>
-                    <h:inputText id="txtNombres"/>
-                    <h:outputText value="Nombres: "/>
-                    <h:inputText id="txtANombres"/>
-                    <h:outputText value="Apellidos: "/>
-                    <h:inputText id="txtApellidos"/>
+                    <h:inputText id="txtNombres" class="textos"/>
+                    <h:outputText value="Apellidos: " />
+                    <h:inputText id="txtApellidos" class="textos"/>
                     <h:outputText value="Direccion: "/>
-                    <h:inputText id="txtDireccion"/>
+                    <h:inputText id="txtDireccion" class="textos"/>
                     <h:outputText value="Telefono Fijo: "/>
-                    <h:inputText id="txtTelefono"/>
+                    <h:inputText id="txtTelefono" class="textos"/>
                     <h:outputText value="Celular: "/>
-                    <h:inputText id="txtCelular"/>
-                    <h:outputText value="Sexo: "/>
+                    <h:inputText id="txtCelular" class="textos"/>
+                    <h:outputText value="Sexo: " />  
+                    <p:selectOneRadio id="optSexo" >  
+                        <f:selectItem itemLabel="Hombre" itemValue="1" />  
+                        <f:selectItem itemLabel="Mujer" itemValue="2" />    
+                    </p:selectOneRadio>
+                    <h:outputText value="E-Mail: "/>
+                    <h:inputText id="txtMail" class="textos"/>
+                    <h:outputText value="Ocupacion: "/>
+                    <h:inputText id="txtOcupacion" class="textos"/>
+                    <h:outputText value="Fecha de Nacimiento: "/>
+                    <p:calendar id="cal"  navigator="true" display="inline"/>
+                    <h:commandButton label="Guardar" id="cmdGuardar" value="Guardar" class="botones" icon="ui-icon-disk.png"/>
+                    <h:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" class="botones"/>
                 </h:panelGrid>   
             </h:form>
-            
+
         </u:implementation> 
     </h:body>
 </html>
