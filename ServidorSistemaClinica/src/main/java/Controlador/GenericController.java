@@ -121,8 +121,28 @@ public class GenericController<T> {
             em.close();
         }
     }
+        
+    public List<T> findClienteEntities(int maxResults, int firstResult,Class<T> obj) {
+        return findClienteEntities(false, maxResults, firstResult,obj);
+    }
     
-     public List<Object> findWhere(T obj,String where) {
+    private List<T> findClienteEntities(boolean all, int maxResults, int firstResult,Class<T> obj) {
+        EntityManager em = getEntityManager();
+        try {
+            CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
+            cq.select(cq.from(obj.getClass()));
+            Query q = em.createQuery(cq);
+            if (!all) {
+                q.setMaxResults(maxResults);
+                q.setFirstResult(firstResult);
+            }
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+    
+   public List<Object> findWhere(T obj,String where) {
     	EntityManager em = getEntityManager();
         try {
             Query q = em.createQuery(" from "+ obj.getClass().getName() + "c " + where);
