@@ -6,11 +6,11 @@ package ws;
 
 import Controlador.GenericController;
 import com.ucuenca.servidorsistemaclinica.entity.Persona;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-import javax.xml.ws.RequestWrapper;
-import javax.xml.ws.ResponseWrapper;
 
 /**
  *
@@ -70,6 +70,34 @@ private GenericController<Persona> ctr= new GenericController<Persona>();
         return aux;
     }
 
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "findentitiesp")
+    public List<Persona> findentitiesp(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+        //TODO write your implementation code here:
+        List<Persona> aux= new ArrayList<Persona>();
+        try
+        {            
+            aux=ctr.findEntities(max, fi,new Persona());                
+        }
+        catch(Exception e){aux=null;}
+        return aux;
+    }
     
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "countp")
+    public int countp() {
+        //TODO write your implementation code here:
+        int aux= 0;
+        try
+        {            
+            aux=ctr.getCount(new Persona());                
+        }
+        catch(Exception e){aux=0;}
+        return aux;
+    }
 
 }

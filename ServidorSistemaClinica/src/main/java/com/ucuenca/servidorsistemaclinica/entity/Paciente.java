@@ -43,9 +43,7 @@ public class Paciente implements Serializable {
     @Size(max = 45)
     @Column(name = "Ocupacion")
     private String ocupacion;
-    @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Persona persona;
+    
 
     public Paciente() {
     }
@@ -68,14 +66,6 @@ public class Paciente implements Serializable {
 
     public void setOcupacion(String ocupacion) {
         this.ocupacion = ocupacion;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     @Override
