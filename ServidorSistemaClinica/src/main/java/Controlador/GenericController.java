@@ -117,16 +117,20 @@ public class GenericController<T> {
             cq.select(em.getCriteriaBuilder().count(rt));
             Query q = em.createQuery(cq);
             return ((Long) q.getSingleResult()).intValue();
-        } finally {
+        } catch (Exception c){
+            c.getMessage();
+            return 0;
+        }
+        finally {
             em.close();
         }
     }
         
-    public List<T> findEntities(int maxResults, int firstResult,Class<T> obj) {
+    public List<T> findEntities(int maxResults, int firstResult,T obj) {
         return findEntities(false, maxResults, firstResult,obj);
     }
     
-    private List<T> findEntities(boolean all, int maxResults, int firstResult,Class<T> obj) {
+    private List<T> findEntities(boolean all, int maxResults, int firstResult,T obj) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
