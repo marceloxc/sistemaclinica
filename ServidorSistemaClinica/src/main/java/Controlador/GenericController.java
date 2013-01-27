@@ -122,11 +122,11 @@ public class GenericController<T> {
         }
     }
         
-    public List<T> findClienteEntities(int maxResults, int firstResult,Class<T> obj) {
-        return findClienteEntities(false, maxResults, firstResult,obj);
+    public List<T> findEntities(int maxResults, int firstResult,Class<T> obj) {
+        return findEntities(false, maxResults, firstResult,obj);
     }
     
-    private List<T> findClienteEntities(boolean all, int maxResults, int firstResult,Class<T> obj) {
+    private List<T> findEntities(boolean all, int maxResults, int firstResult,Class<T> obj) {
         EntityManager em = getEntityManager();
         try {
             CriteriaQuery cq = em.getCriteriaBuilder().createQuery();
