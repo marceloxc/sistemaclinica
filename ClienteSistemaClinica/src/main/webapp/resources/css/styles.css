@@ -30,34 +30,19 @@ body{
 
 #divMenu{
     width: 100%;
-    height: 40px;
-    margin: 0px;
-}
-#divImagen{
-    width: 50%;
-    height: 180px;
+    height: 30px;
     margin: 0px;
     float: left;
-    background: url("../images/header-object.png");
-}
-#divLogo{
-    width: 50%;
-    height: 180px;
-    margin: 0px;
-    float: left;
-    background-image: url("../images/textblock-bg.png")!important;
 }
 #divHeader{
-    background-image: url("../images/header.png")!important;
+    background: url("../images/header.png")!important;
+    height: 187px;
+    width: 988px;
 }
+
 #j_idt11{
     margin: 0px!important;
 }
 j_idt18{
     height: 350px!important;
-}
-.ui-layout-unit ui-widget ui-widget-content ui-corner-all ui-layout-center ui-layout-pane ui-layout-pane-center
-{
-    height: 350px!important;
-    position: absolute!important;
 }

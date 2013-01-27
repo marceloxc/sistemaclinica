@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:u="http://java.sun.com/jsf/composite">
+    <h:head>
+    </h:head>
+    <h:body>
+        <u:interface/>
+        <u:implementation>
+            <h:outputLabel>Ingrese los datos del paciente</h:outputLabel>
+            <h:form>
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                    <h:outputText value="C&eacute;dula: "/>
+                    <h:inputText id="txtCedula"/>
+                    <h:outputText value="Nombres: "/>
+                    <h:inputText id="txtNombres"/>
+                    <h:outputText value="Nombres: "/>
+                    <h:inputText id="txtANombres"/>
+                    <h:outputText value="Apellidos: "/>
+                    <h:inputText id="txtApellidos"/>
+                    <h:outputText value="Direccion: "/>
+                    <h:inputText id="txtDireccion"/>
+                    <h:outputText value="Telefono Fijo: "/>
+                    <h:inputText id="txtTelefono"/>
+                    <h:outputText value="Celular: "/>
+                    <h:inputText id="txtCelular"/>
+                    <h:outputText value="Sexo: "/>
+                </h:panelGrid>   
+            </h:form>
+            
+        </u:implementation> 
+    </h:body>
+</html>
+
