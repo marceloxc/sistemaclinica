@@ -81,8 +81,7 @@ public class Persona implements Serializable {
     private String contraseña;
     @Column(name = "rol")
     private Integer rol;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Paciente paciente;
+    
 
     public Persona() {
     }
@@ -177,14 +176,6 @@ public class Persona implements Serializable {
 
     public void setRol(Integer rol) {
         this.rol = rol;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
     }
 
     @Override
