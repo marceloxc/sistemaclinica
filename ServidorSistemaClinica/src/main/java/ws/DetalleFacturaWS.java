@@ -5,7 +5,7 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.ServicioOdontologico;
+import com.ucuenca.servidorsistemaclinica.entity.DetalleFactura;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -14,19 +14,19 @@ import javax.jws.WebParam;
  *
  * @author DELL
  */
-@WebService(serviceName = "ServicioOdontologicoWS")
-public class ServicioOdontologicoWS {
-    
-    private GenericController<ServicioOdontologico> ctr= new GenericController<ServicioOdontologico>();
+@WebService(serviceName = "DetalleFacturaWS")
+public class DetalleFacturaWS {
+
+    private GenericController<DetalleFactura> ctr= new GenericController<DetalleFactura>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "crearso")
-    public boolean crearso(@WebParam(name = "servicioodontologico") ServicioOdontologico servicioodontologico) {
+    @WebMethod(operationName = "creardf")
+    public boolean creardf(@WebParam(name = "detallefactura") DetalleFactura detallefactura) {
         boolean aux=true;
         try
         {
-            ctr.create(servicioodontologico);                
+            ctr.create(detallefactura);                
         }
         catch(Exception e){aux=false;
         e.printStackTrace();
@@ -37,13 +37,13 @@ public class ServicioOdontologicoWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "editso")
-    public boolean editso(@WebParam(name = "servicioodontologico") ServicioOdontologico servicioodontologico) {
+    @WebMethod(operationName = "editdf")
+    public boolean editdf(@WebParam(name = "detallehistoriaclinica") DetalleFactura detallefactura) {
         //TODO write your implementation code here:
         boolean aux=true;
         try
         {            
-            ctr.edit(servicioodontologico);                
+            ctr.edit(detallefactura);                
         }
         catch(Exception e){aux=false;}
         return aux;            
@@ -52,13 +52,13 @@ public class ServicioOdontologicoWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findso")
-    public ServicioOdontologico findso(@WebParam(name = "id") int id) {
+    @WebMethod(operationName = "finddf")
+    public DetalleFactura finddf(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
-        ServicioOdontologico aux= new ServicioOdontologico();
+        DetalleFactura aux= new DetalleFactura();
         try
         {            
-            aux=ctr.find(ServicioOdontologico.class, id);                
+            aux=ctr.find(DetalleFactura.class, id);                
         }
         catch(Exception e){aux=null;}
         return aux;

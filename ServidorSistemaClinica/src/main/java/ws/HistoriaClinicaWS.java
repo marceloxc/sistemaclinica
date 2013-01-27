@@ -5,7 +5,7 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.ServicioOdontologico;
+import com.ucuenca.servidorsistemaclinica.entity.HistoriaClinica;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -14,19 +14,19 @@ import javax.jws.WebParam;
  *
  * @author DELL
  */
-@WebService(serviceName = "ServicioOdontologicoWS")
-public class ServicioOdontologicoWS {
-    
-    private GenericController<ServicioOdontologico> ctr= new GenericController<ServicioOdontologico>();
+@WebService(serviceName = "HistoriaClinicaWS")
+public class HistoriaClinicaWS {
+
+    private GenericController<HistoriaClinica> ctr= new GenericController<HistoriaClinica>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "crearso")
-    public boolean crearso(@WebParam(name = "servicioodontologico") ServicioOdontologico servicioodontologico) {
+    @WebMethod(operationName = "crearhc")
+    public boolean crearhc(@WebParam(name = "historiaclinica") HistoriaClinica historiaclinica) {
         boolean aux=true;
         try
         {
-            ctr.create(servicioodontologico);                
+            ctr.create(historiaclinica);                
         }
         catch(Exception e){aux=false;
         e.printStackTrace();
@@ -37,13 +37,13 @@ public class ServicioOdontologicoWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "editso")
-    public boolean editso(@WebParam(name = "servicioodontologico") ServicioOdontologico servicioodontologico) {
+    @WebMethod(operationName = "edithc")
+    public boolean edithc(@WebParam(name = "historiaclinica") HistoriaClinica historiaclinica) {
         //TODO write your implementation code here:
         boolean aux=true;
         try
         {            
-            ctr.edit(servicioodontologico);                
+            ctr.edit(historiaclinica);                
         }
         catch(Exception e){aux=false;}
         return aux;            
@@ -52,13 +52,13 @@ public class ServicioOdontologicoWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findso")
-    public ServicioOdontologico findso(@WebParam(name = "id") int id) {
+    @WebMethod(operationName = "findhc")
+    public HistoriaClinica findhc(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
-        ServicioOdontologico aux= new ServicioOdontologico();
+        HistoriaClinica aux= new HistoriaClinica();
         try
         {            
-            aux=ctr.find(ServicioOdontologico.class, id);                
+            aux=ctr.find(HistoriaClinica.class, id);                
         }
         catch(Exception e){aux=null;}
         return aux;
