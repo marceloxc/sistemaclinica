@@ -5,34 +5,26 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.Cacheable;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import org.hibernate.envers.Audited;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author DELL
+ * @author Fernanda
  */
 @Entity
-@Cacheable
-@org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.READ_WRITE)
-@Audited
 @Table(name = "paciente")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Paciente.findAll", query = "SELECT p FROM Paciente p"),
     @NamedQuery(name = "Paciente.findByCedula", query = "SELECT p FROM Paciente p WHERE p.cedula = :cedula"),
@@ -48,14 +40,9 @@ public class Paciente implements Serializable {
     @Size(max = 45)
     @Column(name = "Ocupacion")
     private String ocupacion;
-    @JoinColumn(name = "idRepresentante", referencedColumnName = "Cedula")
-    @ManyToOne
-    private Persona idRepresentante;
     @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Persona persona;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPaciente")
-    private List<Cita> citaList=new ArrayList<Cita>();
 
     public Paciente() {
     }
@@ -80,28 +67,12 @@ public class Paciente implements Serializable {
         this.ocupacion = ocupacion;
     }
 
-    public Persona getIdRepresentante() {
-        return idRepresentante;
-    }
-
-    public void setIdRepresentante(Persona idRepresentante) {
-        this.idRepresentante = idRepresentante;
-    }
-
     public Persona getPersona() {
         return persona;
     }
 
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
-
-    public List<Cita> getCitaList() {
-        return citaList;
-    }
-
-    public void setCitaList(List<Cita> citaList) {
-        this.citaList = citaList;
     }
 
     @Override
