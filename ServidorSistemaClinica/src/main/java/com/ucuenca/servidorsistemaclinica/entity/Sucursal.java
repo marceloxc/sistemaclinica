@@ -51,7 +51,7 @@ public class Sucursal implements Serializable {
     @Column(name = "Telefono")
     private String telefono;
     @OneToMany(mappedBy = "idSucursal")
-    private Collection <Asistente> asistenteList=new ArrayList<Asistente>();
+    private Collection<Asistente> asistenteList=new ArrayList<Asistente>();
     @OneToMany(mappedBy = "idSucursal")
     private Collection<Odontologo> odontologoList=new ArrayList<Odontologo>();
 
