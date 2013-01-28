@@ -5,8 +5,7 @@
 package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
@@ -15,16 +14,17 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.envers.Audited;
 
 /**
  *
- * @author DELL
+ * @author Fernanda
  */
 @Entity
 @Cacheable
@@ -41,7 +41,9 @@ import org.hibernate.envers.Audited;
     @NamedQuery(name = "Persona.findByTelfCelular", query = "SELECT p FROM Persona p WHERE p.telfCelular = :telfCelular"),
     @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
     @NamedQuery(name = "Persona.findBySexo", query = "SELECT p FROM Persona p WHERE p.sexo = :sexo"),
-    @NamedQuery(name = "Persona.findByContrase\u00f1a", query = "SELECT p FROM Persona p WHERE p.contrase\u00f1a = :contrase\u00f1a")})
+    @NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "Persona.findByContrase\u00f1a", query = "SELECT p FROM Persona p WHERE p.contrase\u00f1a = :contrase\u00f1a"),
+    @NamedQuery(name = "Persona.findByRol", query = "SELECT p FROM Persona p WHERE p.rol = :rol")})
 public class Persona implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -71,19 +73,15 @@ public class Persona implements Serializable {
     private String email;
     @Column(name = "Sexo")
     private Character sexo;
+    @Column(name = "fechaNacimiento")
+    @Temporal(TemporalType.DATE)
+    private Date fechaNacimiento;
     @Size(max = 45)
     @Column(name = "contrase\u00f1a")
     private String contraseña;
-    @OneToMany(mappedBy = "idRepresentante")
-    private List<Paciente> pacienteList=new ArrayList<Paciente>();
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Paciente paciente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Administrador administrador;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Asistente asistente;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
-    private Odontologo odontologo;
+    @Column(name = "rol")
+    private Integer rol;
+    
 
     public Persona() {
     }
@@ -156,6 +154,14 @@ public class Persona implements Serializable {
         this.sexo = sexo;
     }
 
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public String getContraseña() {
         return contraseña;
     }
@@ -164,44 +170,12 @@ public class Persona implements Serializable {
         this.contraseña = contraseña;
     }
 
-    public List<Paciente> getPacienteList() {
-        return pacienteList;
+    public Integer getRol() {
+        return rol;
     }
 
-    public void setPacienteList(List<Paciente> pacienteList) {
-        this.pacienteList = pacienteList;
-    }
-
-    public Paciente getPaciente() {
-        return paciente;
-    }
-
-    public void setPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
-
-    public Administrador getAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
-    }
-
-    public Asistente getAsistente() {
-        return asistente;
-    }
-
-    public void setAsistente(Asistente asistente) {
-        this.asistente = asistente;
-    }
-
-    public Odontologo getOdontologo() {
-        return odontologo;
-    }
-
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
+    public void setRol(Integer rol) {
+        this.rol = rol;
     }
 
     @Override

@@ -5,7 +5,8 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.Paciente;
+import com.ucuenca.servidorsistemaclinica.entity.DetalleHistoriaClinica;
+import com.ucuenca.servidorsistemaclinica.entity.HistoriaClinica;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jws.WebService;
@@ -16,23 +17,19 @@ import javax.jws.WebParam;
  *
  * @author DELL
  */
-@WebService(serviceName = "PacienteWS")
-public class PacienteWS {
+@WebService(serviceName = "HistoriaClinicaWS")
+public class HistoriaClinicaWS {
 
-      /**
-     * This is a sample web service operation
-     */
-    private GenericController<Paciente> ctr= new GenericController<Paciente>();
-    
+    private GenericController<HistoriaClinica> ctr= new GenericController<HistoriaClinica>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "crearpa")
-    public boolean crearpa(@WebParam(name = "paciente") Paciente paciente) {
+    @WebMethod(operationName = "crearhc")
+    public boolean crearhc(@WebParam(name = "historiaclinica") HistoriaClinica historiaclinica) {
         boolean aux=true;
         try
         {
-            ctr.create(paciente);                
+            ctr.create(historiaclinica);                
         }
         catch(Exception e){aux=false;
         e.printStackTrace();
@@ -43,13 +40,13 @@ public class PacienteWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "editpa")
-    public boolean editpa(@WebParam(name = "paciente") Paciente paciente) {
+    @WebMethod(operationName = "edithc")
+    public boolean edithc(@WebParam(name = "historiaclinica") HistoriaClinica historiaclinica) {
         //TODO write your implementation code here:
         boolean aux=true;
         try
-        {
-            ctr.edit(paciente);                
+        {            
+            ctr.edit(historiaclinica);                
         }
         catch(Exception e){aux=false;}
         return aux;            
@@ -58,13 +55,13 @@ public class PacienteWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findpa")
-    public Paciente findpa(@WebParam(name = "id") String id) {
+    @WebMethod(operationName = "findhc")
+    public HistoriaClinica findhc(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
-        Paciente aux= new Paciente();
+        HistoriaClinica aux= new HistoriaClinica();
         try
         {            
-            aux=ctr.find(Paciente.class, id);                
+            aux=ctr.find(HistoriaClinica.class, id);                
         }
         catch(Exception e){aux=null;}
         return aux;
@@ -73,13 +70,13 @@ public class PacienteWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findentitiespa")
-    public List<Paciente> findentitiespa(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+    @WebMethod(operationName = "findentitiehc")
+    public List<HistoriaClinica> findentitiehc(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
         //TODO write your implementation code here:
-        List<Paciente> aux= new ArrayList<Paciente>();
+        List<HistoriaClinica> aux= new ArrayList<HistoriaClinica>();
         try
         {            
-            aux=ctr.findEntities(max, fi,new Paciente());                
+            aux=ctr.findEntities(max, fi,new HistoriaClinica());                
         }
         catch(Exception e){aux=null;}
         return aux;
@@ -88,13 +85,13 @@ public class PacienteWS {
      /**
      * Web service operation
      */
-    @WebMethod(operationName = "countpa")
-    public int countpa() {
+    @WebMethod(operationName = "counthc")
+    public int counthc() {
         //TODO write your implementation code here:
         int aux= 0;
         try
         {            
-            aux=ctr.getCount(new Paciente());                
+            aux=ctr.getCount(new HistoriaClinica());                
         }
         catch(Exception e){aux=0;}
         return aux;

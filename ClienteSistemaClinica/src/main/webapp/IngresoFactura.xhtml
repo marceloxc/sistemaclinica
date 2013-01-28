@@ -1,0 +1,40 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:u="http://java.sun.com/jsf/composite/componentes"
+                xmlns:clinica="http://clinica/facelets/componentes">
+    <ui:define name="contenido">
+        <h:form id="detalle">
+            <p:panelGrid binding="#{DetalleFactura.panel}" id="detalle1">  
+                <f:facet name="header">                       
+                    <p:row>  
+                        <p:column style="width: 110px!important">Cantidad</p:column>  
+                        <p:column style="width: 320px!important">Descripcion</p:column>  
+                        <p:column style="width: 110px!important">P. Unitario</p:column>  
+                        <p:column style="width: 110px!important">P. Total</p:column>
+                    </p:row>  
+                </f:facet>  
+                <!--       <p:row>
+                           <p:column style="width: 110px!important"> 
+                               <p:inputText id="cantidad" value="" style="width: 110px!important" required="true">  
+                                  <f:validateLength minimum="2" />  
+                               </p:inputText>  
+                           </p:column>  
+                           <p:column style="width: 320px!important">
+                               <p:selectOneMenu value="desc" style="width: 320px!important">  
+                                   <f:selectItem itemLabel="Profilaxis" itemValue="" />  
+                                   <f:selectItem itemLabel="Endodoncia" itemValue="1" />  
+                                   <f:selectItem itemLabel="Cirugia" itemValue="2" />                              
+                               </p:selectOneMenu>  
+                           </p:column>  
+                           <p:column style="width: 110px!important">P. Unitario</p:column>  
+                           <p:column style="width: 110px!important">P. Total</p:column>
+                       </p:row> -->
+            </p:panelGrid> 
+            <h:button value="+" id="agregar" style="margin:10px 715px!important" onclick=""/> 
+
+        </h:form>
+    </ui:define>
+</ui:composition>

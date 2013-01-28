@@ -6,6 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -64,17 +65,13 @@ public class Cita implements Serializable {
     private String idSucursal;
     @Column(name = "estado")
     private Character estado;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private List<Factura> facturaList=new ArrayList<Factura>();
     @JoinColumn(name = "idPaciente", referencedColumnName = "Cedula")
     @ManyToOne(optional = false)
     private Paciente idPaciente;
     @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
     @ManyToOne(optional = false)
     private Odontologo idOdontologo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
-
+    
     public Cita() {
     }
 
@@ -127,13 +124,6 @@ public class Cita implements Serializable {
         this.estado = estado;
     }
 
-    public List<Factura> getFacturaList() {
-        return facturaList;
-    }
-
-    public void setFacturaList(List<Factura> facturaList) {
-        this.facturaList = facturaList;
-    }
 
     public Paciente getIdPaciente() {
         return idPaciente;
@@ -149,14 +139,6 @@ public class Cita implements Serializable {
 
     public void setIdOdontologo(Odontologo idOdontologo) {
         this.idOdontologo = idOdontologo;
-    }
-
-    public List<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
-        return detalleHistoriaClinicaList;
-    }
-
-    public void setDetalleHistoriaClinicaList(List<DetalleHistoriaClinica> detalleHistoriaClinicaList) {
-        this.detalleHistoriaClinicaList = detalleHistoriaClinicaList;
     }
 
     @Override

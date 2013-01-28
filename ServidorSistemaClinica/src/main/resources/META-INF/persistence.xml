@@ -6,21 +6,6 @@
         </description>
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
     <non-jta-data-source/>
-    <class>com.ucuenca.servidorsistemaclinica.entity.ServicioOdontologico</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Persona</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.HistoriaClinica</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Cita</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Sucursal</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Cartera</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Receta</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Asistente</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Odontologo</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.DetalleHistoriaClinica</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.DetalleFactura</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Paciente</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.DetalleCartera</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Administrador</class>
-    <class>com.ucuenca.servidorsistemaclinica.entity.Factura</class>
     <properties>
       <property name="hibernate.connection.datasource" value="jdbc/ServidorClinica"/>
       <property name="hibernate.cache.region.factory_class" value="org.hibernate.cache.ehcache.EhCacheRegionFactory"/>
@@ -38,6 +23,8 @@
       <property name="hibernate.c3p0.timeout" value="300"/>
       <property name="hibernate.jdbc.batch_size" value="50"/>
       <property name="hibernate.search.default.directory_provider" value="filesystem"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      
       <!--
    <property name="hibernate.ejb.event.post-insert"
              value="org.hibernate.ejb.event.EJB3PostInsertEventListener,org.hibernate.envers.event.AuditEventListener" />

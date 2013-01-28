@@ -6,6 +6,8 @@ package ws;
 
 import Controlador.GenericController;
 import com.ucuenca.servidorsistemaclinica.entity.Factura;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -57,7 +59,7 @@ public class FacturaWS {
      * Web service operation
      */
     @WebMethod(operationName = "findf")
-    public Factura findf(@WebParam(name = "id") String id) {
+    public Factura findf(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
         Factura aux= new Factura();
         try
@@ -67,4 +69,39 @@ public class FacturaWS {
         catch(Exception e){aux=null;}
         return aux;
     }
+    
+    /**
+     * Web service operation
+     */
+    
+        
+    
+    @WebMethod(operationName = "findentitiesf")
+    public List<Factura> findentitiesf(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+        //TODO write your implementation code here:
+        List<Factura> aux= new ArrayList<Factura>();
+        try
+        {            
+            aux=ctr.findEntities(max, fi,new Factura());                
+        }
+        catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "countfac")
+    public int countfac() {
+        //TODO write your implementation code here:
+        int aux= 0;
+        try
+        {            
+            aux=ctr.getCount(new Factura());                
+        }
+        catch(Exception e){aux=0;}
+        return aux;
+    }
+
+    
 }

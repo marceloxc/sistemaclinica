@@ -1,0 +1,74 @@
+/* 
+    Document   : styles.css
+    Created on : 26-ene-2013, 12:00:37
+    Author     : Valex
+    Description:
+        Purpose of the stylesheet follows.
+*/
+*{
+        margin: 0px!important;
+}
+
+body{
+    background-attachment: fixed!important;
+    background-color: #E6F2FA!important;
+    background-image: url("../images/Middle_texture.jpg")!important;
+    background-position: left top!important;
+    background-repeat: repeat!important;
+    color: #0E2F43!important;
+    height: 100%!important;
+    margin: 0 0 -10px!important;
+    padding: 0!important;
+    overflow: scroll;
+} 
+.ui-layout-container{
+    width: 1000px;
+    margin: 10px auto!important;
+    position: relative;
+    overflow: scroll;
+}
+
+#divMenu{
+    width: 100%;
+    height: 30px;
+    margin: 0px;
+    float: left;
+}
+#divHeader{
+    background: url("../images/header.png")!important;
+    height: 187px;
+    width: 988px;
+}
+
+#j_idt11{
+    margin: 0px!important;
+}
+j_idt18{
+    height: 350px!important;
+}
+
+.textos{
+    display: block;
+    width: 180px;
+    height: 30px;
+    border: 1px solid #2AA8F3;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    text-align: right;
+    padding: 0px 20px;
+}
+.titulos{
+    
+    color:#4485BB;
+    font-size: 20pt;
+    padding-left: 255px;
+}
+.botones{
+    height: 40px;
+    width: 170px;
+    background-color: #4485BB;
+    color: #FFF;
+    padding: 0px 10px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+}

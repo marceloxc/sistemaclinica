@@ -12,7 +12,7 @@
     <properties>
         <endorsed.dir>${project.build.directory}/endorsed</endorsed.dir>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        
+        <netbeans.hint.deploy.server>gfv3ee6</netbeans.hint.deploy.server>
     </properties>
  
     <repositories>
@@ -37,15 +37,20 @@
             <version>6.0</version>
             <scope>provided</scope>
         </dependency>
-       
+        <dependency>  
+            <groupId>org.primefaces.themes</groupId>  
+            <artifactId>cupertino</artifactId>  
+            <version>1.0.9</version>  
+        </dependency>
     
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <version>3.3</version>
         </dependency>
-    </dependencies>
+        
 
+    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -114,12 +119,26 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/SucursalWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/SucursalWS.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PacienteWS.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-SucursalWS</id>
+                        <id>wsimport-generate-PacienteWS</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PersonaWS?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PersonaWS.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PersonaWS</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>

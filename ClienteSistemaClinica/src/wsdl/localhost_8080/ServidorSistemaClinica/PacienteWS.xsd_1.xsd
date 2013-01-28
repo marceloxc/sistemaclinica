@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.2.0-1 (tags/2.2.0u1-7139; 2012-06-02T10:55:19+0000) JAXWS-RI/2.2.6-2 JAXWS/2.2 svn-revision#unknown. --><xs:schema xmlns:tns="http://ws/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ws/">
+
+<xs:element name="countpa" type="tns:countpa"/>
+
+<xs:element name="countpaResponse" type="tns:countpaResponse"/>
+
+<xs:element name="crearpa" type="tns:crearpa"/>
+
+<xs:element name="crearpaResponse" type="tns:crearpaResponse"/>
+
+<xs:element name="editpa" type="tns:editpa"/>
+
+<xs:element name="editpaResponse" type="tns:editpaResponse"/>
+
+<xs:element name="findentitiespa" type="tns:findentitiespa"/>
+
+<xs:element name="findentitiespaResponse" type="tns:findentitiespaResponse"/>
+
+<xs:element name="findpa" type="tns:findpa"/>
+
+<xs:element name="findpaResponse" type="tns:findpaResponse"/>
+
+<xs:complexType name="findentitiespa">
+<xs:sequence>
+<xs:element name="fi" type="xs:int"/>
+<xs:element name="max" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findentitiespaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:paciente" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="paciente">
+<xs:sequence>
+<xs:element name="cedula" type="xs:string" minOccurs="0"/>
+<xs:element name="ocupacion" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearpa">
+<xs:sequence>
+<xs:element name="paciente" type="tns:paciente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="crearpaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findpa">
+<xs:sequence>
+<xs:element name="id" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findpaResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:paciente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="countpa">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="countpaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editpa">
+<xs:sequence>
+<xs:element name="paciente" type="tns:paciente" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="editpaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

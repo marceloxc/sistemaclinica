@@ -6,6 +6,8 @@ package ws;
 
 import Controlador.GenericController;
 import com.ucuenca.servidorsistemaclinica.entity.Sucursal;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -65,6 +67,36 @@ public class SucursalWS {
             aux=ctr.find(Sucursal.class, id);                
         }
         catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "findentitiess")
+    public List<Sucursal> findentitiess(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+        //TODO write your implementation code here:
+        List<Sucursal> aux= new ArrayList<Sucursal>();
+        try
+        {            
+            aux=ctr.findEntities(max, fi,new Sucursal());                
+        }
+        catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "counts")
+    public int counts() {
+        //TODO write your implementation code here:
+        int aux= 0;
+        try
+        {            
+            aux=ctr.getCount(new Sucursal());                
+        }
+        catch(Exception e){aux=0;}
         return aux;
     }
 }

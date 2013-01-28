@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE facelet-taglib PUBLIC "-//Sun Microsystems, Inc.//DTD Facelet Taglib 1.0//EN"
+"http://java.sun.com/dtd/facelet-taglib_1_0.dtd">
+<facelet-taglib>
+    <namespace>http://clinica/facelets/componentes</namespace>
+    <tag>
+        <tag-name>ingresoPaciente</tag-name>
+        <source>../../../resources/componentes/IngresoPaciente.xhtml</source>
+    </tag>
+    <tag>
+        <tag-name>menuCabecera</tag-name>
+        <source>../../../resources/componentes/MenuCabecera.xhtml</source>
+    </tag>    
+    <tag>
+        <tag-name>ingresoFactura</tag-name>
+        <source>../../../resources/componentes/IngresoFactura.xhtml</source>
+    </tag>        
+    <tag>
+        <tag-name>ingresoSucursal</tag-name>
+        <source>../../../resources/componentes/IngresoSucursal.xhtml</source>
+    </tag>           
+</facelet-taglib>

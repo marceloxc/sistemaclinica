@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:u="http://java.sun.com/jsf/composite/componentes"
+      xmlns:clinica="http://clinica/facelets/componentes">
+
+    <h:head>
+        <title>Profidental</title>
+        <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
+    </h:head>
+    <h:body>
+        <ui:insert name="contenido" />
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="200"  resizable="false" closable="false" collapsible="true" >
+                <clinica:menuCabecera/>
+                <!---
+                <div id="divHeader">
+                    <div id="divMenu">
+                        <p:menubar>
+
+                            <p:submenu label="Pacientes" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                                <p:menuitem value="Historial Clinico" url="http://forum.primefaces.org/" />
+
+                            </p:submenu>
+                            <p:submenu label="Personal" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Historias Clìnica" >
+                                <p:menuitem value="Crear" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Buscar" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Odontologos" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Citas" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Recetas" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Pagos" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Agenda" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                            <p:submenu label="Cuentas" >
+                                <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
+                            </p:submenu>
+                        </p:menubar>
+                    </div>
+                </div>            
+-->
+            </p:layoutUnit>
+
+
+            <p:layoutUnit position="south" size="40" closable="true" collapsible="true">
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center" resizable="false" closable="false" collapsible="false">  
+
+                <div style="padding: 7px 70px;">
+                    <ui:insert name="contenido" />
+                </div>    
+            </p:layoutUnit>        
+        </p:layout>
+    </h:body>
+</html>
+

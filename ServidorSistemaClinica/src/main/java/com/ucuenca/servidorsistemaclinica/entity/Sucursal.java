@@ -6,6 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
@@ -50,9 +51,9 @@ public class Sucursal implements Serializable {
     @Column(name = "Telefono")
     private String telefono;
     @OneToMany(mappedBy = "idSucursal")
-    private List<Asistente> asistenteList=new ArrayList<Asistente>();
+    private Collection<Asistente> asistenteList=new ArrayList<Asistente>();
     @OneToMany(mappedBy = "idSucursal")
-    private List<Odontologo> odontologoList=new ArrayList<Odontologo>();
+    private Collection<Odontologo> odontologoList=new ArrayList<Odontologo>();
 
     public Sucursal() {
         
@@ -86,7 +87,7 @@ public class Sucursal implements Serializable {
         this.telefono = telefono;
     }
 
-    public List<Asistente> getAsistenteList() {
+    public Collection<Asistente> getAsistenteList() {
         return asistenteList;
     }
 
@@ -94,7 +95,7 @@ public class Sucursal implements Serializable {
         this.asistenteList = asistenteList;
     }
 
-    public List<Odontologo> getOdontologoList() {
+    public Collection<Odontologo> getOdontologoList() {
         return odontologoList;
     }
 
