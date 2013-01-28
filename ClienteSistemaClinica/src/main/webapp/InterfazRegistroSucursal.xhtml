@@ -8,9 +8,9 @@
         <h:form>
             <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
                 <h:outputText value="Direccion: " />
-
                 <p:inputText styleClass="textos" value="#{mbSucursal.direccion}"/>
                 <h:outputText value="Telefono: " />
+                <p:inputText styleClass="textos" value="#{mbSucursal.telefono}"/>
                 <p:inputText styleClass="textos" id="txtTelefonoSucursal"/>
                 <h:commandButton label="Guardar" id="cmdGuardar" value="Guardar" class="botones" actionListener="#{mbSucursal.crear()}"/>
                 <h:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" class="botones"/>

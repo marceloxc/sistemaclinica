@@ -4,6 +4,12 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/ServidorSistemaClinica/SucursalWS?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="findentitiess">
+<part name="parameters" element="tns:findentitiess"/>
+</message>
+<message name="findentitiessResponse">
+<part name="parameters" element="tns:findentitiessResponse"/>
+</message>
 <message name="crears">
 <part name="parameters" element="tns:crears"/>
 </message>
@@ -22,7 +28,17 @@
 <message name="findsResponse">
 <part name="parameters" element="tns:findsResponse"/>
 </message>
+<message name="counts">
+<part name="parameters" element="tns:counts"/>
+</message>
+<message name="countsResponse">
+<part name="parameters" element="tns:countsResponse"/>
+</message>
 <portType name="SucursalWS">
+<operation name="findentitiess">
+<input wsam:Action="http://ws/SucursalWS/findentitiessRequest" message="tns:findentitiess"/>
+<output wsam:Action="http://ws/SucursalWS/findentitiessResponse" message="tns:findentitiessResponse"/>
+</operation>
 <operation name="crears">
 <input wsam:Action="http://ws/SucursalWS/crearsRequest" message="tns:crears"/>
 <output wsam:Action="http://ws/SucursalWS/crearsResponse" message="tns:crearsResponse"/>
@@ -35,9 +51,22 @@
 <input wsam:Action="http://ws/SucursalWS/findsRequest" message="tns:finds"/>
 <output wsam:Action="http://ws/SucursalWS/findsResponse" message="tns:findsResponse"/>
 </operation>
+<operation name="counts">
+<input wsam:Action="http://ws/SucursalWS/countsRequest" message="tns:counts"/>
+<output wsam:Action="http://ws/SucursalWS/countsResponse" message="tns:countsResponse"/>
+</operation>
 </portType>
 <binding name="SucursalWSPortBinding" type="tns:SucursalWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="findentitiess">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="crears">
 <soap:operation soapAction=""/>
 <input>
@@ -57,6 +86,15 @@
 </output>
 </operation>
 <operation name="finds">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="counts">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
