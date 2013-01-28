@@ -73,9 +73,7 @@ public class Cita implements Serializable {
     @JoinColumn(name = "idOdontologo", referencedColumnName = "Cedula")
     @ManyToOne(optional = false)
     private Odontologo idOdontologo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private Collection<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
-
+    
     public Cita() {
     }
 
@@ -150,14 +148,6 @@ public class Cita implements Serializable {
 
     public void setIdOdontologo(Odontologo idOdontologo) {
         this.idOdontologo = idOdontologo;
-    }
-
-    public Collection<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
-        return detalleHistoriaClinicaList;
-    }
-
-    public void setDetalleHistoriaClinicaList(List<DetalleHistoriaClinica> detalleHistoriaClinicaList) {
-        this.detalleHistoriaClinicaList = detalleHistoriaClinicaList;
     }
 
     @Override
