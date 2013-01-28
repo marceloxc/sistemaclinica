@@ -6,6 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
@@ -54,15 +55,12 @@ public class Odontologo implements Serializable {
     private String especialidad;
     @Column(name = "FechaIngreso")
     @Temporal(TemporalType.DATE)
-    private Date fechaIngreso;
+    private Date fechaIngreso;    
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
     @ManyToOne
     private Sucursal idSucursal;
-    @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Persona persona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOdontologo")
-    private List<Cita> citaList=new ArrayList<Cita>();
+    private Collection<Cita> citaList=new ArrayList<Cita>();
 
     public Odontologo() {
     }
@@ -71,6 +69,14 @@ public class Odontologo implements Serializable {
         this.cedula = cedula;
     }
 
+    public Sucursal getIdSucursal() {
+        return idSucursal;
+    }
+
+    public void setIdSucursal(Sucursal idSucursal) {
+        this.idSucursal = idSucursal;
+    }
+    
     public String getCedula() {
         return cedula;
     }
@@ -95,27 +101,11 @@ public class Odontologo implements Serializable {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Sucursal getIdSucursal() {
-        return idSucursal;
-    }
-
-    public void setIdSucursal(Sucursal idSucursal) {
-        this.idSucursal = idSucursal;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
-    }
-
-    public List<Cita> getCitaList() {
+    public Collection<Cita> getCitaList() {
         return citaList;
     }
 
-    public void setCitaList(List<Cita> citaList) {
+    public void setCitaList(Collection<Cita> citaList) {
         this.citaList = citaList;
     }
 
