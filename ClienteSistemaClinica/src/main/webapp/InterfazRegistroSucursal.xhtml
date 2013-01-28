@@ -1,0 +1,20 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+               xmlns:h="http://java.sun.com/jsf/html"
+               template="./template.xhtml"
+               xmlns:p="http://primefaces.org/ui"
+               xmlns:u="http://java.sun.com/jsf/composite/componentes">
+    <ui:define name="contenido">
+        <h:outputLabel value="Ingrese los datos de la sucursal" class="titulos"/>
+        <h:form>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <h:outputText value="Direccion: " />
+
+                <p:inputText styleClass="textos" value="#{mbSucursal.direccion}"/>
+                <h:outputText value="Telefono: " />
+                <p:inputText styleClass="textos" id="txtTelefonoSucursal"/>
+                <h:commandButton label="Guardar" id="cmdGuardar" value="Guardar" class="botones" actionListener="#{mbSucursal.crear()}"/>
+                <h:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" class="botones"/>
+            </h:panelGrid>   
+        </h:form>
+    </ui:define>    
+</ui:composition>
