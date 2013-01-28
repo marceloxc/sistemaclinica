@@ -95,8 +95,6 @@ public class HistoriaClinica implements Serializable {
     @Size(max = 50)
     @Column(name = "EnfermCardiacas")
     private String enfermCardiacas;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "historiaClinica")
-    private DetalleHistoriaClinica detalleHistoriaClinica;
 
     public HistoriaClinica() {
     }
@@ -228,14 +226,6 @@ public class HistoriaClinica implements Serializable {
 
     public void setEnfermCardiacas(String enfermCardiacas) {
         this.enfermCardiacas = enfermCardiacas;
-    }
-
-    public DetalleHistoriaClinica getDetalleHistoriaClinica() {
-        return detalleHistoriaClinica;
-    }
-
-    public void setDetalleHistoriaClinica(DetalleHistoriaClinica detalleHistoriaClinica) {
-        this.detalleHistoriaClinica = detalleHistoriaClinica;
     }
 
     @Override
