@@ -4,12 +4,18 @@
  */
 package managedbeans;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.xml.ws.WebServiceRef;
+import org.primefaces.event.RowEditEvent;
+import util.CPaciente;
 import util.validaciones;
 import ws.PacienteWS_Service;
+import ws.Persona;
 import ws.PersonaWS_Service;
 
 /**
@@ -17,7 +23,7 @@ import ws.PersonaWS_Service;
  * @author johnny
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class mbPaciente {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl")
     private PacienteWS_Service service_1;
@@ -27,8 +33,154 @@ public class mbPaciente {
     /**
      * Creates a new instance of mbPaciente
      */
-    public mbPaciente() {
+        private List <Persona> listaPersonas;
+
+    /**
+     * Get the value of listaPersonas
+     *
+     * @return the value of listaPersonas
+     */
+    public List <Persona> getListaPersonas() {
+        return listaPersonas;
     }
+
+    /**
+     * Set the value of listaPersonas
+     *
+     * @param listaPersonas new value of listaPersonas
+     */
+    public void setListaPersonas(List<Persona> listaPersonas) {
+        this.listaPersonas = listaPersonas;
+    }
+        private String pruebaCedula;
+
+    /**
+     * Get the value of pruebaCedula
+     *
+     * @return the value of pruebaCedula
+     */
+    public String getPruebaCedula() {
+        return pruebaCedula;
+    }
+
+    /**
+     * Set the value of pruebaCedula
+     *
+     * @param pruebaCedula new value of pruebaCedula
+     */
+    public void setPruebaCedula(String pruebaCedula) {
+        this.pruebaCedula = pruebaCedula;
+    }
+
+    public mbPaciente() {
+        
+
+    }
+        private List<CPaciente> listaPacientes;
+
+    /**
+     * Get the value of listaPacientes
+     *
+     * @return the value of listaPacientes
+     */
+    public List<CPaciente> getListaPacientes() {
+        return listaPacientes;
+    }
+
+    /**
+     * Set the value of listaPacientes
+     *
+     * @param listaPacientes new value of listaPacientes
+     */
+    public void setListaPacientes(List<CPaciente> listaPacientes) {
+        this.listaPacientes = listaPacientes;
+    }
+
+    public void cargarDatos()
+    {
+        try { // Call Web Service Operation
+            ws.PersonaWS port = service.getPersonaWSPort();
+            // TODO initialize WS operation arguments here
+            int fi = 0;
+            int max = 10;
+            // TODO process result here
+            java.util.List<ws.Persona> result = port.findentitiesp(fi, max);
+            
+            System.out.println("Result = "+result);
+            listaPersonas=result;
+            
+            pruebaCedula=listaPersonas.get(0).getCedula();
+        } catch (Exception ex) {
+        // TODO handle custom exceptions here
+            
+        }
+        
+        try { // Call Web Service Operation
+            ws.PacienteWS port = service_1.getPacienteWSPort();
+            // TODO initialize WS operation arguments here
+            int fi = 0;
+            int max = 10;
+            // TODO process result here
+            java.util.List<ws.Paciente> result = port.findentitiespa(fi, max);
+            listaPacientes=new ArrayList();
+            for(int i=0; i<result.size();i++)
+            {
+                for(int j=0; j<listaPersonas.size();j++)
+                {
+                    if(result.get(i).getCedula().equals(listaPersonas.get(j).getCedula()))
+                    {
+                        CPaciente pas = new CPaciente(listaPersonas.get(j).getApellidos(),listaPersonas.get(j).getCedula(),listaPersonas.get(j).getContraseña(), listaPersonas.get(j).getDireccion(), listaPersonas.get(j).getEmail(),listaPersonas.get(j).getFechaNacimiento(),listaPersonas.get(j).getNombres(), listaPersonas.get(j).getRol(), listaPersonas.get(j).getSexo(), listaPersonas.get(j).getTelefono(),listaPersonas.get(j).getTelfCelular(), result.get(j).getOcupacion());
+                        listaPacientes.add(pas);
+                    }
+                }
+            }
+            System.out.println("Result = "+result);
+        } catch (Exception ex) {
+        // TODO handle custom exceptions here
+        }
+
+        
+    }
+        private CPaciente selectedPaciente;
+
+    /**
+     * Get the value of selectedPaciente
+     *
+     * @return the value of selectedPaciente
+     */
+    public CPaciente getSelectedPaciente() {
+        return selectedPaciente;
+    }
+
+    /**
+     * Set the value of selectedPaciente
+     *
+     * @param selectedPaciente new value of selectedPaciente
+     */
+    public void setSelectedPaciente(CPaciente selectedPaciente) {
+        this.selectedPaciente = selectedPaciente;
+    }
+
+    private Persona selectedPersona;
+
+    /**
+     * Get the value of selectedPersona
+     *
+     * @return the value of selectedPersona
+     */
+    public Persona getSelectedPersona() {
+        return selectedPersona;
+    }
+
+    /**
+     * Set the value of selectedPersona
+     *
+     * @param selectedPersona new value of selectedPersona
+     */
+    public void setSelectedPersona(Persona selectedPersona) {
+        this.selectedPersona = selectedPersona;
+    }
+
     private String cedula;
 
     /**
@@ -351,5 +503,35 @@ public class mbPaciente {
             return null;
         } 
     }
-    
+
+    /**
+     *
+     * @param event
+     */
+    public void onEdit(RowEditEvent event) {  
+     
+     try { // Call Web Service Operation
+         ws.PersonaWS port = service.getPersonaWSPort();
+         // TODO initialize WS operation arguments here
+         CPaciente paciente = (CPaciente)event.getObject();
+         ws.Persona persona = new ws.Persona();
+         persona.setCedula(paciente.getCedula());
+         persona.setNombres(paciente.getNombres());
+         persona.setApellidos(paciente.getApellidos());
+         persona.setDireccion(paciente.getDireccion());
+         persona.setTelefono(paciente.getTelefono());
+         persona.setTelfCelular(paciente.getTelfCelular());
+         persona.setSexo(paciente.getSexo());
+         persona.setContraseña(paciente.getContraseña());
+         persona.setEmail(paciente.getEmail());
+         persona.setRol(paciente.getRol());
+         // TODO process result here
+         
+         boolean result = port.editp(persona);
+         System.out.println("Result = "+result);
+     } catch (Exception ex) {
+     // TODO handle custom exceptions here
+     }
+ 
+ }   
 }

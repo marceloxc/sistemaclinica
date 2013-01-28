@@ -137,10 +137,9 @@ public final class mbSucursal implements Serializable{
     }
     
     public void Listar(){
-        
-        try { // Call Web Service Operation
-           int fi = 0;
+        int fi = 0;
             int max = 2;
+        try { // Call Web Service Operation           
             ws.SucursalWS port = service.getSucursalWSPort();
             // TODO initialize WS operation arguments here
             
