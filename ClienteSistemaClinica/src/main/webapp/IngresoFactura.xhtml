@@ -6,35 +6,38 @@
                 xmlns:u="http://java.sun.com/jsf/composite/componentes"
                 xmlns:clinica="http://clinica/facelets/componentes">
     <ui:define name="contenido">
-        <h:form id="detalle">
-            <p:panelGrid binding="#{DetalleFactura.panel}" id="detalle1">  
-                <f:facet name="header">                       
-                    <p:row>  
-                        <p:column style="width: 110px!important">Cantidad</p:column>  
-                        <p:column style="width: 320px!important">Descripcion</p:column>  
-                        <p:column style="width: 110px!important">P. Unitario</p:column>  
-                        <p:column style="width: 110px!important">P. Total</p:column>
-                    </p:row>  
-                </f:facet>  
-                <!--       <p:row>
-                           <p:column style="width: 110px!important"> 
-                               <p:inputText id="cantidad" value="" style="width: 110px!important" required="true">  
-                                  <f:validateLength minimum="2" />  
-                               </p:inputText>  
-                           </p:column>  
-                           <p:column style="width: 320px!important">
-                               <p:selectOneMenu value="desc" style="width: 320px!important">  
-                                   <f:selectItem itemLabel="Profilaxis" itemValue="" />  
-                                   <f:selectItem itemLabel="Endodoncia" itemValue="1" />  
-                                   <f:selectItem itemLabel="Cirugia" itemValue="2" />                              
-                               </p:selectOneMenu>  
-                           </p:column>  
-                           <p:column style="width: 110px!important">P. Unitario</p:column>  
-                           <p:column style="width: 110px!important">P. Total</p:column>
-                       </p:row> -->
-            </p:panelGrid> 
-            <h:button value="+" id="agregar" style="margin:10px 715px!important" onclick=""/> 
+        <h:form>
+            <p:panel id="datos" style="margin-bottom:10px;">
+                <p:panelGrid columns="2" cellpadding="2">
+                    <h:outputText value="Cantidad:"/> <p:inputText value="" id="cant"/>
+                    <h:outputText value="Descripcion:"/> 
+                    <p:selectOneMenu id="datosSuc" width="125" var="var1" style="width: 200px">  
+                        <f:selectItems value="#{mbDetalleFactura.lsel}"/>   
+                    </p:selectOneMenu> 
+                     
+                </p:panelGrid>
+            </p:panel>
+            <p:commandButton value="Cargar" id="cargar" actionListener="#{mbDetalleFactura.obtenerServicio()}" update="datos"/>
+            <p:commandButton value="Agregar" id="agregar" style="margin:10px"/>
+            <!--
+            <p:dataTable id="detallefactura" >  
+                <p:column headerText="Cantidad" style="width: 50px">
+                    <h:outputText value="" id="cantidad"/>  
+                </p:column>  
 
+                <p:column headerText="Descripcion" style="width: 200px">  
+                    <h:outputText value="" id="descripcion"/>  
+                </p:column>  
+
+                <p:column headerText="P. Unitario" style="width: 50px">  
+                    <h:outputText value="" id="punitario"/>  
+                </p:column>  
+
+                <p:column headerText="P. Total" style="width: 50px">  
+                    <h:outputText value="" id="ptotal"/>  
+                </p:column>  
+            </p:dataTable>  
+            -->
         </h:form>
     </ui:define>
 </ui:composition>

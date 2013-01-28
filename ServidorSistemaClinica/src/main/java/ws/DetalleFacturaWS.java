@@ -5,7 +5,10 @@
 package ws;
 
 import Controlador.GenericController;
+import com.ucuenca.servidorsistemaclinica.entity.Cartera;
 import com.ucuenca.servidorsistemaclinica.entity.DetalleFactura;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -63,4 +66,33 @@ public class DetalleFacturaWS {
         catch(Exception e){aux=null;}
         return aux;
     }
+    
+    
+    @WebMethod(operationName = "findentitiede")
+    public List<DetalleFactura> findentitiede(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+        //TODO write your implementation code here:
+        List<DetalleFactura> aux= new ArrayList<DetalleFactura>();
+        try
+        {            
+            aux=ctr.findEntities(max, fi,new DetalleFactura());                
+        }
+        catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "countca")
+    public int countca() {
+        //TODO write your implementation code here:
+        int aux= 0;
+        try
+        {            
+            aux=ctr.getCount(new DetalleFactura());                
+        }
+        catch(Exception e){aux=0;}
+        return aux;
+    }
+    
 }

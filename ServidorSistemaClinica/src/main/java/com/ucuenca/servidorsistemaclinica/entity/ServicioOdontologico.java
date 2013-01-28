@@ -6,6 +6,7 @@ package com.ucuenca.servidorsistemaclinica.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Cacheable;
@@ -51,7 +52,7 @@ public class ServicioOdontologico implements Serializable {
     @Column(name = "Precio")
     private Double precio;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idServicioOdontologico")
-    private List<DetalleFactura> detalleFacturaList=new ArrayList<DetalleFactura>();
+    private Collection<DetalleFactura> detalleFacturaList=new ArrayList<DetalleFactura>();
 
     public ServicioOdontologico() {
     }
@@ -84,7 +85,7 @@ public class ServicioOdontologico implements Serializable {
         this.precio = precio;
     }
 
-    public List<DetalleFactura> getDetalleFacturaList() {
+    public Collection<DetalleFactura> getDetalleFacturaList() {
         return detalleFacturaList;
     }
 
