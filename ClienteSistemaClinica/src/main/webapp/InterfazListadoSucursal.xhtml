@@ -2,24 +2,64 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="./template.xhtml"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:u="http://java.sun.com/jsf/composite/componentes">
+                xmlns:u="http://java.sun.com/jsf/composite/componentes"
+                xmlns:f="http://java.sun.com/jsf/core">
     <ui:define name="contenido">
         <h:outputLabel value="Datos Sucursal" class="titulos"/>
-        <h:form>
-            <p:dataTable var="suc"  paginator="true" rows="10"  
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
-                         rowsPerPageTemplate="5,10,15" selectionMode="single" id="sucTable" lazy="true">
-                <p:column headerText="Id" value="100" >  
-                    <h:outputText />  
-                </p:column>
-                <p:column headerText="Direccion" value="10">  
-                    <h:outputText  />  
-                </p:column>
-                <p:column headerText="Id" value="1" >  
-                    <h:outputText />  
-                </p:column>
+        <h:form >  
+
+            <p:growl id="messages" showDetail="true"/>  
+
+            <p:dataTable var="suc" value="#{mbSucursal.listado}" id="sucList" editable="true" >  
+
+                <f:facet name="header" class="titulos">  
+                    SUCURSALES  
+                </f:facet>  
+
+                <p:ajax event="rowEdit" listener="#{mbSucursal.onEdit}" update="sucList" />        
+
+                <p:column headerText="Id" style="width:125px" >  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{suc.numSucursal}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{suc.numSucursal}" style="width:100%" disabled="true"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Direccion" style="width:125px">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{suc.direccion}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{suc.direccion}" style="width:100%" label="Direccion"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Telefono" style="width:125px">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{suc.telefono}" />  
+                        </f:facet>  
+                       <f:facet name="input">  
+                           <p:inputText value="#{suc.telefono}" style="width:100%" label="Telefono"/>  
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>  
+
                 
-            </p:dataTable>
-        </h:form>
+
+                <p:column headerText="Options" style="width:50px">  
+                    <p:rowEditor />  
+                </p:column>  
+
+            </p:dataTable>  
+             <p:commandButton label="Cargar" value="Cargar" styleClass="botones" action="#{mbSucursal.Listar()}" update="sucList" />
+        </h:form>  
+       
     </ui:define>    
 </ui:composition>

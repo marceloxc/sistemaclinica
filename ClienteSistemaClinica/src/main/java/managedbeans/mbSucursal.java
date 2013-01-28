@@ -120,8 +120,6 @@ public final class mbSucursal implements Serializable{
             // TODO initialize WS operation arguments here
             ws.Sucursal sucursal = (Sucursal)event.getObject();
             // TODO process result here
-            direccion = sucursal.getDireccion();
-            nombre =sucursal.getTelefono();
             boolean result = port.edits(sucursal);
             System.out.println("Result = "+result);
         } catch (Exception ex) {
