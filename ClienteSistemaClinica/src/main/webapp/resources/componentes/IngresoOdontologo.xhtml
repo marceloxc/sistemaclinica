@@ -1,0 +1,29 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:u="http://java.sun.com/jsf/composite/componentes">
+    <ui:define name="contenido">
+        <h:outputLabel>Ingrese los datos del odontologo</h:outputLabel>
+        <h:form>
+            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+                <h:outputText value="C&eacute;dula: "/>
+                <h:inputText id="txtCedula"/>
+                <h:outputText value="Nombres: "/>
+                <h:inputText id="txtNombres"/>
+                <h:outputText value="Nombres: "/>
+                <h:inputText id="txtANombres"/>
+                <h:outputText value="Apellidos: "/>
+                <h:inputText id="txtApellidos"/>
+                <h:outputText value="Direccion: "/>
+                <h:inputText id="txtDireccion"/>
+                <h:outputText value="Telefono Fijo: "/>
+                <h:inputText id="txtTelefono"/>
+                <h:outputText value="Celular: "/>
+                <h:inputText id="txtCelular"/>
+                <h:outputText value="Sexo: "/>
+            </h:panelGrid>   
+        </h:form>
+
+    </ui:define>
+</ui:composition>
