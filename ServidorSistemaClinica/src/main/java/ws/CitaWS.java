@@ -7,6 +7,9 @@ package ws;
 import Controlador.GenericController;
 import com.ucuenca.servidorsistemaclinica.entity.Cartera;
 import com.ucuenca.servidorsistemaclinica.entity.Cita;
+import com.ucuenca.servidorsistemaclinica.entity.Paciente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -58,7 +61,7 @@ private GenericController<Cita> ctr= new GenericController<Cita>();
      * Web service operation
      */
     @WebMethod(operationName = "findci")
-    public Cita findci(@WebParam(name = "id") String id) {
+    public Cita findci(@WebParam(name = "id") int id) {
         //TODO write your implementation code here:
         Cita aux= new Cita();
         try
@@ -68,4 +71,34 @@ private GenericController<Cita> ctr= new GenericController<Cita>();
         catch(Exception e){aux=null;}
         return aux;
     }
+    
+    
+    @WebMethod(operationName = "findentitiesci")
+    public List<Cita> findentitiesci(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+        //TODO write your implementation code here:
+        List<Cita> aux= new ArrayList<Cita>();
+        try
+        {            
+            aux=ctr.findEntities(max, fi,new Cita());                
+        }
+        catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "countci")
+    public int countci() {
+        //TODO write your implementation code here:
+        int aux= 0;
+        try
+        {            
+            aux=ctr.getCount(new Cita());                
+        }
+        catch(Exception e){aux=0;}
+        return aux;
+    }
+    
+    
 }
