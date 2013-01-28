@@ -99,9 +99,9 @@ public class HistoriaClinica implements Serializable {
     @Column(name = "EnfermCardiacas")
     private String enfermCardiacas;
     @OneToMany(mappedBy = "codigoHistoriaClinica", fetch=FetchType.LAZY)
-    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();        
+    private Collection<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();        
     
-    public List<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
+    public Collection<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
         return detalleHistoriaClinicaList;
     }
 
