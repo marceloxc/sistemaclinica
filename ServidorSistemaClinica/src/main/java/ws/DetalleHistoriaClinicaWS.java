@@ -6,6 +6,8 @@ package ws;
 
 import Controlador.GenericController;
 import com.ucuenca.servidorsistemaclinica.entity.DetalleHistoriaClinica;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -61,6 +63,36 @@ public class DetalleHistoriaClinicaWS {
             aux=ctr.find(DetalleHistoriaClinica.class, id);                
         }
         catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "findentitiedhc")
+    public List<DetalleHistoriaClinica> findentitiedhc(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+        //TODO write your implementation code here:
+        List<DetalleHistoriaClinica> aux= new ArrayList<DetalleHistoriaClinica>();
+        try
+        {            
+            aux=ctr.findEntities(max, fi,new DetalleHistoriaClinica());                
+        }
+        catch(Exception e){aux=null;}
+        return aux;
+    }
+    
+     /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "countdhc")
+    public int countdhc() {
+        //TODO write your implementation code here:
+        int aux= 0;
+        try
+        {            
+            aux=ctr.getCount(new DetalleHistoriaClinica());                
+        }
+        catch(Exception e){aux=0;}
         return aux;
     }
 }

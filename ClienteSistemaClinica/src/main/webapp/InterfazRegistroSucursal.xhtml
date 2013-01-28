@@ -12,8 +12,8 @@
                 <p:inputText styleClass="textos" value="#{mbSucursal.direccion}"/>
                 <h:outputText value="Telefono: " />
                 <p:inputText styleClass="textos" id="txtTelefonoSucursal"/>
-                <h:commandButton label="Guardar" id="cmdGuardar" value="Guardar" class="botones" actionListener="#{mbSucursal.crear()}"/>
-                <h:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" class="botones"/>
+                <p:commandButton label="Guardar" id="cmdGuardar" value="Guardar" styleClass="botones" action="#{mbSucursal.crear()}" />
+                <p:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" styleClass="botones"/>
             </h:panelGrid>   
         </h:form>
     </ui:define>    
