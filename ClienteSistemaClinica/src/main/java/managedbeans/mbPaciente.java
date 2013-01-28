@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.xml.ws.WebServiceRef;
 import org.primefaces.event.RowEditEvent;
 import util.CPaciente;
@@ -22,7 +23,7 @@ import ws.PersonaWS_Service;
  * @author johnny
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class mbPaciente {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl")
     private PacienteWS_Service service_1;
