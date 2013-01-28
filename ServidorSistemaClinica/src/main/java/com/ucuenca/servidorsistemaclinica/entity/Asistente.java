@@ -50,9 +50,6 @@ public class Asistente implements Serializable {
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
     @ManyToOne
     private Sucursal idSucursal;
-    @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Persona persona;
 
     public Asistente() {
     }
@@ -83,14 +80,6 @@ public class Asistente implements Serializable {
 
     public void setIdSucursal(Sucursal idSucursal) {
         this.idSucursal = idSucursal;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     @Override

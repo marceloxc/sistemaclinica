@@ -46,9 +46,6 @@ public class Administrador implements Serializable {
     @Column(name = "FechaIngreso")
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
-    @JoinColumn(name = "Cedula", referencedColumnName = "Cedula", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private Persona persona;
 
     public Administrador() {
     }
@@ -71,14 +68,6 @@ public class Administrador implements Serializable {
 
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
-    }
-
-    public Persona getPersona() {
-        return persona;
-    }
-
-    public void setPersona(Persona persona) {
-        this.persona = persona;
     }
 
     @Override
