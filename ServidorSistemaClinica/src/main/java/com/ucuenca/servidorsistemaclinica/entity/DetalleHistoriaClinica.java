@@ -10,6 +10,8 @@ import javax.persistence.Basic;
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -43,7 +45,7 @@ public class DetalleHistoriaClinica implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Codigo")
     private Integer codigo;
     @Column(name = "Fecha")
@@ -54,14 +56,10 @@ public class DetalleHistoriaClinica implements Serializable {
     private String material;
     @Size(max = 45)
     @Column(name = "Tratamiento")
-    private String tratamiento;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "CodigoHistoriaClinica")
-    private int codigoHistoriaClinica;
-    @JoinColumn(name = "Codigo", referencedColumnName = "Codigo", insertable = false, updatable = false)
-    @OneToOne(optional = false)
-    private HistoriaClinica historiaClinica;
+    private String tratamiento;    
+    @JoinColumn(name = "codigoHistoriaClinica", referencedColumnName = "Codigo")
+    @ManyToOne(optional = false)
+    private HistoriaClinica codigoHistoriaClinica;
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
     @ManyToOne(optional = false)
     private Cita idCita;
@@ -73,17 +71,20 @@ public class DetalleHistoriaClinica implements Serializable {
         this.codigo = codigo;
     }
 
-    public DetalleHistoriaClinica(Integer codigo, int codigoHistoriaClinica) {
-        this.codigo = codigo;
-        this.codigoHistoriaClinica = codigoHistoriaClinica;
-    }
-
     public Integer getCodigo() {
         return codigo;
     }
 
     public void setCodigo(Integer codigo) {
         this.codigo = codigo;
+    }
+
+    public HistoriaClinica getCodigoHistoriaClinica() {
+        return codigoHistoriaClinica;
+    }
+
+    public void setCodigoHistoriaClinica(HistoriaClinica codigoHistoriaClinica) {
+        this.codigoHistoriaClinica = codigoHistoriaClinica;
     }
 
     public Date getFecha() {
@@ -108,23 +109,7 @@ public class DetalleHistoriaClinica implements Serializable {
 
     public void setTratamiento(String tratamiento) {
         this.tratamiento = tratamiento;
-    }
-
-    public int getCodigoHistoriaClinica() {
-        return codigoHistoriaClinica;
-    }
-
-    public void setCodigoHistoriaClinica(int codigoHistoriaClinica) {
-        this.codigoHistoriaClinica = codigoHistoriaClinica;
-    }
-
-    public HistoriaClinica getHistoriaClinica() {
-        return historiaClinica;
-    }
-
-    public void setHistoriaClinica(HistoriaClinica historiaClinica) {
-        this.historiaClinica = historiaClinica;
-    }
+    }    
 
     public Cita getIdCita() {
         return idCita;
