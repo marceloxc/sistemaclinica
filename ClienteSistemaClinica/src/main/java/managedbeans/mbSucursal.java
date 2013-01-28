@@ -69,7 +69,7 @@ public class mbSucursal implements Serializable{
         try { // Call Web Service Operation
             ws.SucursalWS port = service.getSucursalWSPort();
             // TODO initialize WS operation arguments here
-            java.lang.String id = dato+"";
+            int id = dato;
             // TODO process result her
             ws.Sucursal result = port.finds(id);
             nombre=result.getDireccion();
