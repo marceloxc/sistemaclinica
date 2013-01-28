@@ -57,7 +57,7 @@ public class DetalleHistoriaClinica implements Serializable {
     @Column(name = "Tratamiento")
     private String tratamiento;    
     @JoinColumn(name = "codigoHistoriaClinica", referencedColumnName = "Codigo")
-    @ManyToOne(optional = false, fetch=FetchType.LAZY)
+    @ManyToOne(optional = false)
     private HistoriaClinica codigoHistoriaClinica;    
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
     @ManyToOne(optional = false)
