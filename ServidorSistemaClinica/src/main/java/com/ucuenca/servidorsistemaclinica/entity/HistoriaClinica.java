@@ -98,9 +98,9 @@ public class HistoriaClinica implements Serializable {
     @Size(max = 50)
     @Column(name = "EnfermCardiacas")
     private String enfermCardiacas;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCita")
-    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();
-
+    @OneToMany(mappedBy = "codigoHistoriaClinica")
+    private List<DetalleHistoriaClinica> detalleHistoriaClinicaList=new ArrayList<DetalleHistoriaClinica>();        
+    
     public List<DetalleHistoriaClinica> getDetalleHistoriaClinicaList() {
         return detalleHistoriaClinicaList;
     }

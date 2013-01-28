@@ -17,11 +17,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.envers.Audited;
 
@@ -59,7 +57,7 @@ public class DetalleHistoriaClinica implements Serializable {
     private String tratamiento;    
     @JoinColumn(name = "codigoHistoriaClinica", referencedColumnName = "Codigo")
     @ManyToOne(optional = false)
-    private HistoriaClinica codigoHistoriaClinica;
+    private HistoriaClinica codigoHistoriaClinica;    
     @JoinColumn(name = "idCita", referencedColumnName = "idCita")
     @ManyToOne(optional = false)
     private Cita idCita;
