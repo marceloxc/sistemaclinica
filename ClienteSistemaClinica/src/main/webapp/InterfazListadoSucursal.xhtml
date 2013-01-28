@@ -1,0 +1,25 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:u="http://java.sun.com/jsf/composite/componentes">
+    <ui:define name="contenido">
+        <h:outputLabel value="Datos Sucursal" class="titulos"/>
+        <h:form>
+            <p:dataTable var="suc"  paginator="true" rows="10"  
+                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
+                         rowsPerPageTemplate="5,10,15" selectionMode="single" id="sucTable" lazy="true">
+                <p:column headerText="Id" value="100" >  
+                    <h:outputText />  
+                </p:column>
+                <p:column headerText="Direccion" value="10">  
+                    <h:outputText  />  
+                </p:column>
+                <p:column headerText="Id" value="1" >  
+                    <h:outputText />  
+                </p:column>
+                
+            </p:dataTable>
+        </h:form>
+    </ui:define>    
+</ui:composition>

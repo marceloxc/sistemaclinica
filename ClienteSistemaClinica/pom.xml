@@ -119,6 +119,20 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
+                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PersonaWS?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PersonaWS.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-PersonaWS</id>
+                        <phase>generate-sources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
                                 <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
                             </wsdlFiles>
                             <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
@@ -133,12 +147,12 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PersonaWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PersonaWS.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/SucursalWS?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/SucursalWS.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-PersonaWS</id>
+                        <id>wsimport-generate-SucursalWS</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>
