@@ -5,7 +5,7 @@
 package ws;
 
 import Controlador.GenericController;
-import com.ucuenca.servidorsistemaclinica.entity.Factura;
+import com.ucuenca.servidorsistemaclinica.entity.Administrador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jws.WebService;
@@ -16,23 +16,20 @@ import javax.jws.WebParam;
  *
  * @author DELL
  */
-@WebService(serviceName = "FacturaWS")
-public class FacturaWS {
+@WebService(serviceName = "AdministradorWS")
+public class AdministradorWS {
 
-       /**
-     * This is a sample web service operation
-     */
-    private GenericController<Factura> ctr= new GenericController<Factura>();
-    
+    private GenericController<Administrador> ctr= new GenericController<Administrador>();
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "crearf")
-    public boolean crearf(@WebParam(name = "factura") Factura factura) {
+    @WebMethod(operationName = "crearad")
+    public boolean crearad(@WebParam(name = "administrador") Administrador administrador) {
+        //TODO write your implementation code here:
         boolean aux=true;
         try
         {
-            ctr.create(factura);                
+            ctr.create(administrador);                
         }
         catch(Exception e){aux=false;
         e.printStackTrace();
@@ -43,28 +40,28 @@ public class FacturaWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "editf")
-    public boolean editf(@WebParam(name = "Factura") Factura factura) {
+    @WebMethod(operationName = "editad")
+    public boolean editad(@WebParam(name = "admistrador") Administrador administrador) {
         //TODO write your implementation code here:
         boolean aux=true;
         try
         {
-            ctr.edit(factura);                
+            ctr.edit(administrador);                
         }
         catch(Exception e){aux=false;}
-        return aux;            
+        return aux;        
     }
 
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findf")
-    public Factura findf(@WebParam(name = "id") String id) {
+    @WebMethod(operationName = "findad")
+    public Administrador findad(@WebParam(name = "id") String id) {
         //TODO write your implementation code here:
-        Factura aux= new Factura();
+        Administrador aux= new Administrador();
         try
         {            
-            aux=ctr.find(Factura.class, id);                
+            aux=ctr.find(Administrador.class, id);                
         }
         catch(Exception e){aux=null;}
         return aux;
@@ -73,13 +70,13 @@ public class FacturaWS {
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "findentitief")
-    public List<Factura> findentitief(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
+    @WebMethod(operationName = "findentitiesad")
+    public List<Administrador> findentitiesad(@WebParam(name = "fi") int fi, @WebParam(name = "max") int max) {
         //TODO write your implementation code here:
-        List<Factura> aux= new ArrayList<Factura>();
+        List<Administrador> aux= new ArrayList<Administrador>();
         try
         {            
-            aux=ctr.findEntities(max, fi,new Factura());                
+            aux=ctr.findEntities(max, fi,new Administrador());                
         }
         catch(Exception e){aux=null;}
         return aux;
@@ -88,13 +85,13 @@ public class FacturaWS {
      /**
      * Web service operation
      */
-    @WebMethod(operationName = "countf")
-    public int countf() {
+    @WebMethod(operationName = "countad")
+    public int countad() {
         //TODO write your implementation code here:
         int aux= 0;
         try
         {            
-            aux=ctr.getCount(new Factura());                
+            aux=ctr.getCount(new Administrador());                
         }
         catch(Exception e){aux=0;}
         return aux;

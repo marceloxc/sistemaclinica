@@ -5,7 +5,14 @@
     <namespace>http://clinica/facelets/componentes</namespace>
     <tag>
         <tag-name>ingresoPaciente</tag-name>
-        <source>../componentes/IngresoPaciente.xhtml</source>
+        <source>../../../resources/componentes/IngresoPaciente.xhtml</source>
     </tag>
-    
+    <tag>
+        <tag-name>menuCabecera</tag-name>
+        <source>../../../resources/componentes/MenuCabecera.xhtml</source>
+    </tag>    
+    <tag>
+        <tag-name>ingresoFactura</tag-name>
+        <source>../../../resources/componentes/IngresoFactura.xhtml</source>
+    </tag>        
 </facelet-taglib>
