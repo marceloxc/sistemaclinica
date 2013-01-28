@@ -1,0 +1,106 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+               xmlns:h="http://java.sun.com/jsf/html"
+               template="./template.xhtml"
+               xmlns:p="http://primefaces.org/ui"
+               xmlns:u="http://java.sun.com/jsf/composite/componentes"
+               xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="contenido">
+        <h:form>
+            <p:growl id="messages" showDetail="true"/>
+            <p:dataTable id="tblPersonas" var="Paciente" value="#{mbPaciente.listaPacientes}" editable="true">  
+
+                <f:facet name="header">  
+                    Datos de pacientes  
+                </f:facet>
+                <p:ajax event="rowEdit" listener="#{mbPaciente.onEdit}" update="tblPersonas" />                  <p:column headerText="Cedula">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.cedula}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.cedula}" disabled="true"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>
+                <p:column headerText="Nombres">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.nombres}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.nombres}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Apellidos">  
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.apellidos}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.apellidos}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Direccion">  
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.direccion}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.direccion}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Telefono">  
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.telefono}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.telefono}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>
+                <p:column headerText="Celular">  
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.telfCelular}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.telfCelular}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>
+                <p:column headerText="Sexo">  
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.sexo}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.sexo}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>
+                <p:column headerText="Ocupacion">  
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{Paciente.ocupacion}"/>
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{Paciente.ocupacion}"/>
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>
+                <p:column headerText="Acciones">  
+                    <p:rowEditor/>
+                </p:column>
+            </p:dataTable>  
+            <p:commandButton id="btnCargar" value="Cargar"  action="#{mbPaciente.cargarDatos()}" update="tblPersonas"/>
+        </h:form>  
+    </ui:define>
+</ui:composition>
+
