@@ -6,18 +6,19 @@
     <ui:define name="contenido">
         <h:outputLabel value="Datos Sucursal" class="titulos"/>
         <h:form>
-            <p:dataTable var="suc" value="#{mbSucursal.lazySucursal}" paginator="true" rows="10"  
+            <p:dataTable var="suc"  paginator="true" rows="10"  
                          paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"  
-                         rowsPerPageTemplate="5,10,15" selectionMode="single" selection="#{mbSucursal.selectSucursal}" id="sucTable" lazy="true">
-                <p:column headerText="Id" sortBy="#{mbSucursal.dato}" filterBy="#{mbSucursal.dato}">  
-                    <h:outputText value="#{mbSucursal.dato}" />  
+                         rowsPerPageTemplate="5,10,15" selectionMode="single" id="sucTable" lazy="true">
+                <p:column headerText="Id" value="100" >  
+                    <h:outputText />  
                 </p:column>
-                <p:column headerText="Direccion" sortBy="#{mbSucursal.direccion}" filterBy="#{mbSucursal.direccion}">  
-                    <h:outputText value="#{mbSucursal.direccion}" />  
+                <p:column headerText="Direccion" value="10">  
+                    <h:outputText  />  
                 </p:column>
-                <p:column headerText="Id" sortBy="#{mbSucursal.telefono}" filterBy="#{mbSucursal.telefono}">  
-                    <h:outputText value="#{mbSucursal.telefono}" />  
+                <p:column headerText="Id" value="1" >  
+                    <h:outputText />  
                 </p:column>
+                
             </p:dataTable>
         </h:form>
     </ui:define>    

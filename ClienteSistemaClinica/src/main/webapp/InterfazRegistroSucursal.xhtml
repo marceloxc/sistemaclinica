@@ -6,15 +6,18 @@
     <ui:define name="contenido">
         <h:outputLabel value="Ingrese los datos de la sucursal" class="titulos"/>
         <h:form>
-            <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+            <p:panel id="panelSucursal">
+            <h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
                 <h:outputText value="Direccion: " />
-                <p:inputText styleClass="textos" value="#{mbSucursal.direccion}"/>
+                <p:inputText label="Direccion" styleClass="textos" value="#{mbSucursal.direccion}" required="true" id="txtDireccionS"/>
+                <p:message for="txtDireccionS" />
                 <h:outputText value="Telefono: " />
-                <p:inputText styleClass="textos" value="#{mbSucursal.telefono}"/>
-                <p:inputText styleClass="textos" id="txtTelefonoSucursal"/>
-                <h:commandButton label="Guardar" id="cmdGuardar" value="Guardar" class="botones" actionListener="#{mbSucursal.crear()}"/>
-                <h:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" class="botones"/>
-            </h:panelGrid>   
+                <p:inputText label="Telefono" styleClass="textos" id="txtTelefonoSucursal" value="#{mbSucursal.nombre}" required="true"/>
+                <p:message for="txtTelefonoSucursal"/>
+                <p:commandButton label="Guardar" id="cmdGuardar" value="Guardar" styleClass="botones" action="#{mbSucursal.crear()}" update="panelSucursal" />
+                <p:commandButton label="Cancelar" id="cmdCancelar" value="Cancelar" styleClass="botones"/>
+            </h:panelGrid> 
+            </p:panel>
         </h:form>
     </ui:define>    
 </ui:composition>
