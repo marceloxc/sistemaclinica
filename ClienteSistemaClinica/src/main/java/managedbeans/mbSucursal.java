@@ -52,12 +52,13 @@ public class mbSucursal implements Serializable{
             ws.SucursalWS port = service.getSucursalWSPort();
             // TODO initialize WS operation arguments here
             ws.Sucursal sucursal = new ws.Sucursal();
-            sucursal.setNumSucursal(dato);
+            //sucursal.setNumSucursal(dato);
             sucursal.setDireccion("dir");
       //      sucursal.setTelefono('0999855');
             // TODO process result here
             boolean result = port.crears(sucursal);
-            System.out.println("Result = "+result);       
+            System.out.println("Result = "+result);
+            return "index";
         } catch (Exception ex) {
         // TODO handle custom exceptions here
         }
