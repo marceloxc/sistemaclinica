@@ -75,7 +75,7 @@ public class DetalleHistoriaClinicaWS {
         List<DetalleHistoriaClinica> aux= new ArrayList<DetalleHistoriaClinica>();
         try
         {            
-            aux=ctr.findEntities(max, fi,new DetalleHistoriaClinica());                
+            aux=ctr.findEntities(max, fi,new DetalleHistoriaClinica());                            
         }
         catch(Exception e){aux=null;}
         return aux;
