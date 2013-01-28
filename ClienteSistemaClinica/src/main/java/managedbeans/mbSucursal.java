@@ -21,6 +21,7 @@ public class mbSucursal implements Serializable{
     private SucursalWS_Service service;
     private int dato;
     private String nombre;
+    private String direccion;
 
     public String getNombre() {
         return nombre;
@@ -69,7 +70,7 @@ public class mbSucursal implements Serializable{
         try { // Call Web Service Operation
             ws.SucursalWS port = service.getSucursalWSPort();
             // TODO initialize WS operation arguments here
-            java.lang.String id = dato+"";
+            int id = dato;
             // TODO process result her
             ws.Sucursal result = port.finds(id);
             nombre=result.getDireccion();
@@ -80,4 +81,13 @@ public class mbSucursal implements Serializable{
 
         
     }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+    
 }
