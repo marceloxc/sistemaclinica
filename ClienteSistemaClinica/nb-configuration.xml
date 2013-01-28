@@ -15,5 +15,6 @@ Any value defined here will override the pom.xml file value but is only applicab
 -->
         <org-netbeans-modules-projectapi.jsf_2e_language>Facelets</org-netbeans-modules-projectapi.jsf_2e_language>
         <org-netbeans-modules-maven-jaxws._5f_C_5f_SucursalWS>http://localhost:8080/ServidorSistemaClinica/SucursalWS?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_SucursalWS>
+        <org-netbeans-modules-maven-jaxws._5f_C_5f_RecetaWS>http://localhost:8080/ServidorSistemaClinica/RecetaWS?WSDL</org-netbeans-modules-maven-jaxws._5f_C_5f_RecetaWS>
     </properties>
 </project-shared-configuration>

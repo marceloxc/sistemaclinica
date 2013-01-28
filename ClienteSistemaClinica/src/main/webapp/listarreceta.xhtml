@@ -1,0 +1,77 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:u="http://java.sun.com/jsf/composite/componentes"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="contenido">
+    
+        <h:outputLabel value="Datos Receta" class="titulos"/>
+        <h:form >  
+
+            <p:growl id="messages" showDetail="true"/>  
+
+            <p:dataTable var="rec" value="#{mgreceta.listado}" id="recList" editable="true" >  
+
+                <f:facet name="header" class="titulos">  
+                    RECETAS  
+                </f:facet>  
+
+                <p:ajax event="rowEdit" listener="#{mgreceta.onEdit}" update="recList" />        
+
+                <p:column headerText="Id" style="width:125px" >  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{rec.idReceta}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{rec.idReceta}" style="width:100%" disabled="true"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+                
+                <p:column headerText="IdCita" style="width:125px" >  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{rec.idCita}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{rec.idCita}" style="width:100%" label="Cita"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+                
+                <p:column headerText="Direccion" style="width:125px">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{rec.descripcion}" />  
+                        </f:facet>  
+                        <f:facet name="input">  
+                            <p:inputText value="#{rec.descripcion}" style="width:100%" label="Descripcion"/>  
+                        </f:facet>  
+                    </p:cellEditor>  
+                </p:column>  
+
+                <p:column headerText="Indicaciones" style="width:125px">  
+                    <p:cellEditor>  
+                        <f:facet name="output">  
+                            <h:outputText value="#{rec.indicaciones}" />  
+                        </f:facet>  
+                       <f:facet name="input">  
+                           <p:inputText value="#{rec.indicaciones}" style="width:100%" label="Indicaciones"/>  
+                        </f:facet>
+                    </p:cellEditor>  
+                </p:column>  
+
+                
+
+                <p:column headerText="Options" style="width:50px">  
+                    <p:rowEditor />  
+                </p:column>  
+
+            </p:dataTable>  
+            <p:commandButton label="Cargar" value="Cargar" styleClass="botones" action="#{mgreceta.Listar()}" update="recList" />
+        </h:form>  
+        
+    </ui:define>    
+</ui:composition>

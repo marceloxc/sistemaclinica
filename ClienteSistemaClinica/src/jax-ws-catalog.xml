@@ -6,4 +6,6 @@
     <system systemId="http://localhost:8080/ServidorSistemaClinica/PersonaWS?xsd=1" uri="wsdl/localhost_8080/ServidorSistemaClinica/PersonaWS.xsd_1.xsd"/>
     <system systemId="http://localhost:8080/ServidorSistemaClinica/SucursalWS?WSDL" uri="wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl"/>
     <system systemId="http://localhost:8080/ServidorSistemaClinica/SucursalWS?xsd=1" uri="wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ServidorSistemaClinica/RecetaWS?WSDL" uri="wsdl/localhost_8080/ServidorSistemaClinica/RecetaWS.wsdl"/>
+    <system systemId="http://localhost:8080/ServidorSistemaClinica/RecetaWS?xsd=1" uri="wsdl/localhost_8080/ServidorSistemaClinica/RecetaWS.xsd_1.xsd"/>
 </catalog>

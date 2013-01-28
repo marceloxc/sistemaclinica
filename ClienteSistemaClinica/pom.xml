@@ -155,6 +155,20 @@
                         <id>wsimport-generate-SucursalWS</id>
                         <phase>generate-sources</phase>
                     </execution>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <configuration>
+                            <wsdlFiles>
+                                <wsdlFile>localhost_8080/ServidorSistemaClinica/RecetaWS.wsdl</wsdlFile>
+                            </wsdlFiles>
+                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/RecetaWS?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/RecetaWS.stale</staleFile>
+                        </configuration>
+                        <id>wsimport-generate-RecetaWS</id>
+                        <phase>generate-sources</phase>
+                    </execution>
                 </executions>
                 <dependencies>
                     <dependency>
