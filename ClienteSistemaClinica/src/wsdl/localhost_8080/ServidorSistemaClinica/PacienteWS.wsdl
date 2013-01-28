@@ -4,6 +4,12 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/ServidorSistemaClinica/PacienteWS?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="editpa">
+<part name="parameters" element="tns:editpa"/>
+</message>
+<message name="editpaResponse">
+<part name="parameters" element="tns:editpaResponse"/>
+</message>
 <message name="findpa">
 <part name="parameters" element="tns:findpa"/>
 </message>
@@ -28,13 +34,11 @@
 <message name="crearpaResponse">
 <part name="parameters" element="tns:crearpaResponse"/>
 </message>
-<message name="editpa">
-<part name="parameters" element="tns:editpa"/>
-</message>
-<message name="editpaResponse">
-<part name="parameters" element="tns:editpaResponse"/>
-</message>
 <portType name="PacienteWS">
+<operation name="editpa">
+<input wsam:Action="http://ws/PacienteWS/editpaRequest" message="tns:editpa"/>
+<output wsam:Action="http://ws/PacienteWS/editpaResponse" message="tns:editpaResponse"/>
+</operation>
 <operation name="findpa">
 <input wsam:Action="http://ws/PacienteWS/findpaRequest" message="tns:findpa"/>
 <output wsam:Action="http://ws/PacienteWS/findpaResponse" message="tns:findpaResponse"/>
@@ -51,13 +55,18 @@
 <input wsam:Action="http://ws/PacienteWS/crearpaRequest" message="tns:crearpa"/>
 <output wsam:Action="http://ws/PacienteWS/crearpaResponse" message="tns:crearpaResponse"/>
 </operation>
-<operation name="editpa">
-<input wsam:Action="http://ws/PacienteWS/editpaRequest" message="tns:editpa"/>
-<output wsam:Action="http://ws/PacienteWS/editpaResponse" message="tns:editpaResponse"/>
-</operation>
 </portType>
 <binding name="PacienteWSPortBinding" type="tns:PacienteWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="editpa">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="findpa">
 <soap:operation soapAction=""/>
 <input>
@@ -86,15 +95,6 @@
 </output>
 </operation>
 <operation name="crearpa">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="editpa">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

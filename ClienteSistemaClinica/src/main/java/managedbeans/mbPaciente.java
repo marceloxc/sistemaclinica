@@ -7,6 +7,10 @@ package managedbeans;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.xml.ws.WebServiceRef;
+import util.validaciones;
+import ws.PacienteWS_Service;
+import ws.PersonaWS_Service;
 
 /**
  *
@@ -15,6 +19,10 @@ import javax.faces.bean.RequestScoped;
 @ManagedBean
 @RequestScoped
 public class mbPaciente {
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl")
+    private PacienteWS_Service service_1;
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl")
+    private PersonaWS_Service service;
 
     /**
      * Creates a new instance of mbPaciente
@@ -268,9 +276,80 @@ public class mbPaciente {
     public void setOcupacion(String ocupacion) {
         this.ocupacion = ocupacion;
     }
+    private String estado;
 
-    public void guardar() {
+    /**
+     * Get the value of estado
+     *
+     * @return the value of estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * Set the value of estado
+     *
+     * @param estado new value of estado
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    public String guardar() {
+        boolean band=true;
+        try { // Call Web Service Operation
+            ws.PersonaWS port = service.getPersonaWSPort();
+            // TODO initialize WS operation arguments here
+            ws.Persona persona = new ws.Persona();
+            persona.setCedula(cedula);
+            persona.setNombres(nombres);
+            persona.setApellidos(apellidos);
+            persona.setDireccion(direccion);
+            persona.setTelefono(telefono);
+            persona.setTelfCelular(telfCelular);
+            persona.setEmail(email);
+            persona.setSexo(sexo);
+            persona.setFechaNacimiento(null);
+            validaciones val=new validaciones();
+            persona.setContraseña(val.encripta(password));
+            persona.setRol(1);
+            // TODO process result here
+            boolean result = port.crearp(persona);
+            if(!result)
+                band=false;
+            
+        } catch (Exception ex) {
+            estado="No se pudo guardar";
+            return null;
+        // TODO handle custom exceptions here
+        }
         
+        try { // Call Web Service Operation
+            ws.PacienteWS port = service_1.getPacienteWSPort();
+            // TODO initialize WS operation arguments here
+            ws.Paciente paciente = new ws.Paciente();
+            // TODO process result here
+            paciente.setCedula(cedula);
+            paciente.setOcupacion(ocupacion);
+            boolean result = port.crearpa(paciente);
+            if(!result)
+                band=false;
+            System.out.println("Result = "+result);
+        } catch (Exception ex) {
+        // TODO handle custom exceptions here
+            estado="No se pudo guardar";
+            return null;
+        }
+        if(band)
+        {
+            estado="Guardado Correctamente";
+            return "index";
+        }
+        else{
+            estado="No se pudo guardar";
+            return null;
+        } 
     }
     
 }
