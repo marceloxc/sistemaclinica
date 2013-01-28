@@ -15,4 +15,8 @@
         <tag-name>ingresoFactura</tag-name>
         <source>../../../resources/componentes/IngresoFactura.xhtml</source>
     </tag>        
+    <tag>
+        <tag-name>ingresoSucursal</tag-name>
+        <source>../../../resources/componentes/IngresoSucursal.xhtml</source>
+    </tag>           
 </facelet-taglib>
