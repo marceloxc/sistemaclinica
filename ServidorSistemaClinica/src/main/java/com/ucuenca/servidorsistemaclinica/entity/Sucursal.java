@@ -56,6 +56,7 @@ public class Sucursal implements Serializable {
     private Collection<Odontologo> odontologoList=new ArrayList<Odontologo>();
 
     public Sucursal() {
+        
     }
 
     public Sucursal(Integer numSucursal) {
