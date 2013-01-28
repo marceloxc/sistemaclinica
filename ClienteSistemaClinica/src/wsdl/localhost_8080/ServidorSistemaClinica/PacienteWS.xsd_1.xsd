@@ -64,6 +64,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="countpa">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="countpaResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="editpa">
 <xs:sequence>
 <xs:element name="paciente" type="tns:paciente" minOccurs="0"/>
@@ -73,16 +83,6 @@
 <xs:complexType name="editpaResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="countpa">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="countpaResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 </xs:schema>

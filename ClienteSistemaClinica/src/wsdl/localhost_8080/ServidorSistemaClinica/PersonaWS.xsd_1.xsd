@@ -20,9 +20,15 @@
 
 <xs:element name="findpResponse" type="tns:findpResponse"/>
 
-<xs:complexType name="crearp">
+<xs:complexType name="findp">
 <xs:sequence>
-<xs:element name="persona" type="tns:persona" minOccurs="0"/>
+<xs:element name="id" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="findpResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:persona" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -42,21 +48,15 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="crearp">
+<xs:sequence>
+<xs:element name="persona" type="tns:persona" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="crearpResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="findp">
-<xs:sequence>
-<xs:element name="id" type="xs:string" minOccurs="0"/>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="findpResponse">
-<xs:sequence>
-<xs:element name="return" type="tns:persona" minOccurs="0"/>
 </xs:sequence>
 </xs:complexType>
 

@@ -59,8 +59,6 @@ public class Odontologo implements Serializable {
     @JoinColumn(name = "idSucursal", referencedColumnName = "NumSucursal")
     @ManyToOne
     private Sucursal idSucursal;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idOdontologo")
-    private Collection<Cita> citaList=new ArrayList<Cita>();
 
     public Odontologo() {
     }
@@ -101,13 +99,6 @@ public class Odontologo implements Serializable {
         this.fechaIngreso = fechaIngreso;
     }
 
-    public Collection<Cita> getCitaList() {
-        return citaList;
-    }
-
-    public void setCitaList(Collection<Cita> citaList) {
-        this.citaList = citaList;
-    }
 
     @Override
     public int hashCode() {
