@@ -2,4 +2,8 @@
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
     <system systemId="http://localhost:8080/ServidorSistemaClinica/SucursalWS?WSDL" uri="wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl"/>
     <system systemId="http://localhost:8080/ServidorSistemaClinica/SucursalWS?xsd=1" uri="wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ServidorSistemaClinica/PersonaWS?WSDL" uri="wsdl/localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl"/>
+    <system systemId="http://localhost:8080/ServidorSistemaClinica/PersonaWS?xsd=1" uri="wsdl/localhost_8080/ServidorSistemaClinica/PersonaWS.xsd_1.xsd"/>
+    <system systemId="http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL" uri="wsdl/localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl"/>
+    <system systemId="http://localhost:8080/ServidorSistemaClinica/PacienteWS?xsd=1" uri="wsdl/localhost_8080/ServidorSistemaClinica/PacienteWS.xsd_1.xsd"/>
 </catalog>
