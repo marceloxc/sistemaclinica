@@ -119,34 +119,6 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/SucursalWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/SucursalWS.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-SucursalWS</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PersonaWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PersonaWS.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-PersonaWS</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
                                 <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
                             </wsdlFiles>
                             <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
@@ -161,54 +133,12 @@
                         </goals>
                         <configuration>
                             <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
+                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PacienteWS_1.stale</staleFile>
+                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PersonaWS?WSDL</wsdlLocation>
+                            <staleFile>${project.build.directory}/jaxws/stale/PersonaWS.stale</staleFile>
                         </configuration>
-                        <id>wsimport-generate-PacienteWS_1</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PacienteWS_2.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-PacienteWS_2</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PacienteWS_3.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-PacienteWS_3</id>
-                        <phase>generate-sources</phase>
-                    </execution>
-                    <execution>
-                        <goals>
-                            <goal>wsimport</goal>
-                        </goals>
-                        <configuration>
-                            <wsdlFiles>
-                                <wsdlFile>localhost_8080/ServidorSistemaClinica/PacienteWS.wsdl</wsdlFile>
-                            </wsdlFiles>
-                            <wsdlLocation>http://localhost:8080/ServidorSistemaClinica/PacienteWS?WSDL</wsdlLocation>
-                            <staleFile>${project.build.directory}/jaxws/stale/PacienteWS_4.stale</staleFile>
-                        </configuration>
-                        <id>wsimport-generate-PacienteWS_4</id>
+                        <id>wsimport-generate-PersonaWS</id>
                         <phase>generate-sources</phase>
                     </execution>
                 </executions>
