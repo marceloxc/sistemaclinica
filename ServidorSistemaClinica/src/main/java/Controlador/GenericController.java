@@ -4,12 +4,29 @@
  */
 package Controlador;
 
+import com.ucuenca.servidorsistemaclinica.entity.Sucursal;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JRExporter;
+import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.engine.util.JRLoader;
 import util.EntityManagerUtil;
+import ws.SucursalWS;
 /*
 import controller.exceptions.NonexistentEntityException;
 import controller.exceptions.PreexistingEntityException;
@@ -137,7 +154,6 @@ public class GenericController<T> {
             cq.select(cq.from(obj.getClass()));
             Query q = em.createQuery(cq);
             if (!all) {
-                q.setMaxResults(maxResults);
                 q.setFirstResult(firstResult);
             }
             return q.getResultList();
@@ -159,4 +175,43 @@ public class GenericController<T> {
         return null;
     }
 
+   public Object[] report(String tipo, String archivo, T obj) {
+        List<T> lista = findEntities(true, -1,-1, obj);
+        try {
+            File f = new File(archivo);
+            System.out.println("Arc: " + f.getAbsolutePath());
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(f);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
+            JRExporter exporter = new JRPdfExporter();
+            exporter.setParameter(JRExporterParameter.JASPER_PRINT, jasperPrint);
+            File archivoPdf = new File("reporte.pdf");
+            exporter.setParameter(JRExporterParameter.OUTPUT_FILE, archivoPdf);
+            exporter.exportReport();
+
+            File auxFile = archivoPdf;
+
+            //Se pasa el File a un byte[]
+            int size = (int) auxFile.length();//gets the number of bytes of the file
+            InputStream in;
+            try {
+                in = new FileInputStream(auxFile);
+                byte content[] = new byte[size];
+                in.read(content);
+                in.close();
+                Object o[] = {content};
+                return o;
+            } catch (IOException ex) {
+                Logger.getLogger(SucursalWS.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            return null;
+
+        } catch (JRException e) {
+            e.printStackTrace();
+        }
+
+        //TODO write your implementation code here:
+        return null;
+       
+   }
 }
