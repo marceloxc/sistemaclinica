@@ -11,18 +11,18 @@
                      <p:messages id="msgs"/> 
                     <h:panelGrid columns="3">  
                         <h:outputLabel for="factura" value="Nro. Factura" />  
-                        <p:inputText id="factura" required="true" />
+                        <p:inputText id="factura" value="#{mbCartera.idFactura}" required="true" />
                         <p:message for="factura" display="icon"/>
                         
                         <p:outputLabel for="fecha" value="Fecha" />  
-                        <p:inputText id="fecha" required="true" value="#{mbCartera.ffecha}" label="fecha"/>  
+                        <p:inputText id="fecha" value="#{mbCartera.ffecha}" />  
                         <p:message for="fecha" display="icon"/>
                         
                         <p:outputLabel for="deuda" value="Total Deuda:" />  
-                        <p:inputText id="deuda" required="true" value="#{mbCartera.totalDeuda}" label="deuda"/>
+                        <p:inputText id="deuda"  value="#{mbCartera.totalDeuda}" />
                         <p:message for="deuda" display="icon"/>
                     </h:panelGrid>  
-                     <p:commandButton value="Aceptar" update="panelFactura" style="margin-right:20px;" action="#{mbCartera.cargarFactura()}"  /> 
+                     <p:commandButton value="Global" update="panelFactura" action="#{mbCartera.cargarFactura()}" id="btnGlobal" /> 
                 </p:panel>  
                 
         </h:form>
