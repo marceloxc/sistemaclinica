@@ -7,7 +7,7 @@ package managedbeans;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.xml.ws.WebServiceRef;
 import ws.PacienteWS_Service;
 import ws.PersonaWS_Service;
@@ -17,7 +17,7 @@ import ws.PersonaWS_Service;
  * @author Fernanda
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class mbFactura {
 
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/PersonaWS.wsdl")
@@ -34,8 +34,27 @@ public class mbFactura {
     private String num1;
     private String num2;
     
-    
-    private double total;
+        private int fpago=1;
+
+    /**
+     * Get the value of fpago
+     *
+     * @return the value of fpago
+     */
+    public int getFpago() {
+        return fpago;
+    }
+
+    /**
+     * Set the value of fpago
+     *
+     * @param fpago new value of fpago
+     */
+    public void setFpago(int fpago) {
+        this.fpago = fpago;
+    }
+
+    private double total=0;
 
     public String getCliente() {
         return cliente;
@@ -150,11 +169,69 @@ public class mbFactura {
         
        return "";
     }
-    
+        private String subtot;
+
+    /**
+     * Get the value of subtot
+     *
+     * @return the value of subtot
+     */
+    public String getSubtot() {
+        return subtot;
+    }
+
+    /**
+     * Set the value of subtot
+     *
+     * @param subtot new value of subtot
+     */
+    public void setSubtot(String subtot) {
+        this.subtot = subtot;
+    }
+    private int descuento=0;
+
+    /**
+     * Get the value of descuento
+     *
+     * @return the value of descuento
+     */
+    public int getDescuento() {
+        return descuento;
+    }
+
+    /**
+     * Set the value of descuento
+     *
+     * @param descuento new value of descuento
+     */
+    public void setDescuento(int descuento) {
+        this.descuento = descuento;
+    }
+    private double totdesc;
+
+    /**
+     * Get the value of totdesc
+     *
+     * @return the value of totdesc
+     */
+    public double getTotdesc() {
+        return totdesc;
+    }
+
+    /**
+     * Set the value of totdesc
+     *
+     * @param totdesc new value of totdesc
+     */
+    public void setTotdesc(double totdesc) {
+        this.totdesc = totdesc;
+    }
+
     /**
      * Creates a new instance of mbFactura2
      */
     public mbFactura() {
+        total=0;
         java.util.Date fecha2 = new Date();
           System.out.println("Saxcvxcvme text in cddddonsole");
         fecha=fecha2.getDate()+"-"+(Integer.parseInt(fecha2.getMonth()+"")+1)+"-"+(Integer.parseInt(fecha2.getYear()+"")+1900);
