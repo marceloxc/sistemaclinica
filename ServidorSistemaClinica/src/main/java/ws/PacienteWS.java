@@ -99,4 +99,13 @@ public class PacienteWS {
         catch(Exception e){aux=0;}
         return aux;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "reporte")
+    public java.lang.Object[] reporte() {
+        //TODO write your implementation code here:
+        return ctr.report("paciente", "pacientes.jasper", new Paciente());
+    }
 }

@@ -120,6 +120,8 @@ public class SucursalWS {
     @WebMethod(operationName = "reporte")
     public java.lang.Object[] reporte() {
 
+        return ctr.report("sucursal", "sucursal.jasper", new Sucursal());
+        /*
         List<Sucursal> lista = this.findentitiess(0, 1000);
         try {
             File f = new File("sucursal.jasper");
@@ -155,6 +157,6 @@ public class SucursalWS {
         }
 
         //TODO write your implementation code here:
-        return null;
+        return null;*/
     }
 }

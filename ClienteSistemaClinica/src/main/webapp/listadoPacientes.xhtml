@@ -100,6 +100,7 @@
                 </p:column>
             </p:dataTable>  
             <p:commandButton id="btnCargar" value="Cargar"  action="#{mbPaciente.cargarDatos()}" update="tblPersonas"/>
+            <p:commandButton id="btnCargars" value="Reporte" onclick="javascript:window.open('reporte.jsp?tipo=paciente')"/>
         </h:form>  
     </ui:define>
 </ui:composition>

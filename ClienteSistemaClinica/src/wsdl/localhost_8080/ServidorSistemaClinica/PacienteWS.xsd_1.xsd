@@ -20,6 +20,10 @@
 
 <xs:element name="findpaResponse" type="tns:findpaResponse"/>
 
+<xs:element name="reporte" type="tns:reporte"/>
+
+<xs:element name="reporteResponse" type="tns:reporteResponse"/>
+
 <xs:complexType name="findentitiespa">
 <xs:sequence>
 <xs:element name="fi" type="xs:int"/>
@@ -49,6 +53,16 @@
 <xs:complexType name="crearpaResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="reporte">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="reporteResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:anyType" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
