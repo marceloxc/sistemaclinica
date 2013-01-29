@@ -1,0 +1,77 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:u="http://java.sun.com/jsf/composite/componentes"
+                xmlns:clinica="http://clinica/facelets/componentes">
+    <ui:define name="contenido">
+        <h:form>  
+                <p:panel id="panelFactura" header="Datos de factura" style="margin-bottom:10px;">  
+                     <p:messages id="msgs"/> 
+                    <h:panelGrid columns="3">  
+                        <h:outputLabel for="factura" value="Nro. Factura" />  
+                        <p:inputText id="factura" required="true" />
+                        <p:message for="factura" display="icon"/>
+                        
+                        <p:outputLabel for="fecha" value="Fecha" />  
+                        <p:inputText id="fecha" required="true" value="#{mbCartera.ffecha}" label="fecha"/>  
+                        <p:message for="fecha" display="icon"/>
+                        
+                        <p:outputLabel for="deuda" value="Total Deuda:" />  
+                        <p:inputText id="deuda" required="true" value="#{mbCartera.totalDeuda}" label="deuda"/>
+                        <p:message for="deuda" display="icon"/>
+                    </h:panelGrid>  
+                     <p:commandButton value="Aceptar" update="panelFactura" style="margin-right:20px;" action="#{mbCartera.cargarFactura()}"  /> 
+                </p:panel>  
+                
+        </h:form>
+        <h:form>
+            <p:panel id="panel" header="Registrar un Pago" style="margin-bottom:10px;">  
+                     <p:messages id="msgs"/> 
+                    <h:panelGrid columns="3">                          
+                        <p:outputLabel for="fecha" value="Fecha" />  
+                        <p:inputText id="fecha" required="true" value="#{mbDetalleCartera.fecha}" label="fecha"/>  
+                        <p:message for="fecha" display="icon"/>
+                        
+                        <p:outputLabel for="abono" value="Abono" />  
+                        <p:inputText id="abono" required="true" value="#{mbDetalleCartera.abono}" label="abono">
+                            <f:validateLength minimum="3"/>
+                            <p:ajax update="msgAbono" event="keyup" />  
+                        </p:inputText>
+                        <p:message for="abono" id="msgAbono" display="icon"/> 
+                        
+                    </h:panelGrid>  
+                     <p:commandButton value="Registrar" update="panel" style="margin-right:20px;" /> 
+                </p:panel>
+        </h:form>
+                <!--**********************************************-->
+                
+                <p:panelGrid style="margin: 50px 50px">  
+                    <f:facet name="header">  
+                        <p:row>  
+                            <p:column colspan="2">Pagos Realizados</p:column>  
+                        </p:row>  
+                        <p:row>  
+                            <p:column  style=" padding: 10px 80px">Fecha</p:column>  
+                            <p:column style=" padding: 10px 80px">Abono</p:column>
+                        </p:row>  
+                    </f:facet>  
+
+                    <p:row>  
+                        <p:column ></p:column> 
+                        <p:column ></p:column>  
+                    </p:row> 
+                    
+                    <f:facet name="footer">  
+                        <p:row>  
+                            <p:column style="font-weight: bold;">Total</p:column> 
+                            <p:column style="font-weight: bold;">0.0</p:column>  
+                        </p:row>   
+                    </f:facet>  
+                </p:panelGrid>
+                    
+    </ui:define>
+</ui:composition>
+
+
