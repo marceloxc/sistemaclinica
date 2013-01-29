@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.xml.ws.WebServiceRef;
 import ws.PacienteWS_Service;
 import ws.PersonaWS_Service;
@@ -17,7 +18,7 @@ import ws.PersonaWS_Service;
  * @author Fernanda
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class mbPersona {
 
     /**
