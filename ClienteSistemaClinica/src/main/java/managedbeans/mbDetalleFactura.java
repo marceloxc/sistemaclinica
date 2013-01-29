@@ -6,10 +6,12 @@ package managedbeans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
+import javax.el.ELContext;
+import javax.el.ValueExpression;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.xml.ws.WebServiceRef;
 import util.Detalle;
@@ -32,11 +34,17 @@ public class mbDetalleFactura implements Serializable{
      * Creates a new instance of DetalleFactura
      */
     
+    
+    public String redirDetalle(){
+        lsel = new ArrayList<SelectItem>();
+        obtenerServicio();
+        return "IngresoFactura";
+    }
     public mbDetalleFactura() {
         detalle = new ArrayList<Detalle>();
         serv= new String[1];
         serv[0]="Seleccionar";
-        lsel=new LinkedList<SelectItem>();
+        lsel=new ArrayList<SelectItem>();
     }
      public void agregarDetalle(List<Detalle> det, int cant, String detalle, double punit)
      {
@@ -57,6 +65,13 @@ public class mbDetalleFactura implements Serializable{
 
     public void setServ(String[] serv) {
         this.serv = serv;
+    }
+    public static mbDetalleFactura getInstance()
+    {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ELContext context = facesContext.getELContext();
+        ValueExpression ex = facesContext.getApplication().getExpressionFactory().createValueExpression(context, "#{mbDetalleFactura}",mbDetalleFactura.class);
+        return (mbDetalleFactura)ex.getValue(context);
     }
      
     public String obtenerServicio()
