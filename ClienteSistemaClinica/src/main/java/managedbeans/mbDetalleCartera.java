@@ -7,13 +7,14 @@ package managedbeans;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Fernanda
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class mbDetalleCartera {
 
     /**
