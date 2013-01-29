@@ -50,10 +50,12 @@ public class mbDetalleCartera {
     
     public mbDetalleCartera() {
         java.util.Date fecha2 = new Date();;
-        fecha=fecha2.getDate()+"-"+(Integer.parseInt(fecha2.getMonth()+"")+1)+"-"+(Integer.parseInt(fecha2.getYear()+"")+1900);
+        fecha=fecha2.getDate()+"/"+(Integer.parseInt(fecha2.getMonth()+"")+1)+"/"+(Integer.parseInt(fecha2.getYear()+"")+1900);
         
 
     }
+    
+    
     
     
 }
