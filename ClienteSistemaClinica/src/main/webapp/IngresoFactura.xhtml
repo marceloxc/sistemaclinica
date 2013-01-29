@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:h="http://java.sun.com/jsf/html"
                 template="./template.xhtml"
@@ -6,38 +7,118 @@
                 xmlns:u="http://java.sun.com/jsf/composite/componentes"
                 xmlns:clinica="http://clinica/facelets/componentes">
     <ui:define name="contenido">
-        <h:form id="contenidoForm">
-            <p:panel id="datos" style="margin-bottom:10px;">
-                <p:panelGrid columns="2" cellpadding="2">
-                    <h:outputText value="Cantidad:"/> <p:inputText value=" " id="cant"/>
-                    <h:outputText value="Descripcion:"/> 
-                    <p:selectOneMenu id="datosSuc" value="#{mbDetalleFactura.sucursalSel}">  
-                        <f:selectItems value="#{mbDetalleFactura.lsel}"/>   
-                    </p:selectOneMenu> 
+        <h:form >  
+            
+            <p:panel id="panel" header="Datos de Paciente">  
+                <p:panelGrid id="encabezado" style=" border: none">  
+                                        
+                   <p:row>  
+                        <p:column style="width: 110px!important">
+                            RUC:
+                       </p:column>
+                       <p:column style="width: 110px!important">
+                            <p:inputText value="#{mbFactura2.ruc}" id="ruc"></p:inputText>
+                       </p:column> 
+                       <p:column style="width: 110px!important">
+                           <p:commandButton value="Validar" update="panel" action="#{mbFactura2.cargarDatos()}" id="btnGlobal20" /> 
+                          
+                       </p:column> 
+                   </p:row>  
+                   <p:row>  
+                       <p:column style="width: 320px!important">
+                            Cliente:
+                       </p:column> 
+                       <p:column style="width: 320px!important">
+                            <p:inputText value="#{mbFactura2.cliente}" ></p:inputText>
+                        </p:column>
+                       
+                   </p:row> 
                      
+                   <p:row>  
+                        <p:column style="width: 110px!important">
+                            Dirección:
+                        </p:column> 
+                       <p:column style="width: 110px!important">
+                            <p:inputText value="#{mbFactura2.direccion}" id="dir" name="dire"></p:inputText>
+                        </p:column> 
+                   </p:row>  
+                   <p:row>                        
+                       <p:column style="width: 320px!important">
+                           Fecha 
+                        </p:column>
+                       <p:column style="width: 320px!important">
+                           <p:inputText value="#{mbFactura2.fecha}"></p:inputText> 
+                        </p:column> 
+                   </p:row> 
+                    
+
+                   <p:row>                        
+                    
+                       <p:column style="width: 320px!important">
+                           Tipo de Pago:
+                       </p:column>
+                           <p:column style="width: 320px!important">
+                           <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+    
+                            <p:selectOneRadio id="options" value="#{formBean.number}">  
+                                <f:selectItem itemLabel="Contado" itemValue="1" /> 
+                                <f:selectItem itemLabel="Cuotas" itemValue="2" />  
+                                <f:selectItem itemLabel="Tarjeta de credito" itemValue="3" />   
+                            </p:selectOneRadio>  
+
+                        </h:panelGrid>  
+                      </p:column>  
+                </p:row>
+                
+                ........
                 </p:panelGrid>
-            </p:panel>
-            <p:commandButton value="Cargar" id="cargar" action="#{mbDetalleFactura.obtenerServicio()}" update="datos"/>
-            <p:commandButton value="Agregar" id="agregar" action="#{mbDetalleFactura.agregarSucursal()}"/>
-            <!--
-            <p:dataTable id="detallefactura" >  
-                <p:column headerText="Cantidad" style="width: 50px">
-                    <h:outputText value="" id="cantidad"/>  
-                </p:column>  
-
-                <p:column headerText="Descripcion" style="width: 200px">  
-                    <h:outputText value="" id="descripcion"/>  
-                </p:column>  
-
-                <p:column headerText="P. Unitario" style="width: 50px">  
-                    <h:outputText value="" id="punitario"/>  
-                </p:column>  
-
-                <p:column headerText="P. Total" style="width: 50px">  
-                    <h:outputText value="" id="ptotal"/>  
-                </p:column>  
-            </p:dataTable>  
-            -->
-        </h:form>
+            </p:panel> 
+            
+            
+            <p:panel id="panel2" header="Detalle">  
+               <p:panelGrid id="detalle" style=" border: none">             
+                <p:row>  
+                    <p:column style="width: 110px!important" >
+                    </p:column>  
+                    <p:column style="width: 110px!important" >
+                    </p:column>
+                    <p:column style="width: 320px!important">
+                    </p:column>
+                    <p:column style="width: 110px!important" >
+                        <p:inputText value="#{mbFactura2.num1}"></p:inputText>
+                    </p:column> 
+                </p:row>  
+                <p:row>  
+                        <p:column style="width: 110px!important" >
+                        </p:column>  
+                        <p:column style="width: 110px!important" >
+                        </p:column>
+                        <p:column style="width: 320px!important">
+                       </p:column>
+                        <p:column style="width: 110px!important" >
+                            <p:inputText value="#{mbFactura2.num2}"></p:inputText>
+                        </p:column> 
+                </p:row> 
+                   
+                   <p:row>  
+                        <p:column style="width: 110px!important" >
+                        </p:column>  
+                        <p:column style="width: 110px!important" >
+                            <p:commandButton value="Calcular" update="panel2" action="#{mbFactura2.calcularTotal()}" id="btnGlobal2" /> 
+                        </p:column>
+                        <p:column style="width: 320px!important">
+                            Total:
+                       </p:column>
+                        <p:column style="width: 110px!important" >
+                            <p:inputText value="#{mbFactura2.total}"></p:inputText>
+                        </p:column> 
+                </p:row>
+            </p:panelGrid>
+                  <p:commandButton value="TOTAL" update="panel2" action="#{mbFactura2.calcularTotal()}" id="btnGlobal55" />
+                
+                  <p:commandButton value="GUARDAR" update="panel2" action="#{mbFactura2.Guardar()}" id="btnNonGlobal66" global="false"/>
+            </p:panel> 
+            
+        </h:form> 
     </ui:define>
 </ui:composition>
