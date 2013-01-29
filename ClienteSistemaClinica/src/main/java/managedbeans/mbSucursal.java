@@ -130,6 +130,12 @@ public final class mbSucursal implements Serializable{
         this.direccion = direccion;
     }
     
+    public String reporte() {
+     
+        
+        return "reporte.jsp";
+    }
+    
     public void onEdit(RowEditEvent event) {  
         FacesMessage msg = new FacesMessage("Sucursal Editada", ((Sucursal) event.getObject()).getNumSucursal()+"");    
         FacesContext.getCurrentInstance().addMessage(null, msg);

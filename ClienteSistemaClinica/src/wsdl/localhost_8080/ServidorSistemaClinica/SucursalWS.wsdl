@@ -10,23 +10,11 @@
 <message name="findentitiessResponse">
 <part name="parameters" element="tns:findentitiessResponse"/>
 </message>
-<message name="crears">
-<part name="parameters" element="tns:crears"/>
+<message name="reporte">
+<part name="parameters" element="tns:reporte"/>
 </message>
-<message name="crearsResponse">
-<part name="parameters" element="tns:crearsResponse"/>
-</message>
-<message name="edits">
-<part name="parameters" element="tns:edits"/>
-</message>
-<message name="editsResponse">
-<part name="parameters" element="tns:editsResponse"/>
-</message>
-<message name="finds">
-<part name="parameters" element="tns:finds"/>
-</message>
-<message name="findsResponse">
-<part name="parameters" element="tns:findsResponse"/>
+<message name="reporteResponse">
+<part name="parameters" element="tns:reporteResponse"/>
 </message>
 <message name="counts">
 <part name="parameters" element="tns:counts"/>
@@ -34,26 +22,48 @@
 <message name="countsResponse">
 <part name="parameters" element="tns:countsResponse"/>
 </message>
+<message name="finds">
+<part name="parameters" element="tns:finds"/>
+</message>
+<message name="findsResponse">
+<part name="parameters" element="tns:findsResponse"/>
+</message>
+<message name="edits">
+<part name="parameters" element="tns:edits"/>
+</message>
+<message name="editsResponse">
+<part name="parameters" element="tns:editsResponse"/>
+</message>
+<message name="crears">
+<part name="parameters" element="tns:crears"/>
+</message>
+<message name="crearsResponse">
+<part name="parameters" element="tns:crearsResponse"/>
+</message>
 <portType name="SucursalWS">
 <operation name="findentitiess">
 <input wsam:Action="http://ws/SucursalWS/findentitiessRequest" message="tns:findentitiess"/>
 <output wsam:Action="http://ws/SucursalWS/findentitiessResponse" message="tns:findentitiessResponse"/>
 </operation>
-<operation name="crears">
-<input wsam:Action="http://ws/SucursalWS/crearsRequest" message="tns:crears"/>
-<output wsam:Action="http://ws/SucursalWS/crearsResponse" message="tns:crearsResponse"/>
+<operation name="reporte">
+<input wsam:Action="http://ws/SucursalWS/reporteRequest" message="tns:reporte"/>
+<output wsam:Action="http://ws/SucursalWS/reporteResponse" message="tns:reporteResponse"/>
 </operation>
-<operation name="edits">
-<input wsam:Action="http://ws/SucursalWS/editsRequest" message="tns:edits"/>
-<output wsam:Action="http://ws/SucursalWS/editsResponse" message="tns:editsResponse"/>
+<operation name="counts">
+<input wsam:Action="http://ws/SucursalWS/countsRequest" message="tns:counts"/>
+<output wsam:Action="http://ws/SucursalWS/countsResponse" message="tns:countsResponse"/>
 </operation>
 <operation name="finds">
 <input wsam:Action="http://ws/SucursalWS/findsRequest" message="tns:finds"/>
 <output wsam:Action="http://ws/SucursalWS/findsResponse" message="tns:findsResponse"/>
 </operation>
-<operation name="counts">
-<input wsam:Action="http://ws/SucursalWS/countsRequest" message="tns:counts"/>
-<output wsam:Action="http://ws/SucursalWS/countsResponse" message="tns:countsResponse"/>
+<operation name="edits">
+<input wsam:Action="http://ws/SucursalWS/editsRequest" message="tns:edits"/>
+<output wsam:Action="http://ws/SucursalWS/editsResponse" message="tns:editsResponse"/>
+</operation>
+<operation name="crears">
+<input wsam:Action="http://ws/SucursalWS/crearsRequest" message="tns:crears"/>
+<output wsam:Action="http://ws/SucursalWS/crearsResponse" message="tns:crearsResponse"/>
 </operation>
 </portType>
 <binding name="SucursalWSPortBinding" type="tns:SucursalWS">
@@ -67,7 +77,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="crears">
+<operation name="reporte">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -76,7 +86,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="edits">
+<operation name="counts">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -94,7 +104,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="counts">
+<operation name="edits">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="crears">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
