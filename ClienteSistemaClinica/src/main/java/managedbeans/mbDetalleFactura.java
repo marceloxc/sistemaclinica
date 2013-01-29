@@ -27,6 +27,8 @@ public class mbDetalleFactura implements Serializable{
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl")
     private SucursalWS_Service service;
     
+    private Integer sucursalSel = null;
+    
     private List<Detalle> detalle;
     private String[] serv;
     private List<SelectItem> lsel;
@@ -106,5 +108,19 @@ public class mbDetalleFactura implements Serializable{
 
     public void setLsel(List<SelectItem> lsel) {
         this.lsel = lsel;
+    }
+
+    public Integer getSucursalSel() {
+        return sucursalSel;
+    }
+
+    public void setSucursalSel(Integer sucursalSel) {
+        this.sucursalSel = sucursalSel;
+    }
+    
+    public String agregarSucursal() {
+        Integer s = this.sucursalSel;
+        System.out.println("Sel: " + s);
+        return "";
     }
 }
