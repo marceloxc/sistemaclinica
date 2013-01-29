@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                template="./template.xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:u="http://java.sun.com/jsf/composite/componentes"
+                xmlns:clinica="http://clinica/facelets/componentes">
+    <ui:define name="contenido">
+        <h:form >  
+            <p:panel id="panel" header="Datos de Paciente">  
+                <h:panelGrid columns="4" cellpadding="5"> 
+                    <h:outputLabel for="cedulap" value="Cedula de paciente:" />  
+                    <p:inputText id="cedulap" value="#{mbPersona.cedula}" required="true" >
+                        <f:validateLength minimum="10" /> 
+                    </p:inputText> 
+                    
+                    <p:outputLabel for="nombresp" value="Nombres:" />  
+                    <p:inputText id="nombresp"  value="#{mbPersona.nombres}" />  
+                    <p:outputLabel for="apellidosp" value="Apellidos:" />  
+                    <p:inputText id="apellidosp"  value="#{mbPersona.apellidos}" />  
+                    <p:outputLabel for="direccionp" value="Direccion:" />  
+                    <p:inputText id="direccionp"  value="#{mbPersona.direccion}" />  
+                    <p:outputLabel for="telefonop" value="Teléfono:" />  
+                    <p:inputText id="telefonop"  value="#{mbPersona.telefono}" />  
+                    <p:outputLabel for="telefonocp" value="Teléfono Celular:" />  
+                    <p:inputText id="telefonocp"  value="#{mbPersona.telfCelular}" />  
+                    <p:outputLabel for="emailp" value="Email:" />  
+                    <p:inputText id="emailp"  value="#{mbPersona.email}" />  
+                    <p:outputLabel for="sexop" value="Sexo:" />  
+                    <p:inputText id="sexop"  value="#{mbPersona.sexo}" />  
+                    <p:outputLabel for="fechanp" value="Fecha de Nacimiento:" />  
+                    <p:inputText id="fechanp"  value="#{mbPersona.formatfechaNacimiento}" />  
+                </h:panelGrid>  
+                <p:commandButton value="Global" update="panel" action="#{mbPersona.cargarDatos()}" id="btnGlobal" />  
+            </p:panel>  
+        </h:form> 
+    </ui:define>
+</ui:composition>
+
