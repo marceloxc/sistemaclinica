@@ -22,7 +22,8 @@
                         <p:inputText id="deuda"  value="#{mbCartera.totalDeuda}" />
                         <p:message for="deuda" display="icon"/>
                     </h:panelGrid>  
-                     <p:commandButton value="Global" update="panelFactura" action="#{mbCartera.cargarFactura()}" id="btnGlobal" /> 
+                     <p:commandButton value="Buscar" update="panelFactura" action="#{mbCartera.cargarFactura()}" id="btnBuscar" /> 
+                     <p:commandButton value="Registrar" update="panelFactura" action="#{mbCartera.crearCartera()}" id="btnRegistrar" /> 
                 </p:panel>  
                 
         </h:form>
