@@ -7,6 +7,7 @@
               xmlns:u="http://java.sun.com/jsf/composite">
         <div id="divHeader">
             <div id="divMenu">
+             
                 <p:menubar>
 
                     <p:submenu label="Pacientes" >
@@ -38,7 +39,8 @@
                         <p:menuitem value="Listado" url="../ClienteSistemaClinica/listarreceta.pfaces" />
                     </p:submenu>
                     <p:submenu label="Pagos" >
-                        <p:menuitem value="Registrar" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                        <p:menuitem value="Registrar" partialSubmit="true" action="#{mbDetalleFactura.redirDetalle()}"  />
+                            
                         <p:menuitem value="Listado" url="http://www.primefaces.org/documentation.html" />
                     </p:submenu>
                     <p:submenu label="Agenda" >

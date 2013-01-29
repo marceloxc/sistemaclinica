@@ -13,10 +13,20 @@
         <link rel="stylesheet" type="text/css" href="resources/css/styles.css"/>
     </h:head>
     <h:body>
-        <ui:insert name="contenido" />
+        <ui:insert name="contenidos" />
         <p:layout fullPage="true">
+            <p:layoutUnit position="center" resizable="false" closable="false" collapsible="false">  
+                <h:form id="contenidoCentroForm">
+                    <div style="padding: 7px 70px;">
+                        <ui:insert name="contenido" />
+                    </div>    
+                </h:form>
+            </p:layoutUnit>  
+
             <p:layoutUnit position="north" size="200"  resizable="false" closable="false" collapsible="true" >
-                <clinica:menuCabecera/>
+                <h:form id="cabeceraForm">
+                    <clinica:menuCabecera/>
+                </h:form>
                 <!---
                 <div id="divHeader">
                     <div id="divMenu">
@@ -65,7 +75,7 @@
                         </p:menubar>
                     </div>
                 </div>            
--->
+                -->
             </p:layoutUnit>
 
 
@@ -73,12 +83,7 @@
 
             </p:layoutUnit>
 
-            <p:layoutUnit position="center" resizable="false" closable="false" collapsible="false">  
-
-                <div style="padding: 7px 70px;">
-                    <ui:insert name="contenido" />
-                </div>    
-            </p:layoutUnit>        
+      
         </p:layout>
     </h:body>
 </html>

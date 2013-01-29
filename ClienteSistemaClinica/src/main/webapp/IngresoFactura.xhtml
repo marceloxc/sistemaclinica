@@ -6,18 +6,18 @@
                 xmlns:u="http://java.sun.com/jsf/composite/componentes"
                 xmlns:clinica="http://clinica/facelets/componentes">
     <ui:define name="contenido">
-        <h:form>
+        <h:form id="contenidoForm">
             <p:panel id="datos" style="margin-bottom:10px;">
                 <p:panelGrid columns="2" cellpadding="2">
-                    <h:outputText value="Cantidad:"/> <p:inputText value="" id="cant"/>
+                    <h:outputText value="Cantidad:"/> <p:inputText value=" " id="cant"/>
                     <h:outputText value="Descripcion:"/> 
-                    <p:selectOneMenu id="datosSuc" width="125" var="var1" style="width: 200px">  
+                    <p:selectOneMenu id="datosSuc">  
                         <f:selectItems value="#{mbDetalleFactura.lsel}"/>   
                     </p:selectOneMenu> 
                      
                 </p:panelGrid>
             </p:panel>
-            <p:commandButton value="Cargar" id="cargar" actionListener="#{mbDetalleFactura.obtenerServicio()}" update="datos"/>
+            <p:commandButton value="Cargar" id="cargar" action="#{mbDetalleFactura.obtenerServicio()}" update="datos"/>
             <p:commandButton value="Agregar" id="agregar" style="margin:10px"/>
             <!--
             <p:dataTable id="detallefactura" >  
