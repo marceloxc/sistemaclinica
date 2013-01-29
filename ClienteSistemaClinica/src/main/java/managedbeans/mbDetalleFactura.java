@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.xml.ws.WebServiceRef;
 import util.Detalle;
+import ws.ServicioOdontologicoWS_Service;
 import ws.SucursalWS_Service;
 
 /**
@@ -24,9 +25,87 @@ import ws.SucursalWS_Service;
 @ManagedBean(name="mbDetalleFactura")
 @SessionScoped
 public class mbDetalleFactura implements Serializable{
+    @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/ServicioOdontologicoWS.wsdl")
+    private ServicioOdontologicoWS_Service service_1;
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/SucursalWS.wsdl")
     private SucursalWS_Service service;
-    
+        private int cant=1;
+
+    /**
+     * Get the value of cant
+     *
+     * @return the value of cant
+     */
+    public int getCant() {
+        return cant;
+    }
+
+    /**
+     * Set the value of cant
+     *
+     * @param cant new value of cant
+     */
+    public void setCant(int cant) {
+        this.cant = cant;
+    }
+    private String descrip;
+
+    /**
+     * Get the value of descrip
+     *
+     * @return the value of descrip
+     */
+    public String getDescrip() {
+        return descrip;
+    }
+
+    /**
+     * Set the value of descrip
+     *
+     * @param descrip new value of descrip
+     */
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
+    private double punit;
+
+    /**
+     * Get the value of punit
+     *
+     * @return the value of punit
+     */
+    public double getPunit() {
+        return punit;
+    }
+
+    /**
+     * Set the value of punit
+     *
+     * @param punit new value of punit
+     */
+    public void setPunit(double punit) {
+        this.punit = punit;
+    }
+    private double ptot;
+
+    /**
+     * Get the value of ptot
+     *
+     * @return the value of ptot
+     */
+    public double getPtot() {
+        return ptot;
+    }
+
+    /**
+     * Set the value of ptot
+     *
+     * @param ptot new value of ptot
+     */
+    public void setPtot(double ptot) {
+        this.ptot = ptot;
+    }
     private Integer sucursalSel = null;
     
     private List<Detalle> detalle;
@@ -47,10 +126,25 @@ public class mbDetalleFactura implements Serializable{
         serv= new String[1];
         serv[0]="Seleccionar";
         lsel=new ArrayList<SelectItem>();
+        obtenerServicio();
     }
-     public void agregarDetalle(List<Detalle> det, int cant, String detalle, double punit)
+     public void agregarDetalle()
      {
-         det.add(new Detalle(cant,detalle,punit, cant*punit));
+
+         try { // Call Web Service Operation
+             ws.ServicioOdontologicoWS port = service_1.getServicioOdontologicoWSPort();
+             // TODO initialize WS operation arguments here
+             int id = sucursalSel;
+             // TODO process result here
+             ws.ServicioOdontologico result = port.findso(id);
+             this.detalle.add(new Detalle(cant,result.getDescripcion(),result.getPrecio(), cant*result.getPrecio()));
+             System.out.println("Result = "+result);
+         } catch (Exception ex) {
+         // TODO handle custom exceptions here
+         }
+
+         
+         
      }
 
     public List<Detalle> getDetalle() {
@@ -80,24 +174,23 @@ public class mbDetalleFactura implements Serializable{
     {
         
         try { // Call Web Service Operation
-            ws.SucursalWS port = service.getSucursalWSPort();
+            ws.ServicioOdontologicoWS port = service_1.getServicioOdontologicoWSPort();
             // TODO initialize WS operation arguments here
             int fi = 0;
             int max = 10;
             // TODO process result here
-            java.util.List<ws.Sucursal> result = port.findentitiess(fi, max);
+            java.util.List<ws.ServicioOdontologico> result = port.findentitieso(fi, max);
             System.out.println("Result = "+result);
             serv=new String[result.size()];
-            for(ws.Sucursal var:result)
+            for(ws.ServicioOdontologico var:result)
             {
-                SelectItem si = new SelectItem(var.getNumSucursal(), var.getDireccion());
+                SelectItem si = new SelectItem(var.getCodigo(), var.getDescripcion());
                 lsel.add(si);
             }
-        } catch (Exception ex){
-            ex.printStackTrace();
-            System.out.print(ex.getMessage());
+        } catch (Exception ex) {
         // TODO handle custom exceptions here
         }
+            // TODO process result here
         
         return "";
     }
