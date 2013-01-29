@@ -4,6 +4,24 @@
 <xsd:import namespace="http://ws/" schemaLocation="http://localhost:8080/ServidorSistemaClinica/PacienteWS?xsd=1"/>
 </xsd:schema>
 </types>
+<message name="findentitiespa">
+<part name="parameters" element="tns:findentitiespa"/>
+</message>
+<message name="findentitiespaResponse">
+<part name="parameters" element="tns:findentitiespaResponse"/>
+</message>
+<message name="reporte">
+<part name="parameters" element="tns:reporte"/>
+</message>
+<message name="reporteResponse">
+<part name="parameters" element="tns:reporteResponse"/>
+</message>
+<message name="crearpa">
+<part name="parameters" element="tns:crearpa"/>
+</message>
+<message name="crearpaResponse">
+<part name="parameters" element="tns:crearpaResponse"/>
+</message>
 <message name="editpa">
 <part name="parameters" element="tns:editpa"/>
 </message>
@@ -16,25 +34,25 @@
 <message name="findpaResponse">
 <part name="parameters" element="tns:findpaResponse"/>
 </message>
-<message name="findentitiespa">
-<part name="parameters" element="tns:findentitiespa"/>
-</message>
-<message name="findentitiespaResponse">
-<part name="parameters" element="tns:findentitiespaResponse"/>
-</message>
 <message name="countpa">
 <part name="parameters" element="tns:countpa"/>
 </message>
 <message name="countpaResponse">
 <part name="parameters" element="tns:countpaResponse"/>
 </message>
-<message name="crearpa">
-<part name="parameters" element="tns:crearpa"/>
-</message>
-<message name="crearpaResponse">
-<part name="parameters" element="tns:crearpaResponse"/>
-</message>
 <portType name="PacienteWS">
+<operation name="findentitiespa">
+<input wsam:Action="http://ws/PacienteWS/findentitiespaRequest" message="tns:findentitiespa"/>
+<output wsam:Action="http://ws/PacienteWS/findentitiespaResponse" message="tns:findentitiespaResponse"/>
+</operation>
+<operation name="reporte">
+<input wsam:Action="http://ws/PacienteWS/reporteRequest" message="tns:reporte"/>
+<output wsam:Action="http://ws/PacienteWS/reporteResponse" message="tns:reporteResponse"/>
+</operation>
+<operation name="crearpa">
+<input wsam:Action="http://ws/PacienteWS/crearpaRequest" message="tns:crearpa"/>
+<output wsam:Action="http://ws/PacienteWS/crearpaResponse" message="tns:crearpaResponse"/>
+</operation>
 <operation name="editpa">
 <input wsam:Action="http://ws/PacienteWS/editpaRequest" message="tns:editpa"/>
 <output wsam:Action="http://ws/PacienteWS/editpaResponse" message="tns:editpaResponse"/>
@@ -43,21 +61,40 @@
 <input wsam:Action="http://ws/PacienteWS/findpaRequest" message="tns:findpa"/>
 <output wsam:Action="http://ws/PacienteWS/findpaResponse" message="tns:findpaResponse"/>
 </operation>
-<operation name="findentitiespa">
-<input wsam:Action="http://ws/PacienteWS/findentitiespaRequest" message="tns:findentitiespa"/>
-<output wsam:Action="http://ws/PacienteWS/findentitiespaResponse" message="tns:findentitiespaResponse"/>
-</operation>
 <operation name="countpa">
 <input wsam:Action="http://ws/PacienteWS/countpaRequest" message="tns:countpa"/>
 <output wsam:Action="http://ws/PacienteWS/countpaResponse" message="tns:countpaResponse"/>
 </operation>
-<operation name="crearpa">
-<input wsam:Action="http://ws/PacienteWS/crearpaRequest" message="tns:crearpa"/>
-<output wsam:Action="http://ws/PacienteWS/crearpaResponse" message="tns:crearpaResponse"/>
-</operation>
 </portType>
 <binding name="PacienteWSPortBinding" type="tns:PacienteWS">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<operation name="findentitiespa">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="reporte">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="crearpa">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="editpa">
 <soap:operation soapAction=""/>
 <input>
@@ -76,25 +113,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="findentitiespa">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="countpa">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="crearpa">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
