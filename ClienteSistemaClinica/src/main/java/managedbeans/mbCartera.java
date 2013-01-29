@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.xml.ws.WebServiceRef;
 import ws.FacturaWS_Service;
 
@@ -16,7 +17,7 @@ import ws.FacturaWS_Service;
  * @author Fernanda
  */
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class mbCartera {
     @WebServiceRef(wsdlLocation = "WEB-INF/wsdl/localhost_8080/ServidorSistemaClinica/FacturaWS.wsdl")
     private FacturaWS_Service service;
@@ -79,7 +80,7 @@ public class mbCartera {
         try { // Call Web Service Operation
             ws.FacturaWS port = service.getFacturaWSPort();
             // TODO initialize WS operation arguments here
-            int id = 0;
+            int id = idFactura;
             // TODO process result here
             ws.Factura result = port.findf(id);
             System.out.println("Result = "+result);
