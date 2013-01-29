@@ -53,14 +53,33 @@
                     <p:calendar id="cal1"  navigator="true"  required="true" value="#{mgOdontologo.fechaIngreso}" label="Fecha Ingreso:"/>
                     <p:message for="cal1"/>
                     <h:outputText value="Sucursal: *"/> 
-                    <p:selectOneMenu value="#{mgOdontologo.sucursal}" style="width: 200px" id="combo">  
-                        <f:selectItems value="#{mgOdontologo.listado}"  
-                                       var="suc"   
-                                       itemLabel="#{suc.numSucursal}"  
-                                       itemValue="#{suc.numSucursal}" id="c"/>  
-                    </p:selectOneMenu> 
-                        <p:commandButton  id="cmdCargar" value="Cargar Sucursal" action="#{mgOdontologo.cargar()}" update="c"  />     
-   
+                    <p:inputText id="txtSucursal" required="true" value="" label="Sucursal" />
+
+                    <p:commandButton  id="cmdCargar" value="Cargar Sucursal" action="#{mbSucursal.Listar()}" oncomplete="sucursalDialog.show()" />
+                    <p:dialog id="dialog" header="Listado Sucursales" widgetVar="sucursalDialog" resizable="false"  
+                              width="600" showEffect="clip" hideEffect="fold">  
+
+                        <p:dataTable var="suc" value="#{mbSucursal.listado}" id="sucList">  
+
+                            <f:facet name="header" class="titulos">  
+                                SUCURSALES  
+                            </f:facet>  
+                            <p:column headerText="Id" style="width:125px" >  
+                                #{suc.numSucursal}   
+                            </p:column>  
+                            <p:column headerText="Direccion" style="width:125px">  
+                                #{suc.direccion}    
+                            </p:column>  
+
+                            <p:column headerText="Telefono" style="width:125px">  
+                                #{suc.telefono}   
+                            </p:column>    
+
+                        </p:dataTable>
+
+                        
+                    </p:dialog>  
+
                 </h:panelGrid>
             </p:panel>
             <p:commandButton id="cmdGuardar" value="Guardar"  update="estado,panel" action="#{mgOdontologo.guardar()}" icon="ui-icon-disk"/>

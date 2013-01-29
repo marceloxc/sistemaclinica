@@ -30,6 +30,25 @@ public final class mbSucursal implements Serializable{
     private String nombre;
     private String direccion;
     private List<Sucursal> listado;
+        private Sucursal selectedSucursal;
+
+    /**
+     * Get the value of selectedSucursal
+     *
+     * @return the value of selectedSucursal
+     */
+    public Sucursal getSelectedSucursal() {
+        return selectedSucursal;
+    }
+
+    /**
+     * Set the value of selectedSucursal
+     *
+     * @param selectedSucursal new value of selectedSucursal
+     */
+    public void setSelectedSucursal(Sucursal selectedSucursal) {
+        this.selectedSucursal = selectedSucursal;
+    }
 
     public List<Sucursal> getListado() {
         return listado;
